@@ -1,0 +1,156 @@
+{
+  "title": "Radlager – was es macht und was passiert, wenn es kaputt geht",
+  "note": "Sprechertext. Zeiten sind geschätzt, bis eine echte Sprecherspur vorliegt (tools/build.mjs ersetzt sie dann durch die Wortzeiten der Aufnahme).",
+  "duration": 54.5,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.3,
+      "end": 7.9,
+      "text": "Du fährst über die Landstraße – und plötzlich ist da dieses Brummen. Je schneller du fährst, desto lauter wird es."
+    },
+    {
+      "id": "l2",
+      "start": 8.4,
+      "end": 13.2,
+      "text": "Schuld ist oft ein kleines Teil, das du nie siehst: das Radlager."
+    },
+    {
+      "id": "l3",
+      "start": 13.7,
+      "end": 23.3,
+      "text": "Es sitzt in der Radnabe und lässt das Rad fast ohne Reibung drehen. Dabei trägt es das Gewicht deines Autos – in jeder Kurve."
+    },
+    {
+      "id": "l4",
+      "start": 23.8,
+      "end": 29.8,
+      "text": "Innen rollen gehärtete Stahlkugeln zwischen zwei Laufringen. Eine Dichtung hält Wasser und Schmutz draußen."
+    },
+    {
+      "id": "l5",
+      "start": 30.3,
+      "end": 37.5,
+      "text": "Schlaglöcher, Bordsteinkanten oder eine undichte Dichtung beschädigen die Laufbahnen. Das Fett geht verloren, Metall reibt auf Metall."
+    },
+    {
+      "id": "l6",
+      "start": 38,
+      "end": 45.2,
+      "text": "Dann brummt es, das Rad bekommt Spiel, das Lager wird heiß – und manchmal leuchtet sogar die ABS-Lampe."
+    },
+    {
+      "id": "l7",
+      "start": 45.8,
+      "end": 52.2,
+      "text": "Im schlimmsten Fall blockiert das Rad. Also: Brummt es mit dem Tempo? Lass dein Radlager prüfen."
+    }
+  ],
+  "marks": [
+    {
+      "name": "brummen",
+      "line": "l1",
+      "word": "Brummen"
+    },
+    {
+      "name": "radlager",
+      "line": "l2",
+      "word": "Radlager"
+    },
+    {
+      "name": "radnabe",
+      "line": "l3",
+      "word": "Radnabe"
+    },
+    {
+      "name": "reibung",
+      "line": "l3",
+      "word": "Reibung"
+    },
+    {
+      "name": "gewicht",
+      "line": "l3",
+      "word": "Gewicht"
+    },
+    {
+      "name": "kurve",
+      "line": "l3",
+      "word": "Kurve"
+    },
+    {
+      "name": "kugeln",
+      "line": "l4",
+      "word": "Stahlkugeln"
+    },
+    {
+      "name": "laufringe",
+      "line": "l4",
+      "word": "Laufringen"
+    },
+    {
+      "name": "dichtung",
+      "line": "l4",
+      "word": "Dichtung"
+    },
+    {
+      "name": "schlagloch",
+      "line": "l5",
+      "word": "Schlaglöcher"
+    },
+    {
+      "name": "undicht",
+      "line": "l5",
+      "word": "undichte"
+    },
+    {
+      "name": "laufbahnen",
+      "line": "l5",
+      "word": "Laufbahnen"
+    },
+    {
+      "name": "fett",
+      "line": "l5",
+      "word": "Fett"
+    },
+    {
+      "name": "metall",
+      "line": "l5",
+      "word": "Metall"
+    },
+    {
+      "name": "brummt",
+      "line": "l6",
+      "word": "brummt"
+    },
+    {
+      "name": "spiel",
+      "line": "l6",
+      "word": "Spiel"
+    },
+    {
+      "name": "heiss",
+      "line": "l6",
+      "word": "heiß"
+    },
+    {
+      "name": "abs",
+      "line": "l6",
+      "word": "ABS-Lampe"
+    },
+    {
+      "name": "blockiert",
+      "line": "l7",
+      "word": "blockiert"
+    },
+    {
+      "name": "tempo",
+      "line": "l7",
+      "word": "Brummt"
+    },
+    {
+      "name": "pruefen",
+      "line": "l7",
+      "word": "prüfen"
+    }
+  ]
+}
