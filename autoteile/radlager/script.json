@@ -1,7 +1,7 @@
 {
   "title": "Radlager – was es macht und was passiert, wenn es kaputt geht",
   "note": "Sprechertext. Zeiten sind geschätzt, bis eine echte Sprecherspur vorliegt (tools/build.mjs ersetzt sie dann durch die Wortzeiten der Aufnahme).",
-  "duration": 55,
+  "duration": 54.5,
   "lines": [
     {
       "id": "l1",
@@ -35,7 +35,7 @@
     },
     {
       "id": "l6",
-      "start": 38.0,
+      "start": 38,
       "end": 45.2,
       "text": "Dann brummt es, das Rad bekommt Spiel, das Lager wird heiß – und manchmal leuchtet sogar die ABS-Lampe."
     },
@@ -47,26 +47,110 @@
     }
   ],
   "marks": [
-    { "name": "brummen", "line": "l1", "word": "Brummen" },
-    { "name": "radlager", "line": "l2", "word": "Radlager" },
-    { "name": "radnabe", "line": "l3", "word": "Radnabe" },
-    { "name": "reibung", "line": "l3", "word": "Reibung" },
-    { "name": "gewicht", "line": "l3", "word": "Gewicht" },
-    { "name": "kurve", "line": "l3", "word": "Kurve" },
-    { "name": "kugeln", "line": "l4", "word": "Stahlkugeln" },
-    { "name": "laufringe", "line": "l4", "word": "Laufringen" },
-    { "name": "dichtung", "line": "l4", "word": "Dichtung" },
-    { "name": "schlagloch", "line": "l5", "word": "Schlaglöcher" },
-    { "name": "undicht", "line": "l5", "word": "undichte" },
-    { "name": "laufbahnen", "line": "l5", "word": "Laufbahnen" },
-    { "name": "fett", "line": "l5", "word": "Fett" },
-    { "name": "metall", "line": "l5", "word": "Metall" },
-    { "name": "brummt", "line": "l6", "word": "brummt" },
-    { "name": "spiel", "line": "l6", "word": "Spiel" },
-    { "name": "heiss", "line": "l6", "word": "heiß" },
-    { "name": "abs", "line": "l6", "word": "ABS-Lampe" },
-    { "name": "blockiert", "line": "l7", "word": "blockiert" },
-    { "name": "tempo", "line": "l7", "word": "Brummt" },
-    { "name": "pruefen", "line": "l7", "word": "prüfen" }
+    {
+      "name": "brummen",
+      "line": "l1",
+      "word": "Brummen"
+    },
+    {
+      "name": "radlager",
+      "line": "l2",
+      "word": "Radlager"
+    },
+    {
+      "name": "radnabe",
+      "line": "l3",
+      "word": "Radnabe"
+    },
+    {
+      "name": "reibung",
+      "line": "l3",
+      "word": "Reibung"
+    },
+    {
+      "name": "gewicht",
+      "line": "l3",
+      "word": "Gewicht"
+    },
+    {
+      "name": "kurve",
+      "line": "l3",
+      "word": "Kurve"
+    },
+    {
+      "name": "kugeln",
+      "line": "l4",
+      "word": "Stahlkugeln"
+    },
+    {
+      "name": "laufringe",
+      "line": "l4",
+      "word": "Laufringen"
+    },
+    {
+      "name": "dichtung",
+      "line": "l4",
+      "word": "Dichtung"
+    },
+    {
+      "name": "schlagloch",
+      "line": "l5",
+      "word": "Schlaglöcher"
+    },
+    {
+      "name": "undicht",
+      "line": "l5",
+      "word": "undichte"
+    },
+    {
+      "name": "laufbahnen",
+      "line": "l5",
+      "word": "Laufbahnen"
+    },
+    {
+      "name": "fett",
+      "line": "l5",
+      "word": "Fett"
+    },
+    {
+      "name": "metall",
+      "line": "l5",
+      "word": "Metall"
+    },
+    {
+      "name": "brummt",
+      "line": "l6",
+      "word": "brummt"
+    },
+    {
+      "name": "spiel",
+      "line": "l6",
+      "word": "Spiel"
+    },
+    {
+      "name": "heiss",
+      "line": "l6",
+      "word": "heiß"
+    },
+    {
+      "name": "abs",
+      "line": "l6",
+      "word": "ABS-Lampe"
+    },
+    {
+      "name": "blockiert",
+      "line": "l7",
+      "word": "blockiert"
+    },
+    {
+      "name": "tempo",
+      "line": "l7",
+      "word": "Brummt"
+    },
+    {
+      "name": "pruefen",
+      "line": "l7",
+      "word": "prüfen"
+    }
   ]
 }

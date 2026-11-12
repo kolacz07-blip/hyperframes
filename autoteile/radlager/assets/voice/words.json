@@ -1,0 +1,596 @@
+{
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "offset": 0.3,
+  "words": [
+    {
+      "text": "Du",
+      "start": 0.3,
+      "end": 0.451
+    },
+    {
+      "text": "fährst",
+      "start": 0.509,
+      "end": 0.788
+    },
+    {
+      "text": "über",
+      "start": 0.857,
+      "end": 1.008
+    },
+    {
+      "text": "die",
+      "start": 1.031,
+      "end": 1.101
+    },
+    {
+      "text": "Landstraße",
+      "start": 1.136,
+      "end": 1.833
+    },
+    {
+      "text": "und",
+      "start": 2.111,
+      "end": 2.227
+    },
+    {
+      "text": "plötzlich",
+      "start": 2.262,
+      "end": 2.692
+    },
+    {
+      "text": "ist",
+      "start": 2.75,
+      "end": 2.877
+    },
+    {
+      "text": "da",
+      "start": 2.901,
+      "end": 2.97
+    },
+    {
+      "text": "dieses",
+      "start": 3.028,
+      "end": 3.307
+    },
+    {
+      "text": "Brummen.",
+      "start": 3.377,
+      "end": 3.969
+    },
+    {
+      "text": "Je",
+      "start": 4.41,
+      "end": 4.549
+    },
+    {
+      "text": "schneller",
+      "start": 4.572,
+      "end": 4.898
+    },
+    {
+      "text": "du",
+      "start": 4.932,
+      "end": 5.025
+    },
+    {
+      "text": "fährst,",
+      "start": 5.095,
+      "end": 5.548
+    },
+    {
+      "text": "desto",
+      "start": 5.594,
+      "end": 5.85
+    },
+    {
+      "text": "lauter",
+      "start": 5.919,
+      "end": 6.209
+    },
+    {
+      "text": "wird",
+      "start": 6.244,
+      "end": 6.465
+    },
+    {
+      "text": "es.",
+      "start": 6.535,
+      "end": 6.894
+    },
+    {
+      "text": "Schuld",
+      "start": 7.405,
+      "end": 7.719
+    },
+    {
+      "text": "ist",
+      "start": 7.765,
+      "end": 7.893
+    },
+    {
+      "text": "oft",
+      "start": 7.951,
+      "end": 8.137
+    },
+    {
+      "text": "ein",
+      "start": 8.183,
+      "end": 8.264
+    },
+    {
+      "text": "kleines",
+      "start": 8.322,
+      "end": 8.706
+    },
+    {
+      "text": "Teil,",
+      "start": 8.775,
+      "end": 9.205
+    },
+    {
+      "text": "das",
+      "start": 9.333,
+      "end": 9.495
+    },
+    {
+      "text": "du",
+      "start": 9.53,
+      "end": 9.611
+    },
+    {
+      "text": "nie",
+      "start": 9.681,
+      "end": 9.832
+    },
+    {
+      "text": "siehst:",
+      "start": 9.878,
+      "end": 10.459
+    },
+    {
+      "text": "das",
+      "start": 11.062,
+      "end": 11.237
+    },
+    {
+      "text": "Radlager.",
+      "start": 11.318,
+      "end": 12.177
+    },
+    {
+      "text": "Es",
+      "start": 12.56,
+      "end": 12.723
+    },
+    {
+      "text": "sitzt",
+      "start": 12.746,
+      "end": 13.025
+    },
+    {
+      "text": "in",
+      "start": 13.083,
+      "end": 13.141
+    },
+    {
+      "text": "der",
+      "start": 13.187,
+      "end": 13.28
+    },
+    {
+      "text": "Radnabe",
+      "start": 13.326,
+      "end": 14.046
+    },
+    {
+      "text": "und",
+      "start": 14.22,
+      "end": 14.371
+    },
+    {
+      "text": "lässt",
+      "start": 14.429,
+      "end": 14.627
+    },
+    {
+      "text": "das",
+      "start": 14.65,
+      "end": 14.778
+    },
+    {
+      "text": "Rad",
+      "start": 14.859,
+      "end": 15.091
+    },
+    {
+      "text": "fast",
+      "start": 15.149,
+      "end": 15.381
+    },
+    {
+      "text": "ohne",
+      "start": 15.451,
+      "end": 15.683
+    },
+    {
+      "text": "Reibung",
+      "start": 15.741,
+      "end": 16.09
+    },
+    {
+      "text": "drehen.",
+      "start": 16.124,
+      "end": 16.693
+    },
+    {
+      "text": "Dabei",
+      "start": 17.135,
+      "end": 17.413
+    },
+    {
+      "text": "trägt",
+      "start": 17.448,
+      "end": 17.727
+    },
+    {
+      "text": "es",
+      "start": 17.773,
+      "end": 17.843
+    },
+    {
+      "text": "das",
+      "start": 17.878,
+      "end": 17.994
+    },
+    {
+      "text": "Gewicht",
+      "start": 18.052,
+      "end": 18.365
+    },
+    {
+      "text": "deines",
+      "start": 18.388,
+      "end": 18.644
+    },
+    {
+      "text": "Autos",
+      "start": 18.714,
+      "end": 19.19
+    },
+    {
+      "text": "in",
+      "start": 19.573,
+      "end": 19.7
+    },
+    {
+      "text": "jeder",
+      "start": 19.77,
+      "end": 19.991
+    },
+    {
+      "text": "Kurve.",
+      "start": 20.049,
+      "end": 20.664
+    },
+    {
+      "text": "Innen",
+      "start": 21.361,
+      "end": 21.662
+    },
+    {
+      "text": "rollen",
+      "start": 21.744,
+      "end": 22.046
+    },
+    {
+      "text": "gehärtete",
+      "start": 22.104,
+      "end": 22.638
+    },
+    {
+      "text": "Stahlkugeln",
+      "start": 22.696,
+      "end": 23.404
+    },
+    {
+      "text": "zwischen",
+      "start": 23.474,
+      "end": 23.752
+    },
+    {
+      "text": "zwei",
+      "start": 23.787,
+      "end": 23.996
+    },
+    {
+      "text": "Laufringen.",
+      "start": 24.054,
+      "end": 24.797
+    },
+    {
+      "text": "Eine",
+      "start": 25.122,
+      "end": 25.32
+    },
+    {
+      "text": "Dichtung",
+      "start": 25.366,
+      "end": 25.726
+    },
+    {
+      "text": "hält",
+      "start": 25.772,
+      "end": 25.935
+    },
+    {
+      "text": "Wasser",
+      "start": 26.005,
+      "end": 26.295
+    },
+    {
+      "text": "und",
+      "start": 26.341,
+      "end": 26.423
+    },
+    {
+      "text": "Schmutz",
+      "start": 26.457,
+      "end": 26.771
+    },
+    {
+      "text": "draußen.",
+      "start": 26.817,
+      "end": 27.456
+    },
+    {
+      "text": "Schlaglöcher,",
+      "start": 27.781,
+      "end": 28.617
+    },
+    {
+      "text": "Bordsteinkanten",
+      "start": 28.71,
+      "end": 29.743
+    },
+    {
+      "text": "oder",
+      "start": 29.987,
+      "end": 30.254
+    },
+    {
+      "text": "eine",
+      "start": 30.3,
+      "end": 30.451
+    },
+    {
+      "text": "undichte",
+      "start": 30.532,
+      "end": 30.985
+    },
+    {
+      "text": "Dichtung",
+      "start": 31.043,
+      "end": 31.414
+    },
+    {
+      "text": "beschädigen",
+      "start": 31.461,
+      "end": 31.995
+    },
+    {
+      "text": "die",
+      "start": 32.03,
+      "end": 32.111
+    },
+    {
+      "text": "Laufbahnen.",
+      "start": 32.157,
+      "end": 32.959
+    },
+    {
+      "text": "Das",
+      "start": 33.469,
+      "end": 33.644
+    },
+    {
+      "text": "Fett",
+      "start": 33.713,
+      "end": 33.922
+    },
+    {
+      "text": "geht",
+      "start": 33.992,
+      "end": 34.143
+    },
+    {
+      "text": "verloren,",
+      "start": 34.201,
+      "end": 34.816
+    },
+    {
+      "text": "Metall",
+      "start": 34.932,
+      "end": 35.35
+    },
+    {
+      "text": "reibt",
+      "start": 35.432,
+      "end": 35.687
+    },
+    {
+      "text": "auf",
+      "start": 35.722,
+      "end": 35.815
+    },
+    {
+      "text": "Metall.",
+      "start": 35.896,
+      "end": 36.534
+    },
+    {
+      "text": "Dann",
+      "start": 36.976,
+      "end": 37.185
+    },
+    {
+      "text": "brummt",
+      "start": 37.231,
+      "end": 37.521
+    },
+    {
+      "text": "es,",
+      "start": 37.579,
+      "end": 37.835
+    },
+    {
+      "text": "das",
+      "start": 37.928,
+      "end": 38.09
+    },
+    {
+      "text": "Rad",
+      "start": 38.171,
+      "end": 38.369
+    },
+    {
+      "text": "bekommt",
+      "start": 38.415,
+      "end": 38.74
+    },
+    {
+      "text": "Spiel,",
+      "start": 38.764,
+      "end": 39.274
+    },
+    {
+      "text": "das",
+      "start": 39.391,
+      "end": 39.553
+    },
+    {
+      "text": "Lager",
+      "start": 39.634,
+      "end": 39.925
+    },
+    {
+      "text": "wird",
+      "start": 39.959,
+      "end": 40.122
+    },
+    {
+      "text": "heiß",
+      "start": 40.18,
+      "end": 40.47
+    },
+    {
+      "text": "und",
+      "start": 41.155,
+      "end": 41.283
+    },
+    {
+      "text": "manchmal",
+      "start": 41.353,
+      "end": 41.759
+    },
+    {
+      "text": "leuchtet",
+      "start": 41.805,
+      "end": 42.177
+    },
+    {
+      "text": "sogar",
+      "start": 42.212,
+      "end": 42.479
+    },
+    {
+      "text": "die",
+      "start": 42.525,
+      "end": 42.606
+    },
+    {
+      "text": "ABS-Lampe.",
+      "start": 42.665,
+      "end": 43.64
+    },
+    {
+      "text": "Im",
+      "start": 44.081,
+      "end": 44.209
+    },
+    {
+      "text": "schlimmsten",
+      "start": 44.255,
+      "end": 44.65
+    },
+    {
+      "text": "Fall",
+      "start": 44.708,
+      "end": 44.952
+    },
+    {
+      "text": "blockiert",
+      "start": 45.126,
+      "end": 45.567
+    },
+    {
+      "text": "das",
+      "start": 45.59,
+      "end": 45.741
+    },
+    {
+      "text": "Rad.",
+      "start": 45.834,
+      "end": 46.333
+    },
+    {
+      "text": "Also:",
+      "start": 46.716,
+      "end": 47.32
+    },
+    {
+      "text": "Brummt",
+      "start": 47.599,
+      "end": 47.901
+    },
+    {
+      "text": "es",
+      "start": 47.947,
+      "end": 48.005
+    },
+    {
+      "text": "mit",
+      "start": 48.063,
+      "end": 48.168
+    },
+    {
+      "text": "dem",
+      "start": 48.191,
+      "end": 48.307
+    },
+    {
+      "text": "Tempo?",
+      "start": 48.377,
+      "end": 49.05
+    },
+    {
+      "text": "Lass",
+      "start": 49.433,
+      "end": 49.642
+    },
+    {
+      "text": "dein",
+      "start": 49.689,
+      "end": 49.828
+    },
+    {
+      "text": "Radlager",
+      "start": 49.898,
+      "end": 50.408
+    },
+    {
+      "text": "prüfen.",
+      "start": 50.443,
+      "end": 51.244
+    }
+  ]
+}
