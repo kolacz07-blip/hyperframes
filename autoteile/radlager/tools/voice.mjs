@@ -1,7 +1,8 @@
 // Generates the German voiceover with ElevenLabs (word timings included),
 // then re-times captions, camera and sound to it.
 //
-//   node tools/voice.mjs [--voice <voice_id>]
+//   NODE_USE_ENV_PROXY=1 node tools/voice.mjs [--voice <voice_id>]
+//   (NODE_USE_ENV_PROXY routes fetch through the HTTPS proxy in cloud sessions)
 //
 // The API key is injected by the session's network proxy (or read from
 // ELEVENLABS_API_KEY when run elsewhere).
@@ -78,7 +79,8 @@ writeFileSync(
 );
 
 // loudness-normalise the voice to sit around -16 LUFS with -1.5 dBTP headroom
-const out = join(root, "assets/voice/voice.wav");
+// mono 64 kb/s keeps the file under the repo's 500 KB non-LFS limit
+const out = join(root, "assets/voice/voice.mp3");
 execFileSync("ffmpeg", [
   "-y",
   "-loglevel",
@@ -88,7 +90,11 @@ execFileSync("ffmpeg", [
   "-af",
   "loudnorm=I=-16:TP=-1.5:LRA=9",
   "-ar",
-  "48000",
+  "44100",
+  "-ac",
+  "1",
+  "-b:a",
+  "64k",
   out,
 ]);
 const dur = parseFloat(
@@ -111,7 +117,7 @@ writeFileSync(join(root, "script.json"), JSON.stringify(script, null, 2) + "\n")
 // voice <audio> in index.html
 const indexPath = join(root, "index.html");
 let index = readFileSync(indexPath, "utf8");
-const tag = `<audio id="voice" class="clip" src="assets/voice/voice.wav" data-start="${OFFSET}" data-duration="${dur.toFixed(2)}" data-track-index="9" data-volume="1"></audio>`;
+const tag = `<audio id="voice" class="clip" src="assets/voice/voice.mp3" data-start="${OFFSET}" data-duration="${dur.toFixed(2)}" data-track-index="9" data-volume="1"></audio>`;
 index = index.replace(/<audio id="voice"[^>]*><\/audio>|<!--VOICE-->/, tag);
 writeFileSync(indexPath, index);
 
