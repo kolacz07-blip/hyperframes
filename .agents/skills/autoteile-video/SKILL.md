@@ -65,7 +65,11 @@ Every claim must be true for that part; if you are unsure whether a symptom or w
    NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt node tools/voice.mjs [--voice <id>]
    ```
    Writes `assets/voice/voice.mp3` + `words.json`, sets the length to last word + 3.2 s and reruns `build.mjs` so captions, camera, labels, strip and sound land on the real words. Check and snapshot again.
-7. **Render** (background, ~10 min): `npx --yes hyperframes@0.9.39 render -o renders/<slug>.mp4 --quiet`, then `npx hyperframes audio renders/<slug>.mp4 --json` (voice present, no clipping). Send the MP4 with `SendUserFile`; say that sound was measured, not heard. Suggest a TikTok caption + hashtags and the cover frame (the strip stop at ~1.2 s).
+7. **Render** (background, ~10 min): `npx --yes hyperframes@0.9.39 render -o renders/<slug>.mp4 --quiet`, then `npx hyperframes audio renders/<slug>.mp4 --json` (voice present, no clipping). Send the MP4 with `SendUserFile`; say that sound was measured, not heard.
+   **Every video ships with two extras — the user asked for them on every episode, unprompted:**
+   - **Description** with hashtags, written to `autoteile/<slug>/BESCHREIBUNG.txt` and pasted in the reply, ready to copy. Pattern (`autoteile/bremsen/BESCHREIBUNG.txt`): symptom question + emoji, one sentence what the video explains, the comments question, "Teil N der Serie – nächstes Mal: Y 👀", "🎙️ Stimme: ElevenLabs", then 10–12 hashtags: the part (2–3, e.g. #bremsen #bremsscheibe), #autoteile #kfz #werkstatt #autowissen #autotipps #mechaniker #lernenmittiktok #fyp #fürdich. Keep it under ~2 200 characters.
+   - **Cover** (1080 × 1920): the frame where the strip lands, a yellow "TEIL N" badge on top and the symptom question on a plate that hides the burned-in caption: `bash .claude/skills/autoteile-video/scripts/cover/make-cover.sh renders/<slug>.mp4 <N> "<Symptom>? 🔊" <scratchpad>/cover-teil<N>.png` — look at it, then send it with `SendUserFile`.
+     Also remind the user to add a quiet TikTok sound and switch on "KI-generierte Inhalte".
 8. **Commit + push** (renders are git-ignored), then update the series table above (also in `.agents/skills/autoteile-video/SKILL.md`, see "Repo gotchas").
 
 ## Why things are the way they are (learned the hard way)
