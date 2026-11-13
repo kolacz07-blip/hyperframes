@@ -1,0 +1,140 @@
+{
+  "title": "Stoßdämpfer – was sie machen und woran du merkst, dass sie hinüber sind",
+  "note": "Folge 3, TikTok 9:16. Zeiten sind geschätzt, bis die Sprecherspur vorliegt.",
+  "duration": 38.2,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.3,
+      "end": 4.6,
+      "text": "Wippt dein Auto nach jeder Bodenwelle nach? Dann schau dir deine Stoßdämpfer an."
+    },
+    {
+      "id": "l2",
+      "start": 5,
+      "end": 11.2,
+      "text": "Die Feder fängt den Stoß ab. Der Dämpfer bremst das Nachschwingen: Öl wird durch kleine Ventile gepresst."
+    },
+    {
+      "id": "l3",
+      "start": 11.6,
+      "end": 17.4,
+      "text": "Mit der Zeit werden die Dichtungen undicht. Öl läuft raus, und der Dämpfer bremst kaum noch."
+    },
+    {
+      "id": "l4",
+      "start": 17.8,
+      "end": 22.4,
+      "text": "Typisch sind Nachwippen, Poltern, ölige Dämpfer und ein längerer Bremsweg."
+    },
+    {
+      "id": "l5",
+      "start": 22.8,
+      "end": 29.2,
+      "text": "Fährt sich dein Auto schwammig? Ab in die Werkstatt! Hattest du das schon mal? Schreib's in die Kommentare."
+    },
+    {
+      "id": "l6",
+      "start": 29.6,
+      "end": 31.4,
+      "text": "Nächstes Mal: die Zündkerzen."
+    }
+  ],
+  "marks": [
+    {
+      "name": "wippt",
+      "line": "l1",
+      "word": "Wippt"
+    },
+    {
+      "name": "bodenwelle",
+      "line": "l1",
+      "word": "Bodenwelle"
+    },
+    {
+      "name": "feder",
+      "line": "l2",
+      "word": "Feder"
+    },
+    {
+      "name": "stoss",
+      "line": "l2",
+      "word": "Stoß"
+    },
+    {
+      "name": "daempfer",
+      "line": "l2",
+      "word": "Dämpfer"
+    },
+    {
+      "name": "oel",
+      "line": "l2",
+      "word": "Öl"
+    },
+    {
+      "name": "ventile",
+      "line": "l2",
+      "word": "Ventile"
+    },
+    {
+      "name": "dichtungen",
+      "line": "l3",
+      "word": "Dichtungen"
+    },
+    {
+      "name": "laeuft",
+      "line": "l3",
+      "word": "läuft"
+    },
+    {
+      "name": "kaum",
+      "line": "l3",
+      "word": "kaum"
+    },
+    {
+      "name": "nachwippen",
+      "line": "l4",
+      "word": "Nachwippen"
+    },
+    {
+      "name": "poltern",
+      "line": "l4",
+      "word": "Poltern"
+    },
+    {
+      "name": "oelig",
+      "line": "l4",
+      "word": "ölige"
+    },
+    {
+      "name": "bremsweg",
+      "line": "l4",
+      "word": "Bremsweg"
+    },
+    {
+      "name": "schwammig",
+      "line": "l5",
+      "word": "schwammig"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "Kommentare"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "Nächstes"
+    },
+    {
+      "name": "zuendkerzen",
+      "line": "l6",
+      "word": "Zündkerzen"
+    }
+  ]
+}

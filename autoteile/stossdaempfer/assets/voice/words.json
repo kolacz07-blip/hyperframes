@@ -1,0 +1,396 @@
+{
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "offset": 0.3,
+  "words": [
+    {
+      "text": "Wippt",
+      "start": 0.3,
+      "end": 0.613
+    },
+    {
+      "text": "dein",
+      "start": 0.637,
+      "end": 0.776
+    },
+    {
+      "text": "Auto",
+      "start": 0.846,
+      "end": 1.113
+    },
+    {
+      "text": "nach",
+      "start": 1.182,
+      "end": 1.333
+    },
+    {
+      "text": "jeder",
+      "start": 1.391,
+      "end": 1.624
+    },
+    {
+      "text": "Bodenwelle",
+      "start": 1.67,
+      "end": 2.181
+    },
+    {
+      "text": "nach?",
+      "start": 2.227,
+      "end": 2.68
+    },
+    {
+      "text": "Dann",
+      "start": 3.377,
+      "end": 3.586
+    },
+    {
+      "text": "schau",
+      "start": 3.62,
+      "end": 3.783
+    },
+    {
+      "text": "dir",
+      "start": 3.818,
+      "end": 3.934
+    },
+    {
+      "text": "deine",
+      "start": 3.957,
+      "end": 4.155
+    },
+    {
+      "text": "Stoßdämpfer",
+      "start": 4.201,
+      "end": 4.851
+    },
+    {
+      "text": "an.",
+      "start": 4.909,
+      "end": 5.327
+    },
+    {
+      "text": "Die",
+      "start": 6.024,
+      "end": 6.163
+    },
+    {
+      "text": "Feder",
+      "start": 6.209,
+      "end": 6.511
+    },
+    {
+      "text": "fängt",
+      "start": 6.558,
+      "end": 6.767
+    },
+    {
+      "text": "den",
+      "start": 6.79,
+      "end": 6.894
+    },
+    {
+      "text": "Stoß",
+      "start": 6.941,
+      "end": 7.231
+    },
+    {
+      "text": "ab.",
+      "start": 7.301,
+      "end": 7.684
+    },
+    {
+      "text": "Der",
+      "start": 8.381,
+      "end": 8.531
+    },
+    {
+      "text": "Dämpfer",
+      "start": 8.578,
+      "end": 8.903
+    },
+    {
+      "text": "bremst",
+      "start": 8.949,
+      "end": 9.298
+    },
+    {
+      "text": "das",
+      "start": 9.321,
+      "end": 9.46
+    },
+    {
+      "text": "Nachschwingen:",
+      "start": 9.542,
+      "end": 10.354
+    },
+    {
+      "text": "Öl",
+      "start": 10.633,
+      "end": 10.958
+    },
+    {
+      "text": "wird",
+      "start": 11.109,
+      "end": 11.283
+    },
+    {
+      "text": "durch",
+      "start": 11.318,
+      "end": 11.457
+    },
+    {
+      "text": "kleine",
+      "start": 11.515,
+      "end": 11.805
+    },
+    {
+      "text": "Ventile",
+      "start": 11.84,
+      "end": 12.258
+    },
+    {
+      "text": "gepresst.",
+      "start": 12.305,
+      "end": 12.978
+    },
+    {
+      "text": "Mit",
+      "start": 13.675,
+      "end": 13.849
+    },
+    {
+      "text": "der",
+      "start": 13.872,
+      "end": 13.965
+    },
+    {
+      "text": "Zeit",
+      "start": 14.035,
+      "end": 14.302
+    },
+    {
+      "text": "werden",
+      "start": 14.348,
+      "end": 14.557
+    },
+    {
+      "text": "die",
+      "start": 14.592,
+      "end": 14.673
+    },
+    {
+      "text": "Dichtungen",
+      "start": 14.72,
+      "end": 15.149
+    },
+    {
+      "text": "undicht.",
+      "start": 15.242,
+      "end": 15.915
+    },
+    {
+      "text": "Öl",
+      "start": 16.159,
+      "end": 16.391
+    },
+    {
+      "text": "läuft",
+      "start": 16.449,
+      "end": 16.658
+    },
+    {
+      "text": "raus,",
+      "start": 16.704,
+      "end": 17.204
+    },
+    {
+      "text": "und",
+      "start": 17.285,
+      "end": 17.413
+    },
+    {
+      "text": "der",
+      "start": 17.436,
+      "end": 17.517
+    },
+    {
+      "text": "Dämpfer",
+      "start": 17.552,
+      "end": 17.877
+    },
+    {
+      "text": "bremst",
+      "start": 17.923,
+      "end": 18.272
+    },
+    {
+      "text": "kaum",
+      "start": 18.341,
+      "end": 18.527
+    },
+    {
+      "text": "noch.",
+      "start": 18.597,
+      "end": 19.038
+    },
+    {
+      "text": "Typisch",
+      "start": 19.549,
+      "end": 20.036
+    },
+    {
+      "text": "sind",
+      "start": 20.118,
+      "end": 20.338
+    },
+    {
+      "text": "Nachwippen,",
+      "start": 20.42,
+      "end": 21.221
+    },
+    {
+      "text": "Poltern,",
+      "start": 21.372,
+      "end": 22.045
+    },
+    {
+      "text": "ölige",
+      "start": 22.173,
+      "end": 22.567
+    },
+    {
+      "text": "Dämpfer",
+      "start": 22.614,
+      "end": 23.078
+    },
+    {
+      "text": "und",
+      "start": 23.287,
+      "end": 23.45
+    },
+    {
+      "text": "ein",
+      "start": 23.519,
+      "end": 23.601
+    },
+    {
+      "text": "längerer",
+      "start": 23.659,
+      "end": 23.984
+    },
+    {
+      "text": "Bremsweg.",
+      "start": 24.03,
+      "end": 24.866
+    },
+    {
+      "text": "Fährt",
+      "start": 25.563,
+      "end": 25.807
+    },
+    {
+      "text": "sich",
+      "start": 25.841,
+      "end": 25.981
+    },
+    {
+      "text": "dein",
+      "start": 26.027,
+      "end": 26.143
+    },
+    {
+      "text": "Auto",
+      "start": 26.213,
+      "end": 26.457
+    },
+    {
+      "text": "schwammig?",
+      "start": 26.503,
+      "end": 27.13
+    },
+    {
+      "text": "Ab",
+      "start": 27.641,
+      "end": 27.815
+    },
+    {
+      "text": "in",
+      "start": 27.885,
+      "end": 27.943
+    },
+    {
+      "text": "die",
+      "start": 27.978,
+      "end": 28.059
+    },
+    {
+      "text": "Werkstatt!",
+      "start": 28.105,
+      "end": 28.895
+    },
+    {
+      "text": "Hattest",
+      "start": 29.278,
+      "end": 29.626
+    },
+    {
+      "text": "du",
+      "start": 29.65,
+      "end": 29.708
+    },
+    {
+      "text": "das",
+      "start": 29.766,
+      "end": 29.87
+    },
+    {
+      "text": "schon",
+      "start": 29.893,
+      "end": 30.044
+    },
+    {
+      "text": "mal?",
+      "start": 30.067,
+      "end": 30.555
+    },
+    {
+      "text": "Schreib's",
+      "start": 30.834,
+      "end": 31.182
+    },
+    {
+      "text": "in",
+      "start": 31.228,
+      "end": 31.287
+    },
+    {
+      "text": "die",
+      "start": 31.321,
+      "end": 31.403
+    },
+    {
+      "text": "Kommentare.",
+      "start": 31.449,
+      "end": 32.273
+    },
+    {
+      "text": "Nächstes",
+      "start": 32.448,
+      "end": 32.865
+    },
+    {
+      "text": "Mal:",
+      "start": 32.935,
+      "end": 33.4
+    },
+    {
+      "text": "die",
+      "start": 33.643,
+      "end": 33.783
+    },
+    {
+      "text": "Zündkerzen.",
+      "start": 33.841,
+      "end": 34.944
+    }
+  ]
+}
