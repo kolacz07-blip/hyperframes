@@ -71,8 +71,8 @@ words.forEach((w, k) => {
   const newLine = next ? next.line !== w.line : true;
   if (
     newLine ||
-    cur.length >= 5 ||
-    (cur.length >= 3 && (punct || pause)) ||
+    cur.length >= 3 ||
+    (cur.length >= 2 && (punct || pause)) ||
     (punct && /[.?!:]$/.test(w.text))
   ) {
     groups.push(cur);
@@ -108,18 +108,19 @@ const captions = `<template>
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 96px;
+      bottom: 560px;
+      padding: 0 60px;
       text-align: center;
       overflow: visible;
     }
     .cap-inner {
       display: inline-block;
-      padding: 10px 26px 14px;
-      background: rgba(20, 16, 24, 0.62);
+      padding: 12px 30px 18px;
+      background: rgba(20, 16, 24, 0.72);
       color: #ffffff;
       font-family: "Montserrat", sans-serif;
       font-weight: 800;
-      font-size: 60px;
+      font-size: 84px;
       line-height: 1.15;
       letter-spacing: -0.01em;
     }
@@ -127,7 +128,7 @@ const captions = `<template>
       display: inline-block;
     }
   </style>
-  <div id="root" data-composition-id="captions" data-width="1920" data-height="1080" data-layout-allow-caption-zone>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-layout-allow-caption-zone>
 ${groupHtml}
   </div>
   <script>
@@ -161,27 +162,69 @@ if (next === world && !world.includes(block))
   throw new Error("TIMING markers missing in world.html");
 writeFileSync(worldPath, next);
 
-// ---- audio cue times in index.html (mirror the derived times in world.html)
+// ---- audio cues in index.html (mirror the derived times in world.html)
 const L = lineTimes;
-const tDiveEnd = L.l2.start + 1.0;
-const tJam = marks.blockiert + 0.15;
-const tExitDive = tJam + 0.5;
-const cues = {
-  "sfx-hum-road": [marks.brummen - 0.6, tDiveEnd - (marks.brummen - 0.6)],
-  "sfx-dive-in": [tDiveEnd - 0.75, 2],
-  "sfx-pothole": [marks.schlagloch - 0.02, 2],
-  "sfx-hum-bear": [marks.brummt - 0.3, tJam - (marks.brummt - 0.3)],
-  "sfx-abs": [marks.abs, 0.7],
-  "sfx-jam": [tJam - 0.02, 2],
-  "sfx-dive-out": [tExitDive + 0.3, 0.55],
+const SLOT = 200,
+  N = 8;
+const reel = (p) => {
+  const c1 = 0.9,
+    c3 = c1 + 1,
+    q = p - 1;
+  return 1 + c3 * q * q * q + c1 * q * q;
 };
+// one tick each time an icon passes the centre ring, at least 70 ms apart
+function ticks(target, t0, t1, loops) {
+  const out = [];
+  let prev = null,
+    last = -1;
+  for (let t = t0; t <= t1; t += 1 / 240) {
+    const p = Math.min(1, Math.max(0, (t - t0) / (t1 - t0)));
+    const off = target * SLOT - (1 - reel(p)) * loops * N * SLOT;
+    const slot = Math.floor(off / SLOT + 0.5);
+    if (prev !== null && slot !== prev && t - last >= 0.07) {
+      out.push(t);
+      last = t;
+    }
+    prev = slot;
+  }
+  return out;
+}
+const tStripStop = 1.15,
+  tStripOut = 1.75;
+const tRoadIn = L.l5.start - 0.05;
+const tOutroSpin = marks.naechstes - 0.25;
+const tOutroStop = marks.stossdaempfer + 0.05;
+const tFollow = Math.max(tOutroStop + 0.9, L.l6.end + 0.25);
+const cueList = [];
+const tickFiles = ["key-press", "click-soft"];
+[...ticks(1, 0, tStripStop, 3), ...ticks(2, tOutroSpin, tOutroStop, 2)].forEach((t, i) =>
+  cueList.push([
+    `sfx-tick-${i}`,
+    `assets/sfx/${tickFiles[i % 2]}.mp3`,
+    t,
+    0.12,
+    0.35,
+    11 + (i % 2),
+  ]),
+);
+cueList.push(["sfx-stop-1", "assets/sfx/pop.mp3", tStripStop - 0.02, 0.7, 0.7, 13]);
+cueList.push(["sfx-stop-2", "assets/sfx/pop.mp3", tOutroStop - 0.02, 0.7, 0.7, 13]);
+cueList.push(["sfx-whoosh-in", "assets/sfx/whoosh.mp3", tStripOut - 0.05, 0.55, 0.5, 14]);
+cueList.push(["sfx-metal", "assets/sfx/impact-bass-1.mp3", marks.metall - 0.02, 2, 0.7]);
+cueList.push(["sfx-road", "assets/sfx/whoosh-cinematic.mp3", tRoadIn - 0.45, 2, 0.55]);
+cueList.push(["sfx-tap", "assets/sfx/click.mp3", tFollow + 0.9, 0.3, 0.8]);
+const cueHtml = cueList
+  .map(
+    ([id, src, s, d, v, tr = 11]) =>
+      `<audio id="${id}" class="clip" src="${src}" data-start="${s.toFixed(2)}" data-duration="${d.toFixed(2)}" data-track-index="${tr}" data-volume="${v}"></audio>`,
+  )
+  .join("\n      ");
 const indexPath = join(root, "index.html");
 let index = readFileSync(indexPath, "utf8");
-for (const [id, [s, d]] of Object.entries(cues)) {
-  const re = new RegExp(`(<audio id="${id}"[^>]*?data-start=")[^"]*("[^>]*?data-duration=")[^"]*"`);
-  if (!re.test(index)) throw new Error(`audio ${id} not found`);
-  index = index.replace(re, `$1${s.toFixed(2)}$2${d.toFixed(2)}"`);
-}
+index = index.replace(
+  /<!--CUES-->[\s\S]*?<!--\/CUES-->|<!--CUES-->/,
+  `<!--CUES-->\n      ${cueHtml}\n      <!--/CUES-->`,
+);
 // film length on the root and every scene host, and in world.html
 for (const id of ["main", "world", "captions"]) {
   const re = new RegExp(`(id="${id}"[\\s\\S]*?data-duration=")[^"]*"`);

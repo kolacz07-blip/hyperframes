@@ -1,101 +1,87 @@
 ---
 name: autoteile-video
-description: Make a German low-poly 3D explainer video (40–60 s, 16:9) about a car part — what it does, what happens when it breaks, how you notice — with a German ElevenLabs voiceover and word-timed captions, built with HyperFrames from a proven template (low-poly road + car, one continuous camera that dives through the wheel into the part). Use this whenever the user asks for a video, Erklärvideo, Clip or Reel about an Autoteil / Ersatzteil / car part (Radlager, Bremsscheibe, Bremsbeläge, Stoßdämpfer, Kupplung, Zündkerze, Lichtmaschine, Turbolader, Spurstange, Querlenker, Keilriemen, Batterie …), asks for "das nächste Ersatzteil" or "noch so ein Video", or wants another episode of the Radlager series — even if they don't say "low poly" or "skill".
+description: Make the next episode of the user's German TikTok series of low-poly 3D car-part explainers (vertical 9:16, ~35 s) — what the part does, why it wears out, how you notice — with a German ElevenLabs voiceover, word-timed captions, a slot-machine "parts strip" that opens ("Heute: …") and closes ("Nächstes Mal: …") every episode, and a follow card, built with HyperFrames from a proven template. Use this whenever the user asks for a video, Erklärvideo, TikTok, Clip or Reel about an Autoteil / Ersatzteil / car part (Radlager, Bremsen, Bremsscheibe, Stoßdämpfer, Kupplung, Zündkerze, Batterie, Lichtmaschine, Turbolader, Keilriemen, Querlenker …), asks for "das nächste Ersatzteil", "die nächste Folge" or "noch so ein Video", even if they don't say "low poly" or "skill".
 ---
 
-# Autoteile-Erklärvideo (Low-Poly, Deutsch)
+# Autoteile-Erklärvideo (TikTok-Serie, Low-Poly, Deutsch)
 
-This skill turns one car part into a ~55 s HyperFrames film in the house style of the first episode (`autoteile/radlager/` in this repo, if it is there, is the reference build). The template already contains everything that is the same for every part; your job per episode is the **script** and the **part world** (the 3D model of the part and how it breaks).
+Each episode turns one car part into a ~35 s portrait HyperFrames film. The template (`template/`, a copy of episode 2 `autoteile/bremsen/`) already contains everything that is the same for every episode — portrait layout, the parts strip, captions, follow card, sound cues, road + car, voice tooling. Per episode you write the **script**, build the **part world** (the 3D part and how it wears) and set the **strip targets**.
 
 Read `/hyperframes` (skills/hyperframes/SKILL.md) for the render contract if you have not this session. Speak to the user in German, simply: they are not a developer.
 
-## Read first: what the audience data says (TikTok, episode 1)
+## Series state (update after every episode)
 
-The videos are posted on **TikTok**. Episode 1 (Radlager, 16:9, 54.5 s, slow road intro) got 865 views in ~16 h but an **average watch time of 9.3 s and 3.6 % full views**; 22 likes, 5 saves, 0 comments, 0 follows. Viewers left before the part even appeared (the dive happened at ~10 s). Those who stayed liked and saved it, so the look works — the opening and format did not. The user asked that the next episode apply these fixes; they override the template defaults below wherever the two disagree:
+| Ep. | Part     | Format                                  | Announced next  | Avg. watch | Full views | Notes                                                    |
+| --- | -------- | --------------------------------------- | --------------- | ---------- | ---------- | -------------------------------------------------------- |
+| 1   | Radlager | 16:9, 54.5 s, slow road intro, no strip | —               | 9.3 s      | 3.6 %      | 865 views/16 h, 22 likes, 5 saves, 0 comments, 0 follows |
+| 2   | Bremsen  | 9:16, 37 s, strip + follow card         | **Stoßdämpfer** | ?          | ?          |                                                          |
 
-1. **Vertical 9:16 (1080 × 1920)**, not 16:9. Re-lay out every overlay for portrait: captions about 600–700 px from the bottom, labels and the warning lamp inside the centre column, the part filling ≥ 50 % of the width. The camera keys need re-framing for the narrow frame (pull the camera back or raise the FOV so exploded views still fit).
-2. **Hook in the first second, the part by second 2–3.** Open on a big text line that names the symptom as a question ("Brummt dein Auto? 🔊" / "Quietscht's beim Bremsen?") over a close, already-moving shot. Cut the slow road intro to ≤ 2 s or move the road to the end; get into the part immediately (the dive can be a fast 0.5 s move, not a 4 s approach).
-3. **30–35 s total**, not 55 s: about 70–85 spoken words. Fewer lines (5 instead of 7): hook+reveal · what it does · why it breaks · how you notice · "ab in die Werkstatt". Every beat must show something new within 2–3 s.
-4. **Bigger type for phones**: captions ~80–90 px, labels ~56–64 px, the title larger; at most 2–3 labels on screen at once.
-5. **End with a question for the comments** in the closing line or caption suggestion ("Welches Teil als Nächstes?") — episode 1 got 0 comments.
-6. **Sound**: suggest the user add a quiet TikTok library sound when uploading (there is still no music source here).
+- TikTok username: **@wasmachtdasteil** (index.html variable `username`). Planned order after that: Stoßdämpfer → Zündkerzen → Batterie → Kupplung (a proposal; confirm with the user).
+- The next episode **must** be the part the previous one announced (Ep. 3 = Stoßdämpfer) unless the user decides otherwise. Ask which part comes _after_ it, because that is what this episode announces.
+- After the user uploads, ask for the two numbers that matter — average watch time and "ganzes Video angeschaut %" — and fill them into this table, so each episode learns from the last.
 
-## Series device: the parts selector strip (open and close every episode)
+## Why the format is what it is (audience data)
 
-The user chose this from a reference they liked (a character-series TikTok whose episodes open on "Lukas ist heute … Schweizer." and close on "Nächstes Mal ist Lukas … Grieche." + "Folg Lukas für die nächste Folge"). It gives viewers a reason to follow — episode 1 got 0 follows — and makes the opening move from frame 0.
+Episode 1 lost most viewers by 9 s: the part only appeared at ~10 s, in 16:9 it was small on a phone, and 55 s is long for TikTok. Those who stayed liked and saved it, so the look works. Hence, for every episode:
 
-- **The strip:** a horizontal band across the frame (dark #1f1a24, ~110 px tall in 9:16) holding a row of round icons, one per car part, drawn as tiny low-poly renders in the house palette (Radlager, Bremsscheibe, Zündkerze, Federbein, Batterie, Kupplung, Keilriemen, Turbolader …; reuse the profile-picture models). A yellow #ffd24a ring marks the centre slot with a small pointer below it.
-- **Opening (0–1.2 s):** the strip is already spinning at frame 0 (never a still first frame), decelerates with a slot-machine ease (fast, then a slight overshoot and settle) and stops on today's part; the line above it lands on the stop: "Heute: **Radlager**" (part name large, yellow accent). A short burst of low-poly shards on the stop, a tick sound per passing icon (rotate 2–3 takes), a pop on the stop. Then go straight into the part (no long road drive).
-- **Closing (~last 4 s):** the strip spins again → stops on the next part → "Nächstes Mal: **Bremsscheibe**". Then a follow card: the user's mechanic profile picture in a circle, a "+" badge, a tapping hand, "Folg **@<username>** für Teil <n+1>". Hold the card ≥ 1.5 s; this replaces the old "Ab in die Werkstatt" end line (keep that as a spoken line if it fits).
-- **The spin is fake-random, the outcome is fixed.** Decide with the user which part comes next _before_ building, and only announce a part the user really plans to post next — a broken promise costs followers. Keep the icon order fixed across episodes so the strip reads as one series.
-- Deterministic: the strip offset is a function of time (no `Math.random()`); seed any shard scatter.
-- Before hand-building, check the registry for a reel to adapt: `npx hyperframes catalog --json | grep -i slot` (there is a `slot-machine-roll` component).
-- Needs from the user: **TikTok username** and **which part is next**. Ask both at the start of the episode if they are not in this file yet.
+1. **9:16 (1080 × 1920)**, everything big: captions 84 px (bottom: 560 px, so they clear TikTok's own UI), labels 60 px, at most 2–3 labels at once. Keep text out of the bottom ~400 px and the right ~140 px (TikTok buttons); `place()` already clamps labels to x 200–880.
+2. **Hook from frame 0:** the strip is already spinning; the voice opens with the symptom as a question ("Quietscht's beim Bremsen?") and the strip lands on the part's name as the voice says it (≈ 1.1 s). The part is on screen behind the strip from frame 0.
+3. **~35 s, ~80 spoken words**, a new picture every 2–3 s.
+4. **A question for the comments** in the last spoken line ("Hattest du das schon mal? Schreib's in die Kommentare.").
+5. Tell the user to add a quiet TikTok library sound when uploading (no music source here), and to switch on TikTok's "KI-generierte Inhalte" label (the voice is AI).
 
-Series state (update after every episode):
+## The film, line by line (episode 2 as the pattern)
 
-| Ep. | Part                      | Announced next | Username      |
-| --- | ------------------------- | -------------- | ------------- |
-| 1   | Radlager (16:9, no strip) | —              | not given yet |
+| Line        | Words                                                 | Picture                                                                                                                                  |
+| ----------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| l1 hook     | symptom question + "schau dir deine X an"             | strip spins and stops on today's part ("Heute: X"), part world behind; symptom effect (squeal rings, sparks) on the symptom word         |
+| l2 job      | what the part does, its 2–3 pieces named              | camera moves to the view that shows the mechanism; one label per piece, on its word; yellow arrows for forces                            |
+| l3 wear     | why it wears out, and what happens then               | the wear happening (thinner, rust, cracks, leaks…), then the damage (scoring, sparks, impact shake)                                      |
+| l4 symptoms | 3–4 symptoms the viewer can notice                    | each symptom shown on the part with a label (rings, wobble/shake, heat colour); a dashboard lamp only if one really exists for this part |
+| l5 payoff   | "… komisch? Ab in die Werkstatt!" + comments question | iris cut to the road: the car brakes and stops with hazard lights; "Ab in die Werkstatt!" plate on its word                              |
+| l6 next     | "Nächstes Mal: der/die Y."                            | road dims, strip returns, spins, stops on Y as it's said; then the follow card "Folg @username / für Teil N+1: Y" with a tap on the "+"  |
 
-After the user uploads, ask for the two numbers that matter — average watch time and "ganzes Video angeschaut %" — and add them to this section, so each episode learns from the last.
-
-## The film, beat by beat
-
-One continuous take; the voice is the clock. Each beat is one line of the script.
-
-| Line        | Picture (template default)                                                                                                | Your part                                                                                                             |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| l1 hook     | Low-poly car on a country road at sunset; yellow rings pulse at the wheel when the symptom is named                       | Pick the symptom the viewer knows (Brummen, Quietschen, Klackern, Ruckeln …). The road rings can stay, recolour or go |
-| l2 reveal   | Camera pushes to the front-left wheel, dives through the hub cap (iris in #44444c), title card names the part on its word | Title text = part name                                                                                                |
-| l3 job      | Part on its own faceted backdrop: what it does, forces as yellow arrows                                                   | Model + arrows                                                                                                        |
-| l4 inside   | Exploded view along the axis, one label per part, each on its spoken word                                                 | Exploded offsets + labels                                                                                             |
-| l5 cause    | Reassemble, impact shake, cutaway (clip plane), the damage happening (water, rust, wear, particles)                       | Damage animation                                                                                                      |
-| l6 symptoms | The symptoms on the part (rings, wobble, heat colour) + a dashboard warning lamp if one applies                           | Which lamp, if any — never invent one that doesn't exist for this part                                                |
-| l7 payoff   | The worst case, dive back out to the road, car stops with hazard lights, closing line "…? Ab in die Werkstatt"            | Closing line                                                                                                          |
-
-The worst case and every claim must be true for that part; if you are unsure whether a symptom or warning light really belongs to the part, say so to the user or leave it out. A beautiful wrong diagram is worse than none.
+Every claim must be true for that part; if you are unsure whether a symptom or warning light belongs to it, say so to the user or leave it out. A beautiful wrong diagram is worse than none.
 
 ## Workflow
 
-1. **Ask only what you can't decide.** Default: 16:9, ~45–55 s, German voice "George" (ElevenLabs `JBFqnCBsd6RMkjVDRZzb`), captions on, no music. If the user names a different part, length, format or voice, use theirs.
-2. **Scaffold** from the repo root:
-   ```bash
-   bash .claude/skills/autoteile-video/scripts/new-part.sh <slug>     # e.g. bremsscheibe
-   ```
-   It copies `template/` to `autoteile/<slug>/` and vendors Three.js locally. Projects live under `autoteile/` because the repo's `.gitignore` ignores `videos/`.
-3. **Script** — rewrite `script.json`: 7 lines (`l1`…`l7`, keep the ids), ~115–130 words total (~150 words/min → ~50 s), plain spoken German, "du"-form, one idea per sentence. `start`/`end` are only estimates until the voice exists. Then define `marks`: each is the first word in a line whose start time drives a picture (`{ "name": "kugeln", "line": "l4", "word": "Stahlkugeln" }`; the word is matched without punctuation). Show the user the script before spending voice credits.
-4. **Part world** — in `compositions/world.html` replace the section between `// BEARING WORLD` and `// CAMERA PATHS` with the new part, and update everything that references bearing objects: the derived times block (`// timing derived from the voice`), `bearKeys`, the `inBear` branch of `render()`, the label `<div>`s and `showLabel` calls, the ABS lamp block. Keep the road world, helpers, the dive/iris logic and the title/final-line mechanics. See `references/world-anatomy.md` for how the file is organised and the modelling rules.
+1. **Before building, settle with the user:** today's part (normally last episode's announcement), the part to announce next, and (only if changed) the username. Defaults: voice "George" (ElevenLabs `JBFqnCBsd6RMkjVDRZzb`), captions on, no music.
+2. **Scaffold** from the repo root: `bash .claude/skills/autoteile-video/scripts/new-part.sh <slug>` (e.g. `stossdaempfer`). It copies the template to `autoteile/<slug>/`, vendors Three.js and copies the sound effects. Projects live under `autoteile/` because the repo's `.gitignore` ignores `videos/`.
+3. **Script** — rewrite `script.json`: the six lines above (ids `l1`…`l6`), ~80 words, plain spoken German, "du"-form. Then `marks`: words whose start time drives a picture (`{ "name": "sattel", "line": "l2", "word": "Bremssattel" }`). The word is matched with punctuation and apostrophes stripped (`Quietscht's` → `Quietschts`). `naechstes` (l6 "Nächstes") and the next part's word are required — the closing strip keys off them; build.mjs also reads `stossdaempfer`, so rename that mark consistently in `script.json`, `world.html` (`M.stossdaempfer`) and `tools/build.mjs` (`marks.stossdaempfer`). Show the user the script before spending voice credits.
+4. **World** — in `compositions/world.html` (see `references/world-anatomy.md`):
+   - replace the `// BRAKE WORLD` section with the new part, and update everything that references brake objects: `// timing derived from the voice`, `brkKeys`, the brake branch of `render()`, the label `<div>`s, `place()` and `showLabel()` calls;
+   - strip: the opening target index (`stripOffset(t, 1, …)`) and word ("Bremsen"), the closing target (`stripOffset(t, 2, …)`) and word ("Stoßdämpfer"), the follow line "für Teil N: Y". Icon order is fixed: 0 Radlager, 1 Bremsscheibe, 2 Federbein (Stoßdämpfer), 3 Zündkerze, 4 Batterie, 5 Kupplung, 6 Keilriemen, 7 Turbolader. A part not in the strip yet: add a model to the icon renderer (`references/world-anatomy.md`) and append it — never reorder;
+   - keep the road, helpers, iris, plates, strip mechanics and follow card.
 5. **Build + look**:
    ```bash
    cd autoteile/<slug>
-   node tools/build.mjs          # captions + timing + audio cue times from script.json
+   node tools/build.mjs          # captions + timing + all sound cues from script.json
    npx --yes hyperframes@0.9.39 check --json
    npx --yes hyperframes@0.9.39 snapshot --at <one time per beat>
    ```
-   Read the contact sheets. Fix framing (labels cut at the frame edge, labels or arrows over the caption band at the bottom ~200 px, the hero too small), then snapshot again.
-6. **Voice** — needs the ElevenLabs key as a network secret for `api.elevenlabs.io` (header `xi-api-key`). If a call fails with 401 "Invalid API key", ask for the key again with the credential form (never in chat). `missing_permissions` for `user_read`/`voices_read` is fine — TTS still works.
+   Read the contact sheets; fix framing (labels on the captions, text in TikTok's UI zones, the part too small or too close to read), then snapshot again. `check` must say ok (contrast: put text on a dark plate, never yellow on the orange backdrop).
+6. **Voice** — needs the ElevenLabs key as a network secret for `api.elevenlabs.io` (header `xi-api-key`). On 401 "Invalid API key", ask for the key again with the credential form (never in chat). `missing_permissions` for `user_read`/`voices_read` is fine.
    ```bash
    NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt node tools/voice.mjs [--voice <id>]
    ```
-   It writes `assets/voice/voice.mp3` + `words.json`, sets the film length to last word + 3.2 s, and reruns `build.mjs` so captions, camera, labels and sound all land on the real words. Snapshot the beats again afterwards.
-7. **Render** (background, ~10 min): `npx --yes hyperframes@0.9.39 render -o renders/<slug>.mp4 --quiet`, then `npx hyperframes audio renders/<slug>.mp4 --json` to confirm the voice is present and nothing clips. Send the MP4 with `SendUserFile`. Say that sound was measured, not heard.
-8. **Commit + push** the project (renders are git-ignored). See "Repo gotchas".
+   Writes `assets/voice/voice.mp3` + `words.json`, sets the length to last word + 3.2 s and reruns `build.mjs` so captions, camera, labels, strip and sound land on the real words. Check and snapshot again.
+7. **Render** (background, ~10 min): `npx --yes hyperframes@0.9.39 render -o renders/<slug>.mp4 --quiet`, then `npx hyperframes audio renders/<slug>.mp4 --json` (voice present, no clipping). Send the MP4 with `SendUserFile`; say that sound was measured, not heard. Suggest a TikTok caption + hashtags and the cover frame (the strip stop at ~1.2 s).
+8. **Commit + push** (renders are git-ignored), then update the series table above (also in `.agents/skills/autoteile-video/SKILL.md`, see "Repo gotchas").
 
 ## Why things are the way they are (learned the hard way)
 
 - **Three.js must be local** (`assets/vendor/three.min.js`): the render browser cannot reach jsdelivr, and the world silently stays blank (`THREE is not defined` in `check`).
-- **No `will-change` on labels.** Over a WebGL canvas it punched peach-coloured holes the size of a label into snapshots and renders. Labels are also hidden with `visibility` outside their window (`labelWin`), for the same reason.
-- **Labels follow 3D anchors** via `place(id, Vector3)` every frame; GSAP only tweens their opacity/scale. Give each label a window that starts on its spoken word.
-- **The dive** works because the road hub cap and the part-world hub cap share one colour (#44444c) and fill the frame at the cut; keep that match if you change either.
+- **No `will-change` on labels.** Over a WebGL canvas it punched peach-coloured holes into frames. Labels are hidden with `visibility` outside their window (`labelWin`) for the same reason.
+- **Hide what is covered:** the strip under the follow card, or half-faded, fails the contrast check; `tl.set(..., { visibility: "hidden" })` once it is gone.
+- **Labels follow 3D anchors** via `place(id, Vector3)` every frame; GSAP only tweens their opacity/scale.
 - **Node `fetch` ignores the HTTPS proxy** unless `NODE_USE_ENV_PROXY=1` is set (otherwise `ENOTFOUND api.elevenlabs.io`).
 - **Music**: there is no music source without a HeyGen sign-in; deliver without music and say so in one line rather than generating tones.
 
 ## Repo gotchas (this repo: hyperframes fork)
 
-- The pre-commit hook builds the whole monorepo: run `bun install` once per session first.
-- Files over 500 KB that are binary are rejected unless in LFS: keep audio as MP3 (voice: mono 64 kb/s, which `voice.mjs` already does).
-- commitlint wants a lowercase subject: `feat(autoteile): add the bremsscheibe video`.
-- `packages/producer/tests/**` shows ~33 modified files right after cloning (LFS normalisation). They are not your changes — never stage them; tell the user once if a hook complains.
-- The root `.gitignore` ignores every folder named `compositions/` — a plain `git add` silently leaves out `world.html` and `captions.html`, the heart of the video. Stage with `git add autoteile/<slug> && git add -f autoteile/<slug>/compositions`, then check with `git ls-files autoteile/<slug> | grep compositions`.
-- Stage only your project, never `packages/producer/tests/**`.
+- The pre-commit hook builds the whole monorepo: run `bun install` once per session first. The hook runs _before_ the shell command, so do file changes and `git commit` in separate commands.
+- This skill exists twice and must stay byte-identical: `.claude/skills/autoteile-video/` and `.agents/skills/autoteile-video/` (lint "Skill mirror out of sync"). After editing one, `cp -r` it over the other.
+- Binary files over 500 KB are rejected unless in LFS, and LFS uploads are blocked here; mp3s under `.claude/skills/` are LFS-tracked, so the skill holds no audio (new-part.sh copies it from `skills/media-use`). Voice: mono 64 kb/s mp3.
+- commitlint wants a lowercase subject: `feat(autoteile): add the stossdaempfer episode`.
+- `packages/producer/tests/**` shows ~33 modified files right after cloning (LFS normalisation). Not your changes — never stage them.
+- The root `.gitignore` ignores every folder named `compositions/`: stage with `git add autoteile/<slug> && git add -f autoteile/<slug>/compositions`, then check `git ls-files autoteile/<slug> | grep compositions`.

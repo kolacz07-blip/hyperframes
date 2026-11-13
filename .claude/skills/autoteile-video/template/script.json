@@ -1,156 +1,135 @@
 {
-  "title": "Radlager – was es macht und was passiert, wenn es kaputt geht",
-  "note": "Sprechertext. Zeiten sind geschätzt, bis eine echte Sprecherspur vorliegt (tools/build.mjs ersetzt sie dann durch die Wortzeiten der Aufnahme).",
-  "duration": 54.5,
+  "title": "Bremsen – was sie machen und woran du merkst, dass sie runter sind",
+  "note": "Folge 2, TikTok 9:16. Zeiten sind geschätzt, bis die Sprecherspur vorliegt.",
+  "duration": 37.1,
   "lines": [
     {
       "id": "l1",
-      "start": 0.3,
-      "end": 7.9,
-      "text": "Du fährst über die Landstraße – und plötzlich ist da dieses Brummen. Je schneller du fährst, desto lauter wird es."
+      "start": 1.4,
+      "end": 5.6,
+      "text": "Quietscht's beim Bremsen? Oder schleift es? Dann schau dir deine Bremsen an."
     },
     {
       "id": "l2",
-      "start": 8.4,
-      "end": 13.2,
-      "text": "Schuld ist oft ein kleines Teil, das du nie siehst: das Radlager."
+      "start": 6,
+      "end": 11.4,
+      "text": "Beim Bremsen drückt der Bremssattel die Beläge gegen die Scheibe. Die Reibung bremst dein Auto."
     },
     {
       "id": "l3",
-      "start": 13.7,
-      "end": 23.3,
-      "text": "Es sitzt in der Radnabe und lässt das Rad fast ohne Reibung drehen. Dabei trägt es das Gewicht deines Autos – in jeder Kurve."
+      "start": 11.8,
+      "end": 18.6,
+      "text": "Mit jedem Bremsen werden die Beläge dünner. Sind sie runter, reibt Metall auf Metall und zerkratzt die Scheibe."
     },
     {
       "id": "l4",
-      "start": 23.8,
-      "end": 29.8,
-      "text": "Innen rollen gehärtete Stahlkugeln zwischen zwei Laufringen. Eine Dichtung hält Wasser und Schmutz draußen."
+      "start": 19,
+      "end": 24,
+      "text": "Typisch sind Quietschen, Schleifen, ein Zittern im Lenkrad oder ein längerer Bremsweg."
     },
     {
       "id": "l5",
-      "start": 30.3,
-      "end": 37.5,
-      "text": "Schlaglöcher, Bordsteinkanten oder eine undichte Dichtung beschädigen die Laufbahnen. Das Fett geht verloren, Metall reibt auf Metall."
+      "start": 24.4,
+      "end": 30.4,
+      "text": "Bremst dein Auto komisch? Ab in die Werkstatt! Hattest du das schon mal? Schreib's in die Kommentare."
     },
     {
       "id": "l6",
-      "start": 38,
-      "end": 45.2,
-      "text": "Dann brummt es, das Rad bekommt Spiel, das Lager wird heiß – und manchmal leuchtet sogar die ABS-Lampe."
-    },
-    {
-      "id": "l7",
-      "start": 45.8,
-      "end": 52.2,
-      "text": "Im schlimmsten Fall blockiert das Rad. Also: Brummt es mit dem Tempo? Lass dein Radlager prüfen."
+      "start": 30.8,
+      "end": 32.4,
+      "text": "Nächstes Mal: der Stoßdämpfer."
     }
   ],
   "marks": [
     {
-      "name": "brummen",
+      "name": "quietscht",
       "line": "l1",
-      "word": "Brummen"
+      "word": "Quietschts"
     },
     {
-      "name": "radlager",
+      "name": "schleift",
+      "line": "l1",
+      "word": "schleift"
+    },
+    {
+      "name": "bremsen",
+      "line": "l1",
+      "word": "Bremsen"
+    },
+    {
+      "name": "sattel",
       "line": "l2",
-      "word": "Radlager"
+      "word": "Bremssattel"
     },
     {
-      "name": "radnabe",
-      "line": "l3",
-      "word": "Radnabe"
+      "name": "belaege",
+      "line": "l2",
+      "word": "Beläge"
+    },
+    {
+      "name": "scheibe",
+      "line": "l2",
+      "word": "Scheibe"
     },
     {
       "name": "reibung",
-      "line": "l3",
+      "line": "l2",
       "word": "Reibung"
     },
     {
-      "name": "gewicht",
+      "name": "duenner",
       "line": "l3",
-      "word": "Gewicht"
-    },
-    {
-      "name": "kurve",
-      "line": "l3",
-      "word": "Kurve"
-    },
-    {
-      "name": "kugeln",
-      "line": "l4",
-      "word": "Stahlkugeln"
-    },
-    {
-      "name": "laufringe",
-      "line": "l4",
-      "word": "Laufringen"
-    },
-    {
-      "name": "dichtung",
-      "line": "l4",
-      "word": "Dichtung"
-    },
-    {
-      "name": "schlagloch",
-      "line": "l5",
-      "word": "Schlaglöcher"
-    },
-    {
-      "name": "undicht",
-      "line": "l5",
-      "word": "undichte"
-    },
-    {
-      "name": "laufbahnen",
-      "line": "l5",
-      "word": "Laufbahnen"
-    },
-    {
-      "name": "fett",
-      "line": "l5",
-      "word": "Fett"
+      "word": "dünner"
     },
     {
       "name": "metall",
-      "line": "l5",
+      "line": "l3",
       "word": "Metall"
     },
     {
-      "name": "brummt",
+      "name": "zerkratzt",
+      "line": "l3",
+      "word": "zerkratzt"
+    },
+    {
+      "name": "quietschen",
+      "line": "l4",
+      "word": "Quietschen"
+    },
+    {
+      "name": "zittern",
+      "line": "l4",
+      "word": "Zittern"
+    },
+    {
+      "name": "bremsweg",
+      "line": "l4",
+      "word": "Bremsweg"
+    },
+    {
+      "name": "komisch",
+      "line": "l5",
+      "word": "komisch"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "Kommentare"
+    },
+    {
+      "name": "naechstes",
       "line": "l6",
-      "word": "brummt"
+      "word": "Nächstes"
     },
     {
-      "name": "spiel",
+      "name": "stossdaempfer",
       "line": "l6",
-      "word": "Spiel"
-    },
-    {
-      "name": "heiss",
-      "line": "l6",
-      "word": "heiß"
-    },
-    {
-      "name": "abs",
-      "line": "l6",
-      "word": "ABS-Lampe"
-    },
-    {
-      "name": "blockiert",
-      "line": "l7",
-      "word": "blockiert"
-    },
-    {
-      "name": "tempo",
-      "line": "l7",
-      "word": "Brummt"
-    },
-    {
-      "name": "pruefen",
-      "line": "l7",
-      "word": "prüfen"
+      "word": "Stoßdämpfer"
     }
   ]
 }

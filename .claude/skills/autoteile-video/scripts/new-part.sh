@@ -32,7 +32,7 @@ for c in "skills/media-use/audio/assets/sfx" "$here/../../../skills/media-use/au
 done
 mkdir -p "$dest/assets/sfx" "$dest/assets/audio"
 if [ -n "$sfx_src" ]; then
-  cp "$sfx_src"/{whoosh-cinematic,whoosh,impact-bass-1,impact-bass-2,pop}.mp3 "$dest/assets/sfx/"
+  cp "$sfx_src"/{whoosh-cinematic,whoosh,impact-bass-1,impact-bass-2,pop,click,click-soft,key-press}.mp3 "$dest/assets/sfx/"
 else
   echo "warning: media-use sfx not found; add whoosh-cinematic, whoosh, impact-bass-1/2 and pop mp3s to $dest/assets/sfx" >&2
 fi

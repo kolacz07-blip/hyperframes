@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script src="three.min.js"></script></head>
+<body><canvas id="c" width="240" height="240"></canvas>
+<script>
+const T = THREE;
+const renderer = new T.WebGLRenderer({ canvas: document.getElementById("c"), antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setSize(240, 240, false);
+renderer.setClearColor(0x000000, 0);
+const flat = (c) => new T.MeshLambertMaterial({ color: c, flatShading: true });
+const add = (p, g, m, pos, rot) => { const x = new T.Mesh(g, m); if (pos) x.position.set(...pos); if (rot) x.rotation.set(...rot); p.add(x); return x; };
+const steel = flat("#c3c8d1"), steelD = flat("#9aa0aa"), dark = flat("#2c2a30"), red = flat("#d9483b"), yellow = flat("#ffd24a");
+function ringGeo(rIn, rOut, hw, seg) {
+  const ch = Math.min(0.08, hw * 0.4);
+  const pts = [[rIn, -hw], [rOut - ch, -hw], [rOut, -hw + ch], [rOut, hw - ch], [rOut - ch, hw], [rIn, hw], [rIn, -hw]].map((p) => new T.Vector2(p[0], p[1]));
+  const g = new T.LatheGeometry(pts, seg); g.rotateX(Math.PI / 2); return g;
+}
+window.MODELS = {};
+const MODELS = (window.MODELS = {
+  radlager() { const g = new T.Group(); add(g, ringGeo(2.42, 3.05, 0.9, 24), steel); add(g, ringGeo(1.25, 1.88, 0.95, 24), flat("#d6d9e0")); add(g, ringGeo(1.88, 2.42, 0.06, 24), dark, [0, 0, 0.93]); const bg = new T.IcosahedronGeometry(0.3, 1); for (let k = 0; k < 11; k++) { const a = (k / 11) * Math.PI * 2; add(g, bg, flat("#f2f3f6"), [Math.cos(a) * 2.15, Math.sin(a) * 2.15, 0.98]); } g.rotation.set(0.35, 0.5, 0); return g; },
+  bremsscheibe() { const g = new T.Group(); add(g, new T.CylinderGeometry(3, 3, 0.4, 18), flat("#b7bcc6"), null, [Math.PI / 2, 0, 0]); add(g, new T.CylinderGeometry(1.4, 1.4, 0.8, 10), steelD, null, [Math.PI / 2, 0, 0]); for (let k = 0; k < 5; k++) { const a = (k / 5) * Math.PI * 2; add(g, new T.CylinderGeometry(0.18, 0.18, 1, 6), flat("#e3e6eb"), [Math.cos(a) * 0.85, Math.sin(a) * 0.85, 0], [Math.PI / 2, 0, 0]); } add(g, new T.BoxGeometry(1.4, 2.4, 1.2), red, [2.5, 1.0, 0], [0, 0, -0.35]); g.rotation.set(0.3, -0.5, 0); return g; },
+  federbein() { const g = new T.Group(); class H extends T.Curve { getPoint(t) { const a = t * Math.PI * 2 * 5; return new T.Vector3(Math.cos(a) * 1.2, t * 5 - 2.5, Math.sin(a) * 1.2); } } add(g, new T.TubeGeometry(new H(), 120, 0.2, 5), red); add(g, new T.CylinderGeometry(0.5, 0.5, 6.4, 8), steelD); add(g, new T.CylinderGeometry(1.5, 1.5, 0.25, 10), steel, [0, 2.7, 0]); add(g, new T.CylinderGeometry(1.5, 1.5, 0.25, 10), steel, [0, -2.7, 0]); g.rotation.set(0.25, 0, 0.5); g.scale.setScalar(0.95); return g; },
+  zuendkerze() { const g = new T.Group(); add(g, new T.CylinderGeometry(0.42, 0.55, 2.2, 8), flat("#f1ede2"), [0, 1.5, 0]); add(g, new T.CylinderGeometry(0.25, 0.25, 0.6, 6), steelD, [0, 2.9, 0]); add(g, new T.CylinderGeometry(0.85, 0.85, 0.7, 6), steel, [0, 0.1, 0]); add(g, new T.CylinderGeometry(0.5, 0.5, 1.3, 8), flat("#d0b06a"), [0, -0.9, 0]); add(g, new T.BoxGeometry(0.16, 0.5, 0.16), steelD, [0, -1.75, 0]); g.rotation.set(0.2, 0.3, -0.6); g.position.y = -0.4; return g; },
+  batterie() { const g = new T.Group(); add(g, new T.BoxGeometry(4.4, 2.8, 2.6), dark); add(g, new T.BoxGeometry(4.5, 0.4, 2.7), flat("#3d3a42"), [0, 1.5, 0]); add(g, new T.CylinderGeometry(0.32, 0.32, 0.5, 8), red, [-1.4, 1.9, 0]); add(g, new T.CylinderGeometry(0.32, 0.32, 0.5, 8), steelD, [1.4, 1.9, 0]); add(g, new T.BoxGeometry(1.6, 0.6, 0.05), yellow, [0, 0.1, 1.33]); g.rotation.set(0.35, -0.55, 0); return g; },
+  kupplung() { const g = new T.Group(); add(g, new T.CylinderGeometry(3, 3, 0.35, 18), flat("#8f949e"), null, [Math.PI / 2, 0, 0]); add(g, new T.CylinderGeometry(2.6, 2.6, 0.45, 18), flat("#b38b5d"), null, [Math.PI / 2, 0, 0]); add(g, new T.CylinderGeometry(1.0, 1.0, 0.6, 10), steel, null, [Math.PI / 2, 0, 0]); for (let k = 0; k < 6; k++) { const a = (k / 6) * Math.PI * 2; add(g, new T.CylinderGeometry(0.25, 0.25, 0.7, 6), flat("#5a8fd6"), [Math.cos(a) * 1.55, Math.sin(a) * 1.55, 0], [Math.PI / 2, 0, 0]); } add(g, new T.CylinderGeometry(0.4, 0.4, 0.7, 6), dark, null, [Math.PI / 2, 0, 0]); g.rotation.set(0.35, 0.5, 0); return g; },
+  keilriemen() { const g = new T.Group(); add(g, new T.CylinderGeometry(1.5, 1.5, 0.8, 14), steel, [-1.4, 1.2, 0], [Math.PI / 2, 0, 0]); add(g, new T.CylinderGeometry(1.0, 1.0, 0.8, 12), steel, [1.8, -1.4, 0], [Math.PI / 2, 0, 0]); const s = new T.Shape(); const p = []; for (let i = 0; i <= 40; i++) { const a = Math.PI * 0.2 + (i / 40) * Math.PI * 1.25; p.push([-1.4 + Math.cos(a) * 1.65, 1.2 + Math.sin(a) * 1.65]); } for (let i = 0; i <= 30; i++) { const a = Math.PI * 1.45 + (i / 30) * Math.PI * 0.75 + Math.PI * 0.0; p.push([1.8 + Math.cos(a) * 1.15, -1.4 + Math.sin(a) * 1.15]); } const curve = new T.CatmullRomCurve3(p.map((q) => new T.Vector3(q[0], q[1], 0)), true); add(g, new T.TubeGeometry(curve, 80, 0.2, 4, true), dark); add(g, new T.CylinderGeometry(0.4, 0.4, 0.9, 6), red, [-1.4, 1.2, 0], [Math.PI / 2, 0, 0]); add(g, new T.CylinderGeometry(0.3, 0.3, 0.9, 6), red, [1.8, -1.4, 0], [Math.PI / 2, 0, 0]); g.rotation.set(0.3, 0.45, 0); return g; },
+  turbolader() { const g = new T.Group(); const pts = []; for (let i = 0; i < 9; i++) { const a = (i / 8) * Math.PI * 1.75; const r = 1.0 + (i / 8) * 1.4; pts.push(new T.Vector3(Math.cos(a) * r, Math.sin(a) * r, 0)); } add(g, new T.TubeGeometry(new T.CatmullRomCurve3(pts), 40, 0.75, 7), steelD); add(g, new T.CylinderGeometry(1.2, 1.2, 1.2, 10), steel, null, [Math.PI / 2, 0, 0]); add(g, new T.CylinderGeometry(0.6, 0.6, 1.4, 8), dark, null, [Math.PI / 2, 0, 0]); add(g, new T.CylinderGeometry(0.55, 0.55, 2.2, 8), flat("#d0b06a"), [2.4, -0.4, 0], [0, 0, Math.PI / 2]); g.rotation.set(0.35, -0.45, 0); g.position.x = -0.3; return g; },
+});
+const scene = new T.Scene();
+scene.add(new T.HemisphereLight("#ffe6cc", "#6b3a3a", 1.0));
+const key = new T.DirectionalLight("#fff1dd", 1.1); key.position.set(-6, 8, 10); scene.add(key);
+const cam = new T.PerspectiveCamera(32, 1, 0.1, 100); cam.position.set(0, 0, 14); cam.lookAt(0, 0, 0);
+let current = null;
+window.renderIcon = (name) => { if (current) scene.remove(current); current = MODELS[name](); scene.add(current); renderer.render(scene, cam); return true; };
+window.__ready = true;
+</script></body></html>

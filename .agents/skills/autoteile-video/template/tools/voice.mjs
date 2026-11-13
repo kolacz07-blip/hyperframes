@@ -111,7 +111,7 @@ const dur = parseFloat(
 
 // film length follows the voice: last word + a 3 s hold for the closing line
 const last = spoken[spoken.length - 1].end;
-script.duration = Math.max(40, Math.ceil((last + 3.2) * 10) / 10);
+script.duration = Math.max(15, Math.ceil((last + 3.2) * 10) / 10);
 writeFileSync(join(root, "script.json"), JSON.stringify(script, null, 2) + "\n");
 
 // voice <audio> in index.html
