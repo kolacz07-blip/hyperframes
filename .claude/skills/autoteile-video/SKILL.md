@@ -20,6 +20,24 @@ The videos are posted on **TikTok**. Episode 1 (Radlager, 16:9, 54.5 s, slow roa
 5. **End with a question for the comments** in the closing line or caption suggestion ("Welches Teil als Nächstes?") — episode 1 got 0 comments.
 6. **Sound**: suggest the user add a quiet TikTok library sound when uploading (there is still no music source here).
 
+## Series device: the parts selector strip (open and close every episode)
+
+The user chose this from a reference they liked (a character-series TikTok whose episodes open on "Lukas ist heute … Schweizer." and close on "Nächstes Mal ist Lukas … Grieche." + "Folg Lukas für die nächste Folge"). It gives viewers a reason to follow — episode 1 got 0 follows — and makes the opening move from frame 0.
+
+- **The strip:** a horizontal band across the frame (dark #1f1a24, ~110 px tall in 9:16) holding a row of round icons, one per car part, drawn as tiny low-poly renders in the house palette (Radlager, Bremsscheibe, Zündkerze, Federbein, Batterie, Kupplung, Keilriemen, Turbolader …; reuse the profile-picture models). A yellow #ffd24a ring marks the centre slot with a small pointer below it.
+- **Opening (0–1.2 s):** the strip is already spinning at frame 0 (never a still first frame), decelerates with a slot-machine ease (fast, then a slight overshoot and settle) and stops on today's part; the line above it lands on the stop: "Heute: **Radlager**" (part name large, yellow accent). A short burst of low-poly shards on the stop, a tick sound per passing icon (rotate 2–3 takes), a pop on the stop. Then go straight into the part (no long road drive).
+- **Closing (~last 4 s):** the strip spins again → stops on the next part → "Nächstes Mal: **Bremsscheibe**". Then a follow card: the user's mechanic profile picture in a circle, a "+" badge, a tapping hand, "Folg **@<username>** für Teil <n+1>". Hold the card ≥ 1.5 s; this replaces the old "Ab in die Werkstatt" end line (keep that as a spoken line if it fits).
+- **The spin is fake-random, the outcome is fixed.** Decide with the user which part comes next _before_ building, and only announce a part the user really plans to post next — a broken promise costs followers. Keep the icon order fixed across episodes so the strip reads as one series.
+- Deterministic: the strip offset is a function of time (no `Math.random()`); seed any shard scatter.
+- Before hand-building, check the registry for a reel to adapt: `npx hyperframes catalog --json | grep -i slot` (there is a `slot-machine-roll` component).
+- Needs from the user: **TikTok username** and **which part is next**. Ask both at the start of the episode if they are not in this file yet.
+
+Series state (update after every episode):
+
+| Ep. | Part                      | Announced next | Username      |
+| --- | ------------------------- | -------------- | ------------- |
+| 1   | Radlager (16:9, no strip) | —              | not given yet |
+
 After the user uploads, ask for the two numbers that matter — average watch time and "ganzes Video angeschaut %" — and add them to this section, so each episode learns from the last.
 
 ## The film, beat by beat
