@@ -1,0 +1,135 @@
+{
+  "title": "Bremsen – was sie machen und woran du merkst, dass sie runter sind",
+  "note": "Folge 2, TikTok 9:16. Zeiten sind geschätzt, bis die Sprecherspur vorliegt.",
+  "duration": 37.1,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 1.4,
+      "end": 5.6,
+      "text": "Quietscht's beim Bremsen? Oder schleift es? Dann schau dir deine Bremsen an."
+    },
+    {
+      "id": "l2",
+      "start": 6,
+      "end": 11.4,
+      "text": "Beim Bremsen drückt der Bremssattel die Beläge gegen die Scheibe. Die Reibung bremst dein Auto."
+    },
+    {
+      "id": "l3",
+      "start": 11.8,
+      "end": 18.6,
+      "text": "Mit jedem Bremsen werden die Beläge dünner. Sind sie runter, reibt Metall auf Metall und zerkratzt die Scheibe."
+    },
+    {
+      "id": "l4",
+      "start": 19,
+      "end": 24,
+      "text": "Typisch sind Quietschen, Schleifen, ein Zittern im Lenkrad oder ein längerer Bremsweg."
+    },
+    {
+      "id": "l5",
+      "start": 24.4,
+      "end": 30.4,
+      "text": "Bremst dein Auto komisch? Ab in die Werkstatt! Hattest du das schon mal? Schreib's in die Kommentare."
+    },
+    {
+      "id": "l6",
+      "start": 30.8,
+      "end": 32.4,
+      "text": "Nächstes Mal: der Stoßdämpfer."
+    }
+  ],
+  "marks": [
+    {
+      "name": "quietscht",
+      "line": "l1",
+      "word": "Quietschts"
+    },
+    {
+      "name": "schleift",
+      "line": "l1",
+      "word": "schleift"
+    },
+    {
+      "name": "bremsen",
+      "line": "l1",
+      "word": "Bremsen"
+    },
+    {
+      "name": "sattel",
+      "line": "l2",
+      "word": "Bremssattel"
+    },
+    {
+      "name": "belaege",
+      "line": "l2",
+      "word": "Beläge"
+    },
+    {
+      "name": "scheibe",
+      "line": "l2",
+      "word": "Scheibe"
+    },
+    {
+      "name": "reibung",
+      "line": "l2",
+      "word": "Reibung"
+    },
+    {
+      "name": "duenner",
+      "line": "l3",
+      "word": "dünner"
+    },
+    {
+      "name": "metall",
+      "line": "l3",
+      "word": "Metall"
+    },
+    {
+      "name": "zerkratzt",
+      "line": "l3",
+      "word": "zerkratzt"
+    },
+    {
+      "name": "quietschen",
+      "line": "l4",
+      "word": "Quietschen"
+    },
+    {
+      "name": "zittern",
+      "line": "l4",
+      "word": "Zittern"
+    },
+    {
+      "name": "bremsweg",
+      "line": "l4",
+      "word": "Bremsweg"
+    },
+    {
+      "name": "komisch",
+      "line": "l5",
+      "word": "komisch"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "Kommentare"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "Nächstes"
+    },
+    {
+      "name": "stossdaempfer",
+      "line": "l6",
+      "word": "Stoßdämpfer"
+    }
+  ]
+}

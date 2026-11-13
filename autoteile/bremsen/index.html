@@ -1,0 +1,100 @@
+<!doctype html>
+<html
+  lang="de"
+  data-composition-variables='[{"id":"username","type":"string","label":"TikTok-Name","default":"@wasmachtdasteil"}]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="assets/vendor/three.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #cc6b50;
+      }
+      #main {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      #ground {
+        position: absolute;
+        inset: 0;
+        background: #cc6b50;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" data-composition-id="main" data-start="0" data-duration="37.1" data-width="1080" data-height="1920">
+      <div id="ground"></div>
+      <div
+        id="world"
+        data-composition-id="world"
+        data-composition-src="compositions/world.html"
+        data-start="0"
+        data-duration="37.1"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 1"
+      ></div>
+      <div
+        id="captions"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="37.1"
+        data-track-index="2"
+        data-track-kind="captions"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+
+      <!-- AUDIO (data-start values are written by tools/build.mjs) -->
+      <!--CUES-->
+      <audio id="sfx-tick-0" class="clip" src="assets/sfx/key-press.mp3" data-start="0.01" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-1" class="clip" src="assets/sfx/click-soft.mp3" data-start="0.09" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-tick-2" class="clip" src="assets/sfx/key-press.mp3" data-start="0.17" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-3" class="clip" src="assets/sfx/click-soft.mp3" data-start="0.25" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-tick-4" class="clip" src="assets/sfx/key-press.mp3" data-start="0.33" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-5" class="clip" src="assets/sfx/click-soft.mp3" data-start="0.44" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-tick-6" class="clip" src="assets/sfx/key-press.mp3" data-start="0.56" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-7" class="clip" src="assets/sfx/click-soft.mp3" data-start="0.68" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-tick-8" class="clip" src="assets/sfx/key-press.mp3" data-start="0.92" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-9" class="clip" src="assets/sfx/click-soft.mp3" data-start="31.08" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-tick-10" class="clip" src="assets/sfx/key-press.mp3" data-start="31.16" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-11" class="clip" src="assets/sfx/click-soft.mp3" data-start="31.27" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-tick-12" class="clip" src="assets/sfx/key-press.mp3" data-start="31.35" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-13" class="clip" src="assets/sfx/click-soft.mp3" data-start="31.44" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-tick-14" class="clip" src="assets/sfx/key-press.mp3" data-start="31.56" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-15" class="clip" src="assets/sfx/click-soft.mp3" data-start="31.63" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-tick-16" class="clip" src="assets/sfx/key-press.mp3" data-start="31.73" data-duration="0.12" data-track-index="11" data-volume="0.35"></audio>
+      <audio id="sfx-tick-17" class="clip" src="assets/sfx/click-soft.mp3" data-start="31.86" data-duration="0.12" data-track-index="12" data-volume="0.35"></audio>
+      <audio id="sfx-stop-1" class="clip" src="assets/sfx/pop.mp3" data-start="1.13" data-duration="0.70" data-track-index="13" data-volume="0.7"></audio>
+      <audio id="sfx-stop-2" class="clip" src="assets/sfx/pop.mp3" data-start="32.73" data-duration="0.70" data-track-index="13" data-volume="0.7"></audio>
+      <audio id="sfx-whoosh-in" class="clip" src="assets/sfx/whoosh.mp3" data-start="1.70" data-duration="0.55" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="sfx-metal" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="15.41" data-duration="2.00" data-track-index="11" data-volume="0.7"></audio>
+      <audio id="sfx-road" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="23.75" data-duration="2.00" data-track-index="11" data-volume="0.55"></audio>
+      <audio id="sfx-tap" class="clip" src="assets/sfx/click.mp3" data-start="34.98" data-duration="0.30" data-track-index="11" data-volume="0.8"></audio>
+      <!--/CUES-->
+      <audio id="voice" class="clip" src="assets/voice/voice.mp3" data-start="0.3" data-duration="33.57" data-track-index="9" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
