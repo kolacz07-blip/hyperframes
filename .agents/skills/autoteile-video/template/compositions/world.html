@@ -1,0 +1,920 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #f6b47a;
+    }
+    #world-canvas {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #world-iris {
+      position: absolute;
+      inset: 0;
+      background: #44444c;
+      opacity: 0;
+    }
+    .lbl {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+    .lbl .dot {
+      position: absolute;
+      left: -10px;
+      top: -10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffd24a;
+      border: 4px solid #1f1a24;
+      box-sizing: border-box;
+    }
+    .lbl .stem {
+      position: absolute;
+      left: -2px;
+      top: -84px;
+      width: 4px;
+      height: 74px;
+      background: #1f1a24;
+    }
+    .lbl .txt {
+      position: absolute;
+      top: -84px;
+      left: 0;
+      transform: translate(-50%, -100%);
+      background: #ffd24a;
+      color: #1f1a24;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 40px;
+      line-height: 1;
+      padding: 10px 18px 12px;
+      white-space: nowrap;
+      border: 4px solid #1f1a24;
+    }
+    .lbl.down .stem {
+      top: 10px;
+    }
+    .lbl.down .txt {
+      top: 84px;
+      transform: translate(-50%, 0);
+    }
+    .title {
+      position: absolute;
+      left: 144px;
+      top: 132px;
+      opacity: 0;
+    }
+    .title .plate {
+      display: inline-block;
+      background: #1f1a24;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 120px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      padding: 22px 40px 30px;
+    }
+    .title .bar {
+      display: block;
+      height: 14px;
+      background: #ffd24a;
+      transform-origin: 0 50%;
+    }
+    .title .accent {
+      color: #ffd24a;
+    }
+    #world-final .plate {
+      font-size: 96px;
+    }
+    #world-abs {
+      position: absolute;
+      left: 1390px;
+      top: 210px;
+      width: 420px;
+      opacity: 0;
+    }
+    #world-abs .lamp {
+      background: #1f1a24;
+      padding: 28px 30px 20px;
+      text-align: center;
+    }
+    #world-abs .cap {
+      margin-top: 10px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 34px;
+      color: #ffb000;
+    }
+  </style>
+  <div id="root" data-composition-id="world" data-width="1920" data-height="1080" data-layout-allow-overlap>
+    <canvas id="world-canvas" width="1920" height="1080"></canvas>
+    <div id="world-iris"></div>
+
+    <div class="lbl" id="lbl-radnabe"><i class="dot"></i><i class="stem"></i><span class="txt">Radnabe</span></div>
+    <div class="lbl" id="lbl-gewicht"><i class="dot"></i><i class="stem"></i><span class="txt">Gewicht</span></div>
+    <div class="lbl" id="lbl-kurve"><i class="dot"></i><i class="stem"></i><span class="txt">Kurvenkräfte</span></div>
+    <div class="lbl" id="lbl-kugeln"><i class="dot"></i><i class="stem"></i><span class="txt">Stahlkugeln</span></div>
+    <div class="lbl" id="lbl-laufringe"><i class="dot"></i><i class="stem"></i><span class="txt">Laufringe</span></div>
+    <div class="lbl down" id="lbl-dichtung"><i class="dot"></i><i class="stem"></i><span class="txt">Dichtung</span></div>
+    <div class="lbl down" id="lbl-absring"><i class="dot"></i><i class="stem"></i><span class="txt">ABS-Ring</span></div>
+    <div class="lbl" id="lbl-wasser"><i class="dot"></i><i class="stem"></i><span class="txt">Wasser</span></div>
+    <div class="lbl" id="lbl-rost"><i class="dot"></i><i class="stem"></i><span class="txt">Rost &amp; Riefen</span></div>
+    <div class="lbl" id="lbl-spiel"><i class="dot"></i><i class="stem"></i><span class="txt">Spiel</span></div>
+    <div class="lbl" id="lbl-hitze"><i class="dot"></i><i class="stem"></i><span class="txt">Hitze</span></div>
+
+    <div class="title" id="world-title">
+      <span class="plate" id="world-title-text" data-var-text="title">Das Radlager</span>
+      <span class="bar" id="world-title-bar"></span>
+    </div>
+
+    <div id="world-abs">
+      <div class="lamp">
+        <svg viewBox="0 0 200 120" width="360" height="216" aria-label="ABS-Warnleuchte">
+          <circle cx="100" cy="60" r="44" fill="none" stroke="#ffb000" stroke-width="9" />
+          <path d="M40 18 A62 62 0 0 0 40 102" fill="none" stroke="#ffb000" stroke-width="9" stroke-linecap="round" />
+          <path d="M160 18 A62 62 0 0 1 160 102" fill="none" stroke="#ffb000" stroke-width="9" stroke-linecap="round" />
+          <text x="100" y="74" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="900" font-size="38" fill="#ffb000">ABS</text>
+        </svg>
+        <div class="cap">ABS-Leuchte an</div>
+      </div>
+    </div>
+
+    <div class="title" id="world-final">
+      <span class="plate">Brummt’s? Ab in die <span class="accent">Werkstatt</span></span>
+      <span class="bar" id="world-final-bar"></span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      /*TIMING*/ const LINES = {"l1":{"start":0.3,"end":6.894},"l2":{"start":7.405,"end":12.177},"l3":{"start":12.56,"end":20.664},"l4":{"start":21.361,"end":27.456},"l5":{"start":27.781,"end":36.534},"l6":{"start":36.976,"end":43.64},"l7":{"start":44.081,"end":51.244}}; const M = {"brummen":3.377,"radlager":11.318,"radnabe":13.326,"reibung":15.741,"gewicht":18.052,"kurve":20.049,"kugeln":22.696,"laufringe":24.054,"dichtung":25.366,"schlagloch":27.781,"undicht":30.532,"laufbahnen":32.157,"fett":33.713,"metall":34.932,"brummt":37.231,"spiel":38.764,"heiss":40.18,"abs":42.665,"blockiert":45.126,"tempo":47.599,"pruefen":50.443}; /*END TIMING*/
+      const DUR = 54.5;
+      const T = THREE;
+
+      // ---------- helpers (deterministic)
+      const clamp01 = (x) => Math.max(0, Math.min(1, x));
+      const ramp = (a, b, t) => clamp01((t - a) / (b - a));
+      const lerp = (a, b, k) => a + (b - a) * k;
+      const E = {
+        lin: (x) => x,
+        io: (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2),
+        io2: (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2),
+        in3: (x) => x * x * x,
+        out3: (x) => 1 - Math.pow(1 - x, 3),
+        out2: (x) => 1 - (1 - x) * (1 - x),
+      };
+      function h2(x, y) {
+        let n = (Math.imul(x | 0, 374761393) + Math.imul(y | 0, 668265263)) | 0;
+        n = Math.imul(n ^ (n >>> 13), 1274126177);
+        n ^= n >>> 16;
+        return (n >>> 0) / 4294967296;
+      }
+      function vnoise(x, y) {
+        const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+        const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+        const a = h2(xi, yi), b = h2(xi + 1, yi), c = h2(xi, yi + 1), d = h2(xi + 1, yi + 1);
+        return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+      }
+      function rng(seed) {
+        return function () {
+          seed |= 0;
+          seed = (seed + 0x6d2b79f5) | 0;
+          let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const flat = (color, extra) => new T.MeshLambertMaterial(Object.assign({ color, flatShading: true }, extra || {}));
+      const col = (h) => new T.Color(h);
+
+      // ---------- timing derived from the voice
+      const tDiveEnd = LINES.l2.start + 1.0;
+      const tBearIn = tDiveEnd;
+      const tPull = LINES.l3.start;
+      const tHubOff = M.radnabe + 0.9;
+      const tExplode = LINES.l4.start + 0.1;
+      const tCollapse = LINES.l5.start - 0.35;
+      const tCut = M.schlagloch + 0.9;
+      const tJam = M.blockiert + 0.15;
+      const tExitDive = tJam + 0.5;
+      const tRoadIn = tExitDive + 0.9;
+      const tCarStop = tRoadIn + 4.2;
+
+      // ---------- renderer
+      const canvas = document.getElementById("world-canvas");
+      const renderer = new T.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1920, 1080, false);
+      renderer.localClippingEnabled = true;
+      const camera = new T.PerspectiveCamera(40, 1920 / 1080, 0.03, 1400);
+
+      // =========================================================
+      // ROAD WORLD
+      // =========================================================
+      const road = new T.Scene();
+      const FOG = "#f6b47a";
+      road.fog = new T.Fog(FOG, 45, 420);
+      road.add(new T.HemisphereLight("#ffe0b8", "#5a4636", 0.95));
+      const sunLight = new T.DirectionalLight("#ffc890", 1.25);
+      sunLight.position.set(60, 40, 120);
+      road.add(sunLight);
+
+      // sky dome, faceted
+      {
+        const g = new T.SphereGeometry(700, 18, 12).toNonIndexed();
+        const pos = g.attributes.position;
+        const colors = [];
+        const top = col("#d9685a"), mid = col("#f08f5e"), hor = col(FOG);
+        for (let i = 0; i < pos.count; i += 3) {
+          const y = (pos.getY(i) + pos.getY(i + 1) + pos.getY(i + 2)) / 3 / 700;
+          const c = y < 0.08 ? hor.clone() : y < 0.4 ? hor.clone().lerp(mid, (y - 0.08) / 0.32) : mid.clone().lerp(top, Math.min(1, (y - 0.4) / 0.5));
+          for (let k = 0; k < 3; k++) colors.push(c.r, c.g, c.b);
+        }
+        g.setAttribute("color", new T.Float32BufferAttribute(colors, 3));
+        road.add(new T.Mesh(g, new T.MeshBasicMaterial({ vertexColors: true, side: T.BackSide, fog: false })));
+        const sun = new T.Mesh(new T.CircleGeometry(34, 10), new T.MeshBasicMaterial({ color: "#ffe2a0", fog: false }));
+        sun.position.set(150, 70, 560);
+        sun.lookAt(0, 0, 0);
+        road.add(sun);
+      }
+
+      function groundH(x, z) {
+        const d = Math.abs(x);
+        if (d < 6) return -0.02;
+        const k = Math.min(1, (d - 6) / 14);
+        return (d - 6) * 0.09 + k * (vnoise(x * 0.045, z * 0.045) * 9 + vnoise(x * 0.16, z * 0.16) * 1.6) - 0.02;
+      }
+      // terrain
+      {
+        const g = new T.PlaneGeometry(280, 560, 70, 140);
+        g.rotateX(-Math.PI / 2);
+        g.translate(0, 0, -80);
+        const p = g.attributes.position;
+        for (let i = 0; i < p.count; i++) p.setY(i, groundH(p.getX(i), p.getZ(i)));
+        const ng = g.toNonIndexed();
+        ng.computeVertexNormals();
+        const q = ng.attributes.position;
+        const greens = ["#6f9a52", "#5f8a49", "#82a85c", "#73a058"].map(col);
+        const high = col("#b39a58"), peak = col("#c98552");
+        const colors = [];
+        for (let i = 0; i < q.count; i += 3) {
+          const cx = (q.getX(i) + q.getX(i + 1) + q.getX(i + 2)) / 3;
+          const cz = (q.getZ(i) + q.getZ(i + 1) + q.getZ(i + 2)) / 3;
+          const cy = (q.getY(i) + q.getY(i + 1) + q.getY(i + 2)) / 3;
+          let c = greens[Math.floor(h2(Math.round(cx * 3), Math.round(cz * 3)) * 4)].clone();
+          if (cy > 5) c.lerp(high, Math.min(1, (cy - 5) / 5));
+          if (cy > 10) c.lerp(peak, Math.min(1, (cy - 10) / 5));
+          if (Math.abs(cx) < 4.6) c = col("#8a7a5c");
+          for (let k = 0; k < 3; k++) colors.push(c.r, c.g, c.b);
+        }
+        ng.setAttribute("color", new T.Float32BufferAttribute(colors, 3));
+        road.add(new T.Mesh(ng, new T.MeshLambertMaterial({ vertexColors: true, flatShading: true })));
+      }
+      // asphalt + markings
+      {
+        const asphalt = new T.Mesh(new T.PlaneGeometry(7.8, 560), flat("#4b4853"));
+        asphalt.rotation.x = -Math.PI / 2;
+        asphalt.position.set(0, 0.01, -80);
+        road.add(asphalt);
+        const lineMat = flat("#f1ede2");
+        for (const x of [-3.6, 3.6]) {
+          const m = new T.Mesh(new T.PlaneGeometry(0.14, 560), lineMat);
+          m.rotation.x = -Math.PI / 2;
+          m.position.set(x, 0.02, -80);
+          road.add(m);
+        }
+        const dashMat = flat("#f1ede2");
+        const dashGeo = new T.PlaneGeometry(0.14, 3);
+        for (let z = 190; z > -350; z -= 8) {
+          const m = new T.Mesh(dashGeo, dashMat);
+          m.rotation.x = -Math.PI / 2;
+          m.position.set(0, 0.02, z);
+          road.add(m);
+        }
+      }
+      // trees
+      {
+        const r = rng(7);
+        const leafMats = ["#2f6b4f", "#3c7a52", "#4f8a4f"].map((c) => flat(c));
+        const trunkMat = flat("#6b4430");
+        const cone = new T.ConeGeometry(1, 1, 6);
+        const trunkGeo = new T.CylinderGeometry(0.18, 0.24, 1, 5);
+        for (let i = 0; i < 230; i++) {
+          const side = r() < 0.5 ? -1 : 1;
+          const x = side * (9 + Math.pow(r(), 1.4) * 80);
+          const z = 180 - r() * 520;
+          const s = 1.6 + r() * 2.4;
+          const y = groundH(x, z);
+          const tr = new T.Mesh(trunkGeo, trunkMat);
+          tr.scale.set(1, s * 0.7, 1);
+          tr.position.set(x, y + s * 0.35, z);
+          road.add(tr);
+          const lf = new T.Mesh(cone, leafMats[i % 3]);
+          lf.scale.set(s * 0.75, s * 2.0, s * 0.75);
+          lf.position.set(x, y + s * 0.7 + s, z);
+          lf.rotation.y = r() * 3;
+          road.add(lf);
+        }
+        // mountains on the horizon
+        const mMats = ["#b0614c", "#c4775a", "#9a554b"].map((c) => flat(c));
+        for (let i = 0; i < 26; i++) {
+          const a = (i / 26) * Math.PI * 2 + r() * 0.2;
+          const R = 330 + r() * 50;
+          const H = 45 + r() * 60;
+          const m = new T.Mesh(new T.ConeGeometry(55 + r() * 40, H, 6), mMats[i % 3]);
+          m.position.set(Math.cos(a) * R, H / 2 - 6, -80 + Math.sin(a) * R);
+          m.rotation.y = r() * 3;
+          road.add(m);
+        }
+      }
+
+      // car
+      const car = new T.Group();
+      road.add(car);
+      const carBodyMat = flat("#2a9d8f");
+      {
+        const body = new T.Mesh(new T.BoxGeometry(1.9, 0.62, 4.3), carBodyMat);
+        body.position.y = 0.66;
+        car.add(body);
+        const hood = new T.Mesh(new T.BoxGeometry(1.86, 0.12, 1.2), flat("#268f82"));
+        hood.position.set(0, 1.0, -1.45);
+        hood.rotation.x = -0.08;
+        car.add(hood);
+        // cabin: a side profile extruded across the car (shape x = -car z)
+        function profileGeo(pts, width) {
+          const s = new T.Shape();
+          s.moveTo(-pts[0][0], pts[0][1]);
+          for (let i = 1; i < pts.length; i++) s.lineTo(-pts[i][0], pts[i][1]);
+          const g = new T.ExtrudeGeometry(s, { depth: width, bevelEnabled: false });
+          g.translate(0, 0, -width / 2);
+          g.rotateY(Math.PI / 2);
+          return g;
+        }
+        const cabin = new T.Mesh(
+          profileGeo([[-0.95, 0.96], [-0.22, 1.62], [1.0, 1.62], [1.6, 0.96]], 1.62),
+          carBodyMat,
+        );
+        car.add(cabin);
+        const glass = flat("#2f3f52");
+        const sideGlass = new T.Mesh(
+          profileGeo([[-0.74, 1.04], [-0.2, 1.52], [0.95, 1.52], [1.42, 1.04]], 1.66),
+          glass,
+        );
+        car.add(sideGlass);
+        const pillar = new T.Mesh(new T.BoxGeometry(1.68, 0.56, 0.12), carBodyMat);
+        pillar.position.set(0, 1.28, 0.42);
+        car.add(pillar);
+        const ws = new T.Mesh(new T.BoxGeometry(1.42, 0.86, 0.04), glass);
+        ws.rotation.x = 0.84;
+        ws.position.set(0, 1.3, -0.62);
+        car.add(ws);
+        const lightMat = flat("#fff4d0");
+        const tailMat = flat("#c0392b");
+        for (const s of [-1, 1]) {
+          const hl = new T.Mesh(new T.BoxGeometry(0.42, 0.16, 0.06), lightMat);
+          hl.position.set(s * 0.62, 0.78, -2.16);
+          car.add(hl);
+          const tl = new T.Mesh(new T.BoxGeometry(0.42, 0.16, 0.06), tailMat);
+          tl.position.set(s * 0.62, 0.8, 2.16);
+          car.add(tl);
+        }
+      }
+      const hazardMat = flat("#ff9b2f");
+      const hazards = [];
+      for (const [x, z] of [[-0.96, -1.9], [0.96, -1.9], [-0.96, 1.9], [0.96, 1.9]]) {
+        const h = new T.Mesh(new T.BoxGeometry(0.08, 0.12, 0.3), hazardMat);
+        h.position.set(x, 0.86, z);
+        h.visible = false;
+        car.add(h);
+        hazards.push(h);
+      }
+      const wheels = [];
+      function makeWheel() {
+        const w = new T.Group();
+        const tire = new T.Mesh(new T.CylinderGeometry(0.37, 0.37, 0.27, 12), flat("#2a2a2e"));
+        tire.rotation.z = Math.PI / 2;
+        w.add(tire);
+        const rim = new T.Mesh(new T.CylinderGeometry(0.25, 0.25, 0.28, 10), flat("#cfd3da"));
+        rim.rotation.z = Math.PI / 2;
+        w.add(rim);
+        for (let k = 0; k < 5; k++) {
+          const sp = new T.Mesh(new T.BoxGeometry(0.02, 0.36, 0.07), flat("#8d939d"));
+          const g = new T.Group();
+          sp.position.y = 0.0;
+          g.add(sp);
+          g.rotation.x = (k / 5) * Math.PI;
+          g.position.x = -0.142;
+          w.add(g);
+        }
+        const cap = new T.Mesh(new T.CylinderGeometry(0.085, 0.085, 0.3, 8), flat("#44444c"));
+        cap.rotation.z = Math.PI / 2;
+        w.add(cap);
+        return w;
+      }
+      const FL = [-0.86, 0.37, -1.35];
+      for (const [x, z] of [[-0.86, -1.35], [0.86, -1.35], [-0.86, 1.4], [0.86, 1.4]]) {
+        const w = makeWheel();
+        w.position.set(x, 0.37, z);
+        if (x > 0) w.rotation.y = Math.PI;
+        car.add(w);
+        wheels.push(w);
+      }
+      // hum rings around the front wheel (road)
+      const ringMat = (o) => new T.MeshBasicMaterial({ color: "#ffd24a", transparent: true, opacity: o, fog: false, depthWrite: false });
+      const roadRings = [];
+      for (let k = 0; k < 3; k++) {
+        const m = new T.Mesh(new T.TorusGeometry(1, 0.025, 3, 36), ringMat(0));
+        m.rotation.y = Math.PI / 2;
+        m.position.set(FL[0] - 0.2, FL[1], FL[2]);
+        car.add(m);
+        roadRings.push(m);
+      }
+
+      const V = 13; // m/s
+      function carState(t) {
+        if (t < tRoadIn) return { x: 1.8, z: -V * t, dist: V * t };
+        const dt = t - tRoadIn;
+        const Tst = tCarStop - tRoadIn;
+        const z0 = -118;
+        const k = Math.min(dt, Tst);
+        const d = V * k - (V / (2 * Tst)) * k * k;
+        const shift = E.io2(ramp(tRoadIn + 0.6, tCarStop, t));
+        return { x: 1.8 + shift * 1.5, z: z0 - d, dist: 2000 + d, yaw: Math.sin(Math.PI * shift) * 0.06 };
+      }
+
+      // =========================================================
+      // BEARING WORLD
+      // =========================================================
+      const bear = new T.Scene();
+      {
+        const g = new T.IcosahedronGeometry(60, 2);
+        const pos = g.attributes.position;
+        const colors = [];
+        const top = col("#ea9662"), mid = col("#cc6b50"), bot = col("#7a3a48");
+        for (let i = 0; i < pos.count; i += 3) {
+          const y = (pos.getY(i) + pos.getY(i + 1) + pos.getY(i + 2)) / 3 / 60;
+          const j = (h2(i, 3) - 0.5) * 0.06;
+          const c = y > 0 ? mid.clone().lerp(top, Math.min(1, y * 1.4 + j)) : mid.clone().lerp(bot, Math.min(1, -y * 1.3 + j));
+          for (let k = 0; k < 3; k++) colors.push(c.r, c.g, c.b);
+        }
+        g.setAttribute("color", new T.Float32BufferAttribute(colors, 3));
+        bear.add(new T.Mesh(g, new T.MeshBasicMaterial({ vertexColors: true, side: T.BackSide })));
+      }
+      bear.add(new T.HemisphereLight("#ffe6cc", "#6b3a3a", 0.85));
+      const key = new T.DirectionalLight("#fff1dd", 1.15);
+      key.position.set(-8, 10, -9);
+      bear.add(key);
+      const rim = new T.DirectionalLight("#b9d3ff", 0.65);
+      rim.position.set(9, 4, 10);
+      bear.add(rim);
+
+      const cutPlane = new T.Plane(new T.Vector3(0, 0, 1), 100);
+      const C = {
+        outer: col("#b9bec8"), heat: col("#e0573c"),
+        ball: col("#eef0f4"), rust: col("#8c5a3c"),
+        inner: col("#d0d4dc"), innerRust: col("#a37b62"),
+      };
+      const matOuter = flat("#b9bec8", { clippingPlanes: [cutPlane], side: T.DoubleSide });
+      const matFlange = flat("#a9aeb8", { clippingPlanes: [cutPlane], side: T.DoubleSide });
+      const matInner = flat("#d0d4dc");
+      const matBall = flat("#eef0f4");
+      const matCage = flat("#c9a14a");
+      const matSeal = flat("#2c2a30", { clippingPlanes: [cutPlane], side: T.DoubleSide });
+      const matAbsA = flat("#2c2a30", { clippingPlanes: [cutPlane], side: T.DoubleSide });
+      const matAbsB = flat("#d9483b", { clippingPlanes: [cutPlane], side: T.DoubleSide });
+
+      function ringGeo(rIn, rOut, hw, seg, phiStart, phiLen) {
+        const ch = Math.min(0.08, hw * 0.4);
+        const pts = [
+          [rIn, -hw], [rOut - ch, -hw], [rOut, -hw + ch], [rOut, hw - ch], [rOut - ch, hw], [rIn, hw], [rIn, -hw],
+        ].map((p) => new T.Vector2(p[0], p[1]));
+        const g = new T.LatheGeometry(pts, seg, phiStart || 0, phiLen || Math.PI * 2);
+        g.rotateZ(-Math.PI / 2); // axis Y -> X
+        return g;
+      }
+      const B = new T.Group();
+      bear.add(B);
+
+      const outer = new T.Group();
+      outer.add(new T.Mesh(ringGeo(2.42, 3.05, 0.9, 30), matOuter));
+      {
+        const fl = new T.Mesh(ringGeo(3.0, 3.95, 0.13, 30), matFlange);
+        fl.position.x = 0.55;
+        outer.add(fl);
+        for (let k = 0; k < 4; k++) {
+          const a = (k / 4) * Math.PI * 2 + Math.PI / 4;
+          const boss = new T.Mesh(new T.CylinderGeometry(0.32, 0.32, 0.34, 8), matFlange);
+          boss.rotation.z = Math.PI / 2;
+          boss.position.set(0.55, Math.cos(a) * 3.6, Math.sin(a) * 3.6);
+          outer.add(boss);
+        }
+      }
+      B.add(outer);
+
+      const innerG = new T.Group();
+      innerG.add(new T.Mesh(ringGeo(1.25, 1.88, 0.95, 30), matInner));
+      B.add(innerG);
+
+      function ballRow(x) {
+        const g = new T.Group();
+        const balls = [];
+        const geo = new T.IcosahedronGeometry(0.27, 1);
+        for (let k = 0; k < 13; k++) {
+          const a = (k / 13) * Math.PI * 2;
+          const b = new T.Mesh(geo, matBall);
+          b.position.set(0, Math.cos(a) * 2.15, Math.sin(a) * 2.15);
+          g.add(b);
+          balls.push(b);
+        }
+        const cage = new T.Mesh(new T.TorusGeometry(2.15, 0.05, 4, 39), matCage);
+        cage.rotation.y = Math.PI / 2;
+        g.add(cage);
+        g.position.x = x;
+        return { g, balls };
+      }
+      const rowA = ballRow(-0.42);
+      const rowB = ballRow(0.42);
+      B.add(rowA.g, rowB.g);
+
+      const seal = new T.Mesh(ringGeo(1.88, 2.42, 0.06, 30), matSeal);
+      seal.position.x = -0.93;
+      B.add(seal);
+      const absRing = new T.Group();
+      for (let k = 0; k < 24; k++) {
+        const seg = new T.Mesh(ringGeo(1.88, 2.42, 0.06, 2, (k / 24) * Math.PI * 2, Math.PI / 12), k % 2 ? matAbsA : matAbsB);
+        absRing.add(seg);
+      }
+      absRing.position.x = 0.93;
+      B.add(absRing);
+
+      const hub = new T.Group();
+      {
+        const disc = new T.Mesh(new T.CylinderGeometry(3.3, 3.3, 0.36, 10), flat("#8f949e"));
+        disc.rotation.z = Math.PI / 2;
+        hub.add(disc);
+        const boss = new T.Mesh(new T.CylinderGeometry(1.25, 1.3, 0.8, 10), flat("#9aa0aa"));
+        boss.rotation.z = Math.PI / 2;
+        boss.position.x = -0.4;
+        hub.add(boss);
+        for (let k = 0; k < 5; k++) {
+          const a = (k / 5) * Math.PI * 2;
+          const st = new T.Mesh(new T.CylinderGeometry(0.15, 0.15, 1.0, 6), flat("#d8dbe1"));
+          st.rotation.z = Math.PI / 2;
+          st.position.set(-0.55, Math.cos(a) * 2.3, Math.sin(a) * 2.3);
+          hub.add(st);
+        }
+        const cap = new T.Mesh(new T.CylinderGeometry(0.9, 0.9, 0.22, 8), flat("#44444c"));
+        cap.rotation.z = Math.PI / 2;
+        cap.position.x = -0.9;
+        hub.add(cap);
+      }
+      hub.position.x = -1.32;
+      B.add(hub);
+
+      function makeArrow(len) {
+        const g = new T.Group();
+        const m = flat("#ffd24a");
+        const shaft = new T.Mesh(new T.CylinderGeometry(0.16, 0.16, len, 6), m);
+        shaft.position.y = len / 2 + 0.7;
+        const head = new T.Mesh(new T.ConeGeometry(0.42, 0.8, 6), m);
+        head.rotation.x = Math.PI;
+        head.position.y = 0.4;
+        g.add(shaft, head);
+        g.userData.mat = m;
+        return g;
+      }
+      const arrowW = makeArrow(2.2); // points down (-y), tip at origin
+      bear.add(arrowW);
+      const arrowK = makeArrow(1.8);
+      arrowK.rotation.z = Math.PI / 2; // tip points +x
+      bear.add(arrowK);
+
+      // hum rings (bearing)
+      const bearRings = [];
+      for (let k = 0; k < 4; k++) {
+        const m = new T.Mesh(new T.TorusGeometry(1, 0.028, 3, 48), ringMat(0));
+        m.rotation.y = Math.PI / 2;
+        bear.add(m);
+        bearRings.push(m);
+      }
+      // particles
+      const r2 = rng(42);
+      const drops = [];
+      for (let k = 0; k < 9; k++) {
+        const m = new T.Mesh(new T.OctahedronGeometry(0.16), flat("#4fa3e0"));
+        const a = -0.9 + r2() * 1.8 + Math.PI / 2;
+        drops.push({ m, a, d: r2() * 0.8, s: 0.7 + r2() * 0.6 });
+        bear.add(m);
+      }
+      const grease = [];
+      for (let k = 0; k < 16; k++) {
+        const m = new T.Mesh(new T.TetrahedronGeometry(0.14), flat("#d9b84a"));
+        grease.push({ m, a: r2() * Math.PI * 2, side: r2() < 0.5 ? -1 : 1, d: r2() * 0.5, v: 1.6 + r2() * 1.6 });
+        bear.add(m);
+      }
+      const sparks = [];
+      for (let k = 0; k < 22; k++) {
+        const m = new T.Mesh(new T.TetrahedronGeometry(0.08), new T.MeshBasicMaterial({ color: "#ff8a3d" }));
+        sparks.push({ m, a: Math.PI * 0.35 + r2() * Math.PI * 0.3, d: r2() * 0.9, v: 2 + r2() * 3, row: r2() < 0.5 ? -0.42 : 0.42 });
+        bear.add(m);
+      }
+
+      // spin: integrate a speed curve once at load
+      const HZ = 120;
+      const spinTable = new Float32Array(Math.ceil(DUR * HZ) + 2);
+      function spinSpeed(t) {
+        let s = 3.2;
+        if (t > tExplode && t < tCollapse) s = 1.4;
+        if (t > M.metall) s = 3.2 + Math.sin(t * 31) * 0.8;
+        if (t > tJam) s = Math.max(0, 3.2 * (1 - (t - tJam) / 0.12));
+        return s;
+      }
+      for (let i = 1; i < spinTable.length; i++) spinTable[i] = spinTable[i - 1] + spinSpeed(i / HZ) / HZ;
+      const spinAt = (t) => {
+        const f = Math.max(0, Math.min(spinTable.length - 2, t * HZ));
+        const i = Math.floor(f);
+        return lerp(spinTable[i], spinTable[i + 1], f - i);
+      };
+
+      // =========================================================
+      // CAMERA PATHS
+      // =========================================================
+      // road keys are relative to the car; bearing keys to the bearing centre
+      const roadKeys = [
+        { t: 0, p: [-6.2, 1.5, -8.5], l: [0, 0.6, -1] },
+        { t: LINES.l1.end - 1.5, p: [-6.6, 1.0, -2.2], l: [0, 0.5, -1.2], e: "io" },
+        { t: LINES.l2.start, p: [-2.4, 0.55, -1.35], l: [-0.86, 0.37, -1.35], e: "io2" },
+        { t: tDiveEnd, p: [-1.075, 0.37, -1.35], l: [0, 0.37, -1.35], e: "in3" },
+      ];
+      const roadKeys2 = [
+        { t: tRoadIn, p: [-1.1, 0.37, -1.35], l: [0, 0.37, -1.35] },
+        { t: tRoadIn + 3.2, p: [-9.5, 3.4, -10], l: [0, 0.8, -0.5], e: "out3" },
+        { t: DUR, p: [-11, 4.2, -11.5], l: [0, 1.0, -0.5], e: "lin" },
+      ];
+      const bearKeys = [
+        { t: tBearIn, p: [-3.05, 0, 0], l: [0, 0, 0] },
+        { t: tPull + 0.4, p: [-13.5, 4.6, -11], l: [0, 1.5, 0], e: "out3" },
+        { t: tExplode, p: [-12.5, 5.0, -12.5], l: [0, 1.5, 0], e: "lin" },
+        { t: tExplode + 1.4, p: [0.6, 3.2, -16.5], l: [0.5, -0.7, 0], e: "io" },
+        { t: tCollapse, p: [0.2, 2.8, -15.5], l: [0.4, -0.7, 0], e: "lin" },
+        { t: tCollapse + 1.4, p: [-8.6, 6.0, -10.6], l: [0, 0.2, 0], e: "io" },
+        { t: LINES.l6.start, p: [-7.9, 5.3, -9.8], l: [0, 0.2, 0], e: "lin" },
+        { t: M.abs - 0.2, p: [-9.4, 3.2, -10.6], l: [1.8, 0.3, 0], e: "io2" },
+        { t: tJam + 0.1, p: [-9.6, 3.0, -10.8], l: [1.6, 0.3, 0], e: "lin" },
+        { t: tExitDive + 0.9, p: [-3.05, 0, 0], l: [0, 0, 0], e: "in3" },
+      ];
+      function sample(keys, t) {
+        if (t <= keys[0].t) return keys[0];
+        for (let i = 1; i < keys.length; i++) {
+          const b = keys[i];
+          if (t <= b.t) {
+            const a = keys[i - 1];
+            const k = E[b.e || "io"](clamp01((t - a.t) / (b.t - a.t)));
+            return {
+              p: a.p.map((v, j) => lerp(v, b.p[j], k)),
+              l: a.l.map((v, j) => lerp(v, b.l[j], k)),
+            };
+          }
+        }
+        return keys[keys.length - 1];
+      }
+
+      // =========================================================
+      // LABELS (HTML, positioned from 3D anchors)
+      // =========================================================
+      const v3 = new T.Vector3();
+      const labelWin = {};
+      let nowT = 0;
+      function place(id, world) {
+        const el = document.getElementById(id);
+        const w = labelWin[id];
+        const on = w && nowT >= w[0] - 0.02 && nowT <= w[1] + 0.02;
+        el.style.visibility = on ? "visible" : "hidden";
+        if (!on) return;
+        v3.copy(world).project(camera);
+        const x = (v3.x * 0.5 + 0.5) * 1920;
+        const y = (-v3.y * 0.5 + 0.5) * 1080;
+        el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      }
+      const wp = (obj, x, y, z) => obj.localToWorld(new T.Vector3(x, y, z));
+
+      // =========================================================
+      // RENDER
+      // =========================================================
+      const iris = document.getElementById("world-iris");
+      const absEl = document.getElementById("world-abs");
+      const absLamp = absEl.querySelector("svg");
+
+      function render(t) {
+        nowT = t;
+        if (t < tBearIn || t >= tRoadIn) document.querySelectorAll("#root .lbl").forEach((el) => (el.style.visibility = "hidden"));
+        // iris through the hub cap, both directions
+        const irisIn = Math.max(
+          ramp(tDiveEnd - 0.22, tDiveEnd, t) * (1 - ramp(tDiveEnd, tDiveEnd + 0.4, t)),
+          ramp(tExitDive + 0.68, tRoadIn, t) * (1 - ramp(tRoadIn, tRoadIn + 0.4, t)),
+        );
+        iris.style.opacity = irisIn.toFixed(3);
+
+        const inBear = t >= tBearIn && t < tRoadIn;
+        let shake = 0;
+        if (inBear) {
+          // ---- parts
+          const slide = E.io(ramp(tHubOff, tHubOff + 1.2, t));
+          const ex = E.io(ramp(tExplode, tExplode + 1.4, t)) * (1 - E.io(ramp(tCollapse, tCollapse + 1.0, t)));
+          const hubGone = E.io(ramp(tCollapse, tCollapse + 1.0, t));
+          hub.position.x = -1.32 - slide * 2.6 - ex * 4.2 - hubGone * 10;
+          hub.visible = hubGone < 0.999;
+          seal.position.x = -0.93 - ex * 2.8;
+          rowA.g.position.x = -0.42 - ex * 1.5;
+          rowB.g.position.x = 0.42 + ex * 1.5;
+          innerG.position.x = ex * 2.9;
+          absRing.position.x = 0.93 + ex * 4.4;
+
+          const ang = spinAt(t);
+          // play: wobble of the inner ring and the balls
+          const play = E.out2(ramp(M.spiel, M.spiel + 0.6, t)) * (t < tJam ? 1 : 0.4);
+          const wob = Math.sin(t * 22) * 0.07 * play;
+          const wobY = Math.sin(t * 22 + 1.3) * 0.09 * play;
+          innerG.rotation.set(ang, wob, 0);
+          innerG.position.y = wobY;
+          hub.rotation.set(ang, wob, 0);
+          hub.position.y = wobY;
+          for (const row of [rowA, rowB]) {
+            row.g.rotation.x = ang * 0.42;
+            row.g.position.y = wobY * 0.5;
+            row.balls.forEach((b, i) => b.rotation.set(ang * 2.4 + i, ang * 1.3, 0));
+          }
+          seal.rotation.x = ang * 0.0;
+          absRing.rotation.x = ang;
+
+          // ---- cutaway
+          const cut = E.io(ramp(tCut, tCut + 0.9, t)) * (1 - ramp(tJam + 0.2, tExitDive + 0.4, t));
+          cutPlane.constant = lerp(5, 0, cut);
+
+          // ---- wear, rust, heat
+          const rustK = E.io2(ramp(M.laufbahnen - 0.3, M.metall + 0.8, t));
+          matBall.color.copy(C.ball).lerp(C.rust, rustK * 0.85);
+          matInner.color.copy(C.inner).lerp(C.innerRust, rustK * 0.55);
+          const heatK = E.io2(ramp(M.heiss - 0.1, M.heiss + 1.1, t));
+          matOuter.color.copy(C.outer).lerp(C.heat, heatK * 0.85);
+          matFlange.color.copy(col("#a9aeb8")).lerp(C.heat, heatK * 0.6);
+
+          // ---- arrows
+          const aW = E.out3(ramp(M.gewicht - 0.1, M.gewicht + 0.5, t)) * (1 - ramp(LINES.l3.end + 0.1, LINES.l3.end + 0.5, t));
+          arrowW.visible = aW > 0.01;
+          arrowW.position.set(0.2, 3.25 + (1 - aW) * 3, 0);
+          arrowW.scale.setScalar(Math.max(0.01, aW));
+          const aK = E.out3(ramp(M.kurve - 0.1, M.kurve + 0.5, t)) * (1 - ramp(LINES.l3.end + 0.1, LINES.l3.end + 0.5, t));
+          arrowK.visible = aK > 0.01;
+          arrowK.position.set(-5.1 - (1 - aK) * 3, 1.9, -2.6);
+          arrowK.scale.setScalar(Math.max(0.01, aK));
+
+          // ---- hum rings
+          const humK = ramp(M.brummt - 0.2, M.brummt + 0.4, t) * (1 - ramp(tJam, tJam + 0.3, t));
+          bearRings.forEach((m, k) => {
+            const s = ((t - M.brummt) * 0.85 + k / 4) % 1;
+            const ss = s < 0 ? s + 1 : s;
+            m.scale.setScalar(3.3 + ss * 2.8);
+            m.position.x = -0.2;
+            m.material.opacity = humK * (1 - ss) * 0.6;
+            m.visible = humK > 0.01;
+          });
+
+          // ---- water drops into the seal
+          drops.forEach((d) => {
+            const k = ramp(M.undicht - 0.4 + d.d, M.undicht + 1.2 + d.d, t);
+            d.m.visible = k > 0 && k < 1;
+            const r = lerp(5.2, 2.1, E.in3(k) * 0.7 + k * 0.3);
+            const x = lerp(-3.2, -0.95, E.out2(k));
+            d.m.position.set(x, Math.cos(d.a) * r, Math.sin(d.a) * r - 0.4);
+            d.m.scale.setScalar(d.s * (1 - k * 0.5));
+          });
+          // grease leaving
+          grease.forEach((g) => {
+            const k = ramp(M.fett - 0.1 + g.d * 0.5, M.fett + 1.4 + g.d, t);
+            g.m.visible = k > 0 && k < 1;
+            const r = 2.2 + k * g.v * 2;
+            g.m.position.set(g.side * (0.95 + k * 1.2), Math.cos(g.a) * r - k * k * 2.2, Math.sin(g.a) * r);
+            g.m.rotation.set(k * 6, k * 4, 0);
+          });
+          // sparks: metal on metal
+          sparks.forEach((s) => {
+            const k = ramp(M.metall + s.d * 0.6, M.metall + 0.35 + s.d * 0.6, t) + ramp(M.metall + 0.9 + s.d * 0.6, M.metall + 1.25 + s.d * 0.6, t) * 0;
+            s.m.visible = k > 0 && k < 1;
+            const r = 2.3 + k * s.v;
+            s.m.position.set(s.row, Math.cos(s.a) * r - k * k * 1.2, Math.sin(s.a) * r);
+          });
+
+          // camera
+          const c = sample(bearKeys, t);
+          shake =
+            Math.exp(-Math.max(0, t - M.schlagloch) * 7) * (t > M.schlagloch ? 1 : 0) * 0.35 +
+            Math.exp(-Math.max(0, t - tJam) * 6) * (t > tJam ? 1 : 0) * 0.45;
+          const sx = Math.sin(t * 61) * shake, sy = Math.sin(t * 47 + 2) * shake;
+          camera.position.set(c.p[0], c.p[1] + sy, c.p[2] + sx);
+          camera.lookAt(c.l[0], c.l[1], c.l[2]);
+          camera.updateMatrixWorld();
+          B.updateMatrixWorld(true);
+          renderer.render(bear, camera);
+
+          // labels follow their parts
+          place("lbl-radnabe", wp(hub, -0.4, 3.3, 0));
+          place("lbl-gewicht", new T.Vector3(0.2, 4.6, 0));
+          place("lbl-kurve", new T.Vector3(-5.1 - 1.6, 2.1, -2.6));
+          place("lbl-kugeln", wp(rowA.g, 0, 2.42, 0).setY(rowA.g.position.y + 2.42));
+          place("lbl-laufringe", new T.Vector3(0, 3.05, 0));
+          place("lbl-dichtung", new T.Vector3(seal.position.x, -2.2, 0));
+          place("lbl-absring", new T.Vector3(absRing.position.x, -2.2, 0));
+          place("lbl-wasser", new T.Vector3(-1.4, 2.5, 0.4));
+          place("lbl-rost", new T.Vector3(-0.42, 1.95, 1.1));
+          place("lbl-spiel", new T.Vector3(0.9, 1.6 + wobY, 0));
+          place("lbl-hitze", new T.Vector3(0.4, 0.4, 3.02));
+        } else {
+          const s = carState(t);
+          car.position.set(s.x, 0, s.z);
+          car.rotation.y = s.yaw || 0;
+          const roll = -s.dist / 0.37;
+          wheels.forEach((w) => {
+            w.rotation.x = w.rotation.y ? -roll : roll;
+          });
+          car.position.y = Math.sin(s.dist * 1.7) * 0.012;
+          const stopped = t > tCarStop - 0.3;
+          hazards.forEach((h) => (h.visible = stopped && Math.floor((t - tCarStop) * 1.6) % 2 === 0));
+          // hum rings on the road (the noise grows with speed)
+          const humK = ramp(M.brummen - 0.1, M.brummen + 0.6, t) * (1 - ramp(LINES.l2.start + 0.2, LINES.l2.start + 0.6, t)) * (t < tRoadIn ? 1 : 0);
+          roadRings.forEach((m, k) => {
+            const ph = ((t - M.brummen) * (0.9 + ramp(M.brummen, LINES.l1.end, t) * 0.8) + k / 3) % 1;
+            const ss = ph < 0 ? ph + 1 : ph;
+            m.scale.setScalar(0.45 + ss * 1.3);
+            m.material.opacity = humK * (1 - ss);
+            m.visible = humK > 0.01;
+          });
+          const keys = t < tRoadIn ? roadKeys : roadKeys2;
+          const c = sample(keys, t);
+          car.updateMatrixWorld(true);
+          camera.position.copy(car.localToWorld(new T.Vector3(c.p[0], c.p[1], c.p[2])));
+          camera.lookAt(car.localToWorld(new T.Vector3(c.l[0], c.l[1], c.l[2])));
+          camera.updateMatrixWorld();
+          renderer.render(road, camera);
+        }
+
+        // ABS lamp blinks while shown
+        const absOn = t > M.abs && Math.floor((t - M.abs) * 2.4) % 2 === 0;
+        absLamp.style.opacity = absOn ? "1" : "0.25";
+      }
+
+      // =========================================================
+      // TIMELINE
+      // =========================================================
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      function showLabel(id, a, b) {
+        labelWin[id] = [a, b];
+        tl.fromTo("#" + id, { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power2.out" }, a);
+        tl.fromTo("#" + id + " .txt", { scale: 0.6 }, { scale: 1, duration: 0.32, ease: "back.out(2)" }, a);
+        tl.to("#" + id, { opacity: 0, duration: 0.18, ease: "power2.in" }, b - 0.18);
+      }
+      showLabel("lbl-radnabe", M.radnabe, tHubOff + 1.4);
+      showLabel("lbl-gewicht", M.gewicht, LINES.l3.end + 0.4);
+      showLabel("lbl-kurve", M.kurve, LINES.l3.end + 0.4);
+      showLabel("lbl-kugeln", M.kugeln, tCollapse);
+      showLabel("lbl-laufringe", M.laufringe, tCollapse);
+      showLabel("lbl-dichtung", M.dichtung, tCollapse);
+      showLabel("lbl-absring", M.dichtung + 0.5, tCollapse);
+      showLabel("lbl-wasser", M.undicht, M.undicht + 2.2);
+      showLabel("lbl-rost", M.laufbahnen, M.metall + 1.2);
+      showLabel("lbl-spiel", M.spiel, LINES.l6.end + 0.3);
+      showLabel("lbl-hitze", M.heiss, LINES.l6.end + 0.3);
+
+      // title: "Das Radlager"
+      tl.fromTo("#world-title", { opacity: 0 }, { opacity: 1, duration: 0.12 }, M.radlager - 0.05);
+      tl.fromTo("#world-title-text", { y: 40, clipPath: "inset(0 0 100% 0)" }, { y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.45, ease: "power4.out" }, M.radlager - 0.05);
+      tl.fromTo("#world-title-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, M.radlager + 0.15);
+      tl.to("#world-title", { opacity: 0, duration: 0.25, ease: "power2.in" }, M.radnabe - 0.1);
+
+      // ABS lamp
+      tl.fromTo("#world-abs", { opacity: 0 }, { opacity: 1, duration: 0.12 }, M.abs);
+      tl.fromTo("#world-abs .lamp", { scale: 0.5 }, { scale: 1, duration: 0.4, ease: "back.out(2.2)" }, M.abs);
+      tl.to("#world-abs", { opacity: 0, duration: 0.2 }, tJam - 0.1);
+
+      // final line
+      const tFinal = Math.min(tCarStop - 0.6, DUR - 3.2);
+      tl.fromTo("#world-final", { opacity: 0 }, { opacity: 1, duration: 0.12 }, tFinal);
+      tl.fromTo("#world-final .plate", { y: 40, clipPath: "inset(0 0 100% 0)" }, { y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.5, ease: "power4.out" }, tFinal);
+      tl.fromTo("#world-final-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, tFinal + 0.2);
+
+      render(0);
+      window.__timelines["world"] = tl;
+    })();
+  </script>
+</template>

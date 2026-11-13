@@ -9,6 +9,19 @@ This skill turns one car part into a ~55 s HyperFrames film in the house style o
 
 Read `/hyperframes` (skills/hyperframes/SKILL.md) for the render contract if you have not this session. Speak to the user in German, simply: they are not a developer.
 
+## Read first: what the audience data says (TikTok, episode 1)
+
+The videos are posted on **TikTok**. Episode 1 (Radlager, 16:9, 54.5 s, slow road intro) got 865 views in ~16 h but an **average watch time of 9.3 s and 3.6 % full views**; 22 likes, 5 saves, 0 comments, 0 follows. Viewers left before the part even appeared (the dive happened at ~10 s). Those who stayed liked and saved it, so the look works — the opening and format did not. The user asked that the next episode apply these fixes; they override the template defaults below wherever the two disagree:
+
+1. **Vertical 9:16 (1080 × 1920)**, not 16:9. Re-lay out every overlay for portrait: captions about 600–700 px from the bottom, labels and the warning lamp inside the centre column, the part filling ≥ 50 % of the width. The camera keys need re-framing for the narrow frame (pull the camera back or raise the FOV so exploded views still fit).
+2. **Hook in the first second, the part by second 2–3.** Open on a big text line that names the symptom as a question ("Brummt dein Auto? 🔊" / "Quietscht's beim Bremsen?") over a close, already-moving shot. Cut the slow road intro to ≤ 2 s or move the road to the end; get into the part immediately (the dive can be a fast 0.5 s move, not a 4 s approach).
+3. **30–35 s total**, not 55 s: about 70–85 spoken words. Fewer lines (5 instead of 7): hook+reveal · what it does · why it breaks · how you notice · "ab in die Werkstatt". Every beat must show something new within 2–3 s.
+4. **Bigger type for phones**: captions ~80–90 px, labels ~56–64 px, the title larger; at most 2–3 labels on screen at once.
+5. **End with a question for the comments** in the closing line or caption suggestion ("Welches Teil als Nächstes?") — episode 1 got 0 comments.
+6. **Sound**: suggest the user add a quiet TikTok library sound when uploading (there is still no music source here).
+
+After the user uploads, ask for the two numbers that matter — average watch time and "ganzes Video angeschaut %" — and add them to this section, so each episode learns from the last.
+
 ## The film, beat by beat
 
 One continuous take; the voice is the clock. Each beat is one line of the script.
