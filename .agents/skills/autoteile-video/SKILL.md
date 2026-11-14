@@ -11,11 +11,11 @@ Read `/hyperframes` (skills/hyperframes/SKILL.md) for the render contract if you
 
 ## Series state (update after every episode)
 
-| Ep. | Part        | Format                                  | Announced next  | Avg. watch | Full views | Notes                                                                               |
-| --- | ----------- | --------------------------------------- | --------------- | ---------- | ---------- | ----------------------------------------------------------------------------------- |
-| 1   | Radlager    | 16:9, 54.5 s, slow road intro, no strip | —               | 9.3 s      | 3.6 %      | 865 views/16 h, 22 likes, 5 saves, 0 comments, 0 follows                            |
-| 2   | Bremsen     | 9:16, 37 s, strip + follow card         | **Stoßdämpfer** | ?          | ?          |                                                                                     |
-| 3   | Stoßdämpfer | 9:16, 38 s, strip + follow card         | **Zündkerzen**  | ?          | ?          | spring = helix rebuilt per frame (`setSpring`); oil translucent so the piston shows |
+| Ep. | Part        | Format                                  | Announced next  | Avg. watch | Full views | Notes                                                                                           |
+| --- | ----------- | --------------------------------------- | --------------- | ---------- | ---------- | ----------------------------------------------------------------------------------------------- |
+| 1   | Radlager    | 16:9, 54.5 s, slow road intro, no strip | —               | 9.3 s      | 3.6 %      | 865 views/16 h, 22 likes, 5 saves, 0 comments, 0 follows                                        |
+| 2   | Bremsen     | 9:16, 37 s, strip + follow card         | **Stoßdämpfer** | ?          | ?          | ~800 views                                                                                      |
+| 3   | Stoßdämpfer | 9:16, 38 s, strip + follow card         | **Zündkerzen**  | ?          | ?          | ~800 views; spring = helix rebuilt per frame (`setSpring`); oil translucent so the piston shows |
 
 - TikTok username: **@wasmachtdasteil** (index.html variable `username`). Planned order: Zündkerzen (Ep. 4, announced) → Batterie → Kupplung (a proposal; confirm with the user).
 - The next episode **must** be the part the previous one announced (Ep. 4 = Zündkerzen) unless the user decides otherwise. Ask which part comes _after_ it, because that is what this episode announces.
