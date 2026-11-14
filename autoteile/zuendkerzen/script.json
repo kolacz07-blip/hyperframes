@@ -1,0 +1,115 @@
+{
+  "title": "Zündkerzen – was sie machen und woran du merkst, dass sie fertig sind",
+  "note": "Folge 4, TikTok 9:16, neuer Einstieg: Action ab Bild 0, Leiste nur am Ende. Zeiten geschätzt bis zur Sprecherspur.",
+  "duration": 28.5,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 3.6,
+      "text": "Dein Auto ruckelt beim Gasgeben? Schuld ist oft dieses kleine Teil: die Zündkerze."
+    },
+    {
+      "id": "l2",
+      "start": 3.9,
+      "end": 7.6,
+      "text": "Sie zündet im Motor das Benzin-Luft-Gemisch – über tausend Mal pro Minute."
+    },
+    {
+      "id": "l3",
+      "start": 7.9,
+      "end": 11.6,
+      "text": "Mit der Zeit brennen die Elektroden ab, der Funke wird schwach."
+    },
+    {
+      "id": "l4",
+      "start": 11.9,
+      "end": 15.8,
+      "text": "Dann ruckelt der Motor, springt schlecht an und braucht mehr Sprit."
+    },
+    {
+      "id": "l5",
+      "start": 16.1,
+      "end": 20.2,
+      "text": "Ab in die Werkstatt! Kennst du das? Schreib's in die Kommentare."
+    },
+    {
+      "id": "l6",
+      "start": 20.5,
+      "end": 22.2,
+      "text": "Nächstes Mal: die Batterie."
+    }
+  ],
+  "marks": [
+    {
+      "name": "ruckelt",
+      "line": "l1",
+      "word": "ruckelt"
+    },
+    {
+      "name": "zuendkerze",
+      "line": "l1",
+      "word": "Zündkerze"
+    },
+    {
+      "name": "zuendet",
+      "line": "l2",
+      "word": "zündet"
+    },
+    {
+      "name": "gemisch",
+      "line": "l2",
+      "word": "Benzin-Luft-Gemisch"
+    },
+    {
+      "name": "tausend",
+      "line": "l2",
+      "word": "tausend"
+    },
+    {
+      "name": "elektroden",
+      "line": "l3",
+      "word": "Elektroden"
+    },
+    {
+      "name": "schwach",
+      "line": "l3",
+      "word": "schwach"
+    },
+    {
+      "name": "ruckelt2",
+      "line": "l4",
+      "word": "ruckelt"
+    },
+    {
+      "name": "schlecht",
+      "line": "l4",
+      "word": "schlecht"
+    },
+    {
+      "name": "sprit",
+      "line": "l4",
+      "word": "Sprit"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "Kommentare"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "Nächstes"
+    },
+    {
+      "name": "batterie",
+      "line": "l6",
+      "word": "Batterie"
+    }
+  ]
+}
