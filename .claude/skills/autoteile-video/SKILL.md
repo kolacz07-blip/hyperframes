@@ -11,12 +11,13 @@ Read `/hyperframes` (skills/hyperframes/SKILL.md) for the render contract if you
 
 ## Series state (update after every episode)
 
-| Ep. | Part        | Format                                  | Announced next  | Avg. watch | Full views | Notes                                                                                           |
-| --- | ----------- | --------------------------------------- | --------------- | ---------- | ---------- | ----------------------------------------------------------------------------------------------- |
-| 1   | Radlager    | 16:9, 54.5 s, slow road intro, no strip | —               | 9.3 s      | 3.6 %      | 865 views/16 h, 22 likes, 5 saves, 0 comments, 0 follows                                        |
-| 2   | Bremsen     | 9:16, 37 s, strip + follow card         | **Stoßdämpfer** | ?          | ?          | ~800 views                                                                                      |
-| 3   | Stoßdämpfer | 9:16, 38 s, strip + follow card         | **Zündkerzen**  | ?          | ?          | ~800 views; spring = helix rebuilt per frame (`setSpring`); oil translucent so the piston shows |
+| Ep. | Part        | Format                                  | Announced next  | Avg. watch | Full views | Notes                                                                                                                                  |
+| --- | ----------- | --------------------------------------- | --------------- | ---------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Radlager    | 16:9, 54.5 s, slow road intro, no strip | —               | 9.3 s      | 3.6 %      | 865 views/16 h, 22 likes, 5 saves, 0 comments, 0 follows                                                                               |
+| 2   | Bremsen     | 9:16, 37 s, strip + follow card         | **Stoßdämpfer** | 8.4 s      | 1.8 %      | 915 views, 31 likes, 2 saves, 0 comments, 1 follow                                                                                     |
+| 3   | Stoßdämpfer | 9:16, 38 s, strip + follow card         | **Zündkerzen**  | 8.0 s      | 1.7 %      | 746 views, 15 likes, 1 save, 2 comments, 1 follow; spring = helix rebuilt per frame (`setSpring`); oil translucent so the piston shows |
 
+- **Reading after Ep. 2–3:** portrait + faster start did _not_ fix retention (avg. watch still ~8 s); the comments question and follow card started to work (2 comments, 1 follow each). Leading hypothesis: the opening strip reads as branding, not as a reason to stay. Proposed for Ep. 4 (not yet confirmed by the user): strip only at the end, open on drama/curiosity ("Das passiert, wenn du DAS ignorierst" / "3 Anzeichen …"), 20–25 s. Ask the user for TikTok's retention curve to see where viewers leave.
 - TikTok username: **@wasmachtdasteil** (index.html variable `username`). Planned order: Zündkerzen (Ep. 4, announced) → Batterie → Kupplung (a proposal; confirm with the user).
 - The next episode **must** be the part the previous one announced (Ep. 4 = Zündkerzen) unless the user decides otherwise. Ask which part comes _after_ it, because that is what this episode announces.
 - After the user uploads, ask for the two numbers that matter — average watch time and "ganzes Video angeschaut %" — and fill them into this table, so each episode learns from the last.
