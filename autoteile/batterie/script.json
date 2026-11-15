@@ -1,0 +1,125 @@
+{
+  "title": "Autobatterie – was sie macht und woran du merkst, dass sie schwach wird",
+  "note": "Folge 5, TikTok 9:16, Action ab Bild 0, Leiste nur am Ende, Folg-Hinweis bei ~8 s. Zeiten geschätzt bis zur Sprecherspur.",
+  "duration": 31.2,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 4,
+      "text": "Dein Auto springt nicht an? Schuld ist oft dieser schwarze Kasten: die Batterie."
+    },
+    {
+      "id": "l2",
+      "start": 4.3,
+      "end": 9,
+      "text": "Sie liefert den Strom zum Starten. Beim Fahren lädt die Lichtmaschine sie wieder auf."
+    },
+    {
+      "id": "l3",
+      "start": 9.3,
+      "end": 14,
+      "text": "Mit den Jahren setzen sich die Bleiplatten innen zu – Kälte und Kurzstrecken machen's schlimmer."
+    },
+    {
+      "id": "l4",
+      "start": 14.3,
+      "end": 19.6,
+      "text": "Dann dreht der Anlasser müde, das Licht wird beim Starten dunkel und Start-Stopp geht nicht mehr."
+    },
+    {
+      "id": "l5",
+      "start": 19.9,
+      "end": 25,
+      "text": "Ab in die Werkstatt, dort wird sie kurz gemessen! Kennst du das? Schreib's in die Kommentare."
+    },
+    {
+      "id": "l6",
+      "start": 25.3,
+      "end": 27,
+      "text": "Nächstes Mal: die Kupplung."
+    }
+  ],
+  "marks": [
+    {
+      "name": "springt",
+      "line": "l1",
+      "word": "springt"
+    },
+    {
+      "name": "batterie",
+      "line": "l1",
+      "word": "Batterie"
+    },
+    {
+      "name": "strom",
+      "line": "l2",
+      "word": "Strom"
+    },
+    {
+      "name": "fahren",
+      "line": "l2",
+      "word": "Fahren"
+    },
+    {
+      "name": "lichtmaschine",
+      "line": "l2",
+      "word": "Lichtmaschine"
+    },
+    {
+      "name": "bleiplatten",
+      "line": "l3",
+      "word": "Bleiplatten"
+    },
+    {
+      "name": "kaelte",
+      "line": "l3",
+      "word": "Kälte"
+    },
+    {
+      "name": "kurzstrecken",
+      "line": "l3",
+      "word": "Kurzstrecken"
+    },
+    {
+      "name": "anlasser",
+      "line": "l4",
+      "word": "Anlasser"
+    },
+    {
+      "name": "licht",
+      "line": "l4",
+      "word": "Licht"
+    },
+    {
+      "name": "startstopp",
+      "line": "l4",
+      "word": "Start-Stopp"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "gemessen",
+      "line": "l5",
+      "word": "gemessen"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "Kommentare"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "Nächstes"
+    },
+    {
+      "name": "kupplung",
+      "line": "l6",
+      "word": "Kupplung"
+    }
+  ]
+}
