@@ -1,0 +1,402 @@
+{
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "offset": 0.3,
+  "tempo": 1.1,
+  "words": [
+    {
+      "text": "Dein",
+      "start": 0.3,
+      "end": 0.532
+    },
+    {
+      "text": "Motor",
+      "start": 0.575,
+      "end": 0.902
+    },
+    {
+      "text": "heult",
+      "start": 0.955,
+      "end": 1.165
+    },
+    {
+      "text": "auf,",
+      "start": 1.229,
+      "end": 1.662
+    },
+    {
+      "text": "aber",
+      "start": 1.799,
+      "end": 1.967
+    },
+    {
+      "text": "das",
+      "start": 1.989,
+      "end": 2.095
+    },
+    {
+      "text": "Auto",
+      "start": 2.168,
+      "end": 2.39
+    },
+    {
+      "text": "wird",
+      "start": 2.443,
+      "end": 2.58
+    },
+    {
+      "text": "nicht",
+      "start": 2.612,
+      "end": 2.77
+    },
+    {
+      "text": "schneller?",
+      "start": 2.791,
+      "end": 3.393
+    },
+    {
+      "text": "Dann",
+      "start": 3.741,
+      "end": 3.899
+    },
+    {
+      "text": "schau",
+      "start": 3.92,
+      "end": 4.078
+    },
+    {
+      "text": "dir",
+      "start": 4.121,
+      "end": 4.205
+    },
+    {
+      "text": "die",
+      "start": 4.237,
+      "end": 4.311
+    },
+    {
+      "text": "Kupplung",
+      "start": 4.353,
+      "end": 4.701
+    },
+    {
+      "text": "an.",
+      "start": 4.765,
+      "end": 5.06
+    },
+    {
+      "text": "Sie",
+      "start": 5.314,
+      "end": 5.461
+    },
+    {
+      "text": "verbindet",
+      "start": 5.504,
+      "end": 5.894
+    },
+    {
+      "text": "Motor",
+      "start": 5.957,
+      "end": 6.348
+    },
+    {
+      "text": "und",
+      "start": 6.401,
+      "end": 6.485
+    },
+    {
+      "text": "Getriebe.",
+      "start": 6.537,
+      "end": 7.192
+    },
+    {
+      "text": "Trittst",
+      "start": 7.656,
+      "end": 7.973
+    },
+    {
+      "text": "du",
+      "start": 7.995,
+      "end": 8.057
+    },
+    {
+      "text": "aufs",
+      "start": 8.121,
+      "end": 8.269
+    },
+    {
+      "text": "Pedal,",
+      "start": 8.311,
+      "end": 8.785
+    },
+    {
+      "text": "trennt",
+      "start": 8.87,
+      "end": 9.135
+    },
+    {
+      "text": "sie",
+      "start": 9.155,
+      "end": 9.25
+    },
+    {
+      "text": "beide,",
+      "start": 9.293,
+      "end": 9.577
+    },
+    {
+      "text": "damit",
+      "start": 9.598,
+      "end": 9.81
+    },
+    {
+      "text": "du",
+      "start": 9.831,
+      "end": 9.905
+    },
+    {
+      "text": "schalten",
+      "start": 9.947,
+      "end": 10.253
+    },
+    {
+      "text": "kannst.",
+      "start": 10.305,
+      "end": 10.823
+    },
+    {
+      "text": "Die",
+      "start": 11.224,
+      "end": 11.351
+    },
+    {
+      "text": "Kupplungsscheibe",
+      "start": 11.393,
+      "end": 12.1
+    },
+    {
+      "text": "hat",
+      "start": 12.142,
+      "end": 12.247
+    },
+    {
+      "text": "einen",
+      "start": 12.29,
+      "end": 12.469
+    },
+    {
+      "text": "Reibbelag.",
+      "start": 12.533,
+      "end": 13.261
+    },
+    {
+      "text": "Der",
+      "start": 13.515,
+      "end": 13.705
+    },
+    {
+      "text": "wird",
+      "start": 13.746,
+      "end": 13.895
+    },
+    {
+      "text": "bei",
+      "start": 13.947,
+      "end": 14.053
+    },
+    {
+      "text": "jedem",
+      "start": 14.085,
+      "end": 14.305
+    },
+    {
+      "text": "Anfahren",
+      "start": 14.369,
+      "end": 14.791
+    },
+    {
+      "text": "dünner,",
+      "start": 14.834,
+      "end": 15.245
+    },
+    {
+      "text": "Schleifenlassen",
+      "start": 15.351,
+      "end": 16.026
+    },
+    {
+      "text": "macht's",
+      "start": 16.058,
+      "end": 16.279
+    },
+    {
+      "text": "schlimmer.",
+      "start": 16.301,
+      "end": 16.839
+    },
+    {
+      "text": "Dann",
+      "start": 17.387,
+      "end": 17.599
+    },
+    {
+      "text": "rutscht",
+      "start": 17.652,
+      "end": 17.905
+    },
+    {
+      "text": "sie",
+      "start": 17.936,
+      "end": 18.032
+    },
+    {
+      "text": "durch:",
+      "start": 18.064,
+      "end": 18.517
+    },
+    {
+      "text": "Drehzahl",
+      "start": 18.813,
+      "end": 19.308
+    },
+    {
+      "text": "hoch,",
+      "start": 19.362,
+      "end": 19.731
+    },
+    {
+      "text": "Tempo",
+      "start": 19.889,
+      "end": 20.185
+    },
+    {
+      "text": "nicht.",
+      "start": 20.237,
+      "end": 20.67
+    },
+    {
+      "text": "Dazu",
+      "start": 21.018,
+      "end": 21.314
+    },
+    {
+      "text": "riecht's",
+      "start": 21.366,
+      "end": 21.599
+    },
+    {
+      "text": "verbrannt",
+      "start": 21.631,
+      "end": 22.074
+    },
+    {
+      "text": "und",
+      "start": 22.264,
+      "end": 22.38
+    },
+    {
+      "text": "das",
+      "start": 22.401,
+      "end": 22.506
+    },
+    {
+      "text": "Pedal",
+      "start": 22.559,
+      "end": 22.865
+    },
+    {
+      "text": "greift",
+      "start": 22.929,
+      "end": 23.182
+    },
+    {
+      "text": "erst",
+      "start": 23.235,
+      "end": 23.383
+    },
+    {
+      "text": "ganz",
+      "start": 23.435,
+      "end": 23.625
+    },
+    {
+      "text": "oben.",
+      "start": 23.689,
+      "end": 24.122
+    },
+    {
+      "text": "Ab",
+      "start": 24.755,
+      "end": 24.913
+    },
+    {
+      "text": "in",
+      "start": 24.976,
+      "end": 25.018
+    },
+    {
+      "text": "die",
+      "start": 25.05,
+      "end": 25.114
+    },
+    {
+      "text": "Werkstatt!",
+      "start": 25.145,
+      "end": 25.778
+    },
+    {
+      "text": "Kennst",
+      "start": 25.968,
+      "end": 26.233
+    },
+    {
+      "text": "du",
+      "start": 26.254,
+      "end": 26.317
+    },
+    {
+      "text": "das?",
+      "start": 26.37,
+      "end": 26.76
+    },
+    {
+      "text": "Schreib's",
+      "start": 27.309,
+      "end": 27.625
+    },
+    {
+      "text": "in",
+      "start": 27.657,
+      "end": 27.71
+    },
+    {
+      "text": "die",
+      "start": 27.731,
+      "end": 27.805
+    },
+    {
+      "text": "Kommentare.",
+      "start": 27.847,
+      "end": 28.607
+    },
+    {
+      "text": "Nächstes",
+      "start": 28.797,
+      "end": 29.177
+    },
+    {
+      "text": "Mal:",
+      "start": 29.24,
+      "end": 29.599
+    },
+    {
+      "text": "die",
+      "start": 29.821,
+      "end": 29.926
+    },
+    {
+      "text": "Lichtmaschine.",
+      "start": 29.969,
+      "end": 30.908
+    }
+  ]
+}

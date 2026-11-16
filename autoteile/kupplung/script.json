@@ -1,0 +1,140 @@
+{
+  "title": "Kupplung – was sie macht und woran du merkst, dass sie verschlissen ist",
+  "note": "Folge 6, TikTok 9:16, Action ab Bild 0 (Kupplung rutscht durch), Leiste nur am Ende, Folg-Hinweis bei ~8 s. Zeiten geschätzt bis zur Sprecherspur.",
+  "duration": 34.2,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 4.2,
+      "text": "Dein Motor heult auf, aber das Auto wird nicht schneller? Dann schau dir die Kupplung an."
+    },
+    {
+      "id": "l2",
+      "start": 4.5,
+      "end": 9.5,
+      "text": "Sie verbindet Motor und Getriebe. Trittst du aufs Pedal, trennt sie beide, damit du schalten kannst."
+    },
+    {
+      "id": "l3",
+      "start": 9.8,
+      "end": 14.8,
+      "text": "Die Kupplungsscheibe hat einen Reibbelag. Der wird bei jedem Anfahren dünner, Schleifenlassen macht's schlimmer."
+    },
+    {
+      "id": "l4",
+      "start": 15.1,
+      "end": 20.5,
+      "text": "Dann rutscht sie durch: Drehzahl hoch, Tempo nicht. Dazu riecht's verbrannt und das Pedal greift erst ganz oben."
+    },
+    {
+      "id": "l5",
+      "start": 20.8,
+      "end": 24.3,
+      "text": "Ab in die Werkstatt! Kennst du das? Schreib's in die Kommentare."
+    },
+    {
+      "id": "l6",
+      "start": 24.6,
+      "end": 26.4,
+      "text": "Nächstes Mal: die Lichtmaschine."
+    }
+  ],
+  "marks": [
+    {
+      "name": "heult",
+      "line": "l1",
+      "word": "heult"
+    },
+    {
+      "name": "kupplung",
+      "line": "l1",
+      "word": "Kupplung"
+    },
+    {
+      "name": "motor",
+      "line": "l2",
+      "word": "Motor"
+    },
+    {
+      "name": "getriebe",
+      "line": "l2",
+      "word": "Getriebe"
+    },
+    {
+      "name": "pedal",
+      "line": "l2",
+      "word": "Pedal"
+    },
+    {
+      "name": "schalten",
+      "line": "l2",
+      "word": "schalten"
+    },
+    {
+      "name": "scheibe",
+      "line": "l3",
+      "word": "Kupplungsscheibe"
+    },
+    {
+      "name": "reibbelag",
+      "line": "l3",
+      "word": "Reibbelag"
+    },
+    {
+      "name": "duenner",
+      "line": "l3",
+      "word": "dünner"
+    },
+    {
+      "name": "schleifen",
+      "line": "l3",
+      "word": "Schleifenlassen"
+    },
+    {
+      "name": "rutscht",
+      "line": "l4",
+      "word": "rutscht"
+    },
+    {
+      "name": "drehzahl",
+      "line": "l4",
+      "word": "Drehzahl"
+    },
+    {
+      "name": "tempo",
+      "line": "l4",
+      "word": "Tempo"
+    },
+    {
+      "name": "verbrannt",
+      "line": "l4",
+      "word": "verbrannt"
+    },
+    {
+      "name": "oben",
+      "line": "l4",
+      "word": "oben"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "Kommentare"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "Nächstes"
+    },
+    {
+      "name": "lichtmaschine",
+      "line": "l6",
+      "word": "Lichtmaschine"
+    }
+  ]
+}
