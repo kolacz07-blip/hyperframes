@@ -1,0 +1,125 @@
+{
+  "title": "ABS – was es macht und was die ABS-Lampe bedeutet",
+  "note": "Folge 7 (Gewinner der Abstimmung), TikTok 9:16, ~25 s, Action ab Bild 0 (Vollbremsung ohne ABS), Schluss: Zuschauer bestimmen das nächste Teil in den Kommentaren.",
+  "duration": 26.4,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 3.2,
+      "text": "ABS-Lampe an? Dann blockieren bei einer Vollbremsung die Räder."
+    },
+    {
+      "id": "l2",
+      "start": 3.4,
+      "end": 7,
+      "text": "ABS verhindert das: Ein Sensor an jedem Rad merkt, wenn es stehen bleibt."
+    },
+    {
+      "id": "l3",
+      "start": 7.2,
+      "end": 11.6,
+      "text": "Dann löst die Hydraulik kurz den Druck – viele Male pro Sekunde. So bleibst du lenkbar."
+    },
+    {
+      "id": "l4",
+      "start": 11.8,
+      "end": 14.4,
+      "text": "Oft ist nur ein Sensor verdreckt oder sein Kabel kaputt."
+    },
+    {
+      "id": "l5",
+      "start": 14.6,
+      "end": 17.2,
+      "text": "Bremsen geht weiter – aber ab in die Werkstatt!"
+    },
+    {
+      "id": "l6",
+      "start": 17.4,
+      "end": 20.6,
+      "text": "Und was soll als Nächstes drankommen? Schreib's in die Kommentare!"
+    }
+  ],
+  "marks": [
+    {
+      "name": "lampe",
+      "line": "l1",
+      "word": "ABS-Lampe"
+    },
+    {
+      "name": "blockieren",
+      "line": "l1",
+      "word": "blockieren"
+    },
+    {
+      "name": "abs",
+      "line": "l2",
+      "word": "ABS"
+    },
+    {
+      "name": "sensor",
+      "line": "l2",
+      "word": "Sensor"
+    },
+    {
+      "name": "stehen",
+      "line": "l2",
+      "word": "stehen"
+    },
+    {
+      "name": "hydraulik",
+      "line": "l3",
+      "word": "Hydraulik"
+    },
+    {
+      "name": "druck",
+      "line": "l3",
+      "word": "Druck"
+    },
+    {
+      "name": "viele",
+      "line": "l3",
+      "word": "viele"
+    },
+    {
+      "name": "so",
+      "line": "l3",
+      "word": "So"
+    },
+    {
+      "name": "lenkbar",
+      "line": "l3",
+      "word": "lenkbar"
+    },
+    {
+      "name": "verdreckt",
+      "line": "l4",
+      "word": "verdreckt"
+    },
+    {
+      "name": "kabel",
+      "line": "l4",
+      "word": "Kabel"
+    },
+    {
+      "name": "weiter",
+      "line": "l5",
+      "word": "weiter"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "Nächstes"
+    },
+    {
+      "name": "ziel",
+      "line": "l6",
+      "word": "Kommentare"
+    }
+  ]
+}
