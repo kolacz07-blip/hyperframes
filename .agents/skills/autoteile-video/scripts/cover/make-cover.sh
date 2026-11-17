@@ -14,7 +14,7 @@ cp "$proj/compositions/world.html" "$tmp/world.bak"
 trap 'cp "$tmp/index.bak" "$proj/index.html"; cp "$tmp/world.bak" "$proj/compositions/world.html"; rm -rf "$tmp"' EXIT
 sed -i 's/id="captions"/id="captions" data-hidden/' "$proj/index.html"
 # hide the film's own labels, plates and strip so only the 3D picture is left
-sed -i '0,/<template>/s//<template><style>.lbl,.plate-wrap,#strip-wrap,#strip-dim,#meter,#follow-hint{display:none !important}<\/style>/' "$proj/compositions/world.html"
+sed -i '0,/<template>/s//<template><style>.lbl,.plate-wrap,#strip-wrap,#strip-dim,#meter,#follow-hint,#lamp,#abslamp,.tag{display:none !important}<\/style>/' "$proj/compositions/world.html"
 (cd "$proj" && npx --yes hyperframes@0.9.39 snapshot --at "$at" -o "$tmp/snap" >/dev/null 2>&1)
 cp "$tmp"/snap/frame-00-*.png "$tmp/bg.png"
 python3 -c "import sys;s=open(sys.argv[1]).read();[s:=s.replace(k,v) for k,v in zip(['__N__','__L1__','__L2__','__PART__'],sys.argv[2:6])];open(sys.argv[6],'w').write(s)" "$here/cover.html" "$n" "$l1" "$l2" "$part" "$tmp/cover.html"
