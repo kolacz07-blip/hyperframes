@@ -1,0 +1,63 @@
+{
+  "title": "Umfrage – welches Teil kommt als Nächstes?",
+  "note": "Kurzes Abstimmungs-Video zwischen den Folgen: holt Kommentare und einen Grund zum Folgen.",
+  "duration": 15.1,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 2.4,
+      "text": "Welches Teil soll ich als Nächstes erklären?"
+    },
+    {
+      "id": "l2",
+      "start": 2.6,
+      "end": 5.4,
+      "text": "Turbolader? Keilriemen? Oder ein ganz anderes?"
+    },
+    {
+      "id": "l3",
+      "start": 5.6,
+      "end": 9,
+      "text": "Schreib's in die Kommentare – das mit den meisten Stimmen kommt dran!"
+    },
+    {
+      "id": "l4",
+      "start": 9.2,
+      "end": 11,
+      "text": "Und folg mir, damit du's nicht verpasst."
+    }
+  ],
+  "marks": [
+    {
+      "name": "turbo",
+      "line": "l2",
+      "word": "Turbolader"
+    },
+    {
+      "name": "keil",
+      "line": "l2",
+      "word": "Keilriemen"
+    },
+    {
+      "name": "anderes",
+      "line": "l2",
+      "word": "anderes"
+    },
+    {
+      "name": "kommentare",
+      "line": "l3",
+      "word": "Kommentare"
+    },
+    {
+      "name": "stimmen",
+      "line": "l3",
+      "word": "Stimmen"
+    },
+    {
+      "name": "folg",
+      "line": "l4",
+      "word": "folg"
+    }
+  ]
+}

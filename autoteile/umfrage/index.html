@@ -1,0 +1,337 @@
+<!doctype html>
+<html
+  lang="de"
+  data-composition-variables='[{"id":"username","type":"string","label":"TikTok-Name","default":"@wasmachtdasteil"}]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #cc6b50;
+      }
+      #main {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        font-family: "Montserrat", sans-serif;
+        background:
+          linear-gradient(152deg, rgba(234, 150, 98, 0.55) 0 22%, transparent 22% 100%),
+          linear-gradient(28deg, transparent 0 58%, rgba(122, 58, 72, 0.35) 58% 100%),
+          linear-gradient(200deg, rgba(234, 150, 98, 0.3) 0 40%, transparent 40% 100%),
+          linear-gradient(180deg, #e08a5e 0%, #cc6b50 55%, #9a4c4c 100%);
+      }
+      .plate-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+      .plate {
+        display: inline-block;
+        background: #1f1a24;
+        color: #ffffff;
+        font-weight: 900;
+        font-size: 104px;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        padding: 26px 44px 34px;
+      }
+      .accent {
+        color: #ffd24a;
+      }
+      #reel {
+        position: absolute;
+        left: 0;
+        top: 600px;
+        width: 1080px;
+        height: 240px;
+        background: #1f1a24;
+        overflow: hidden;
+      }
+      .ri {
+        position: absolute;
+        left: 0;
+        top: 20px;
+        width: 200px;
+        height: 200px;
+        margin-left: -100px;
+        border-radius: 50%;
+        background: #3a3340;
+      }
+      .ri img {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 180px;
+        height: 180px;
+      }
+      .card {
+        position: absolute;
+        top: 560px;
+        width: 300px;
+        text-align: center;
+        opacity: 0;
+      }
+      .card .disc {
+        position: relative;
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: #1f1a24;
+        border: 10px solid #ffd24a;
+      }
+      .card .disc img {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        width: 230px;
+        height: 230px;
+      }
+      .card .q {
+        position: absolute;
+        inset: 0;
+        color: #ffd24a;
+        font-weight: 900;
+        font-size: 170px;
+        line-height: 260px;
+      }
+      .card .num {
+        position: absolute;
+        left: -6px;
+        top: -6px;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: #ffd24a;
+        border: 6px solid #1f1a24;
+        color: #1f1a24;
+        font-weight: 900;
+        font-size: 44px;
+        line-height: 58px;
+      }
+      .card .name {
+        display: inline-block;
+        margin-top: 18px;
+        background: #1f1a24;
+        color: #ffffff;
+        font-weight: 900;
+        font-size: 44px;
+        line-height: 1;
+        padding: 12px 18px 16px;
+      }
+      #arrow {
+        position: absolute;
+        left: 885px;
+        top: 1120px;
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+      }
+      #pic {
+        position: absolute;
+        left: 540px;
+        top: 300px;
+        width: 460px;
+        height: 460px;
+        margin-left: -230px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 14px solid #ffffff;
+        opacity: 0;
+      }
+      #pic img {
+        width: 100%;
+        height: 100%;
+      }
+      #plus {
+        position: absolute;
+        left: 540px;
+        top: 705px;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        border-radius: 50%;
+        background: #ffd24a;
+        border: 8px solid #1f1a24;
+        color: #1f1a24;
+        font-weight: 900;
+        font-size: 80px;
+        line-height: 78px;
+        text-align: center;
+        opacity: 0;
+      }
+      #hand {
+        position: absolute;
+        left: 470px;
+        top: 750px;
+        width: 190px;
+        height: 230px;
+        opacity: 0;
+      }
+      .cap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 560px;
+        padding: 0 60px;
+        text-align: center;
+        opacity: 0;
+      }
+      .cap-inner {
+        display: inline-block;
+        padding: 12px 30px 18px;
+        background: rgba(20, 16, 24, 0.72);
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 84px;
+        line-height: 1.15;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" data-composition-id="main" data-start="0" data-duration="15.1" data-width="1080" data-height="1920">
+      <div class="plate-wrap" id="title" style="top: 230px">
+        <span class="plate">Welches Teil<br /><span class="accent">als Nächstes?</span></span>
+      </div>
+      <div id="reel"></div>
+
+      <div class="card" id="card-1" style="left: 50px">
+        <div class="disc"><img src="assets/icons/turbolader.png" alt="Turbolader" /><span class="num">1</span></div>
+        <span class="name">Turbolader</span>
+      </div>
+      <div class="card" id="card-2" style="left: 390px">
+        <div class="disc"><img src="assets/icons/keilriemen.png" alt="Keilriemen" /><span class="num">2</span></div>
+        <span class="name">Keilriemen</span>
+      </div>
+      <div class="card" id="card-3" style="left: 730px">
+        <div class="disc"><span class="q">?</span><span class="num">3</span></div>
+        <span class="name">Anderes</span>
+      </div>
+
+      <div class="plate-wrap" id="comment" style="top: 965px; opacity: 0">
+        <span class="plate" style="font-size: 70px">Schreib's in die<br /><span class="accent">Kommentare!</span></span>
+      </div>
+      <svg id="arrow" viewBox="0 0 150 150" aria-hidden="true">
+        <path d="M20 20 L100 100 M100 40 L100 100 L40 100" fill="none" stroke="#1f1a24" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M20 20 L100 100 M100 40 L100 100 L40 100" fill="none" stroke="#ffd24a" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+
+      <div id="pic"><img src="assets/icons/profil.png" alt="Profilbild" /></div>
+      <div id="plus">+</div>
+      <div class="plate-wrap" id="follow" style="top: 1010px; opacity: 0">
+        <span class="plate" style="font-size: 72px">Folg <span class="accent" data-var-text="username">@wasmachtdasteil</span></span>
+      </div>
+      <svg id="hand" viewBox="0 0 190 230" aria-hidden="true">
+        <path d="M70 20 a18 18 0 0 1 36 0 v88 l14 -6 a17 17 0 0 1 22 9 l3 8 a17 17 0 0 1 21 10 l2 8 a16 16 0 0 1 20 12 v52 c0 28 -22 48 -50 48 h-30 c-24 0 -42 -14 -54 -36 l-30 -54 a16 16 0 0 1 26 -18 l20 26 z" fill="#ffffff" stroke="#1f1a24" stroke-width="8" stroke-linejoin="round" />
+      </svg>
+      <div id="caps"></div>
+
+      <!-- AUDIO (cue times written by tools/build.mjs) -->
+      <!--CUES-->
+      <audio id="sfx-hook" class="clip" src="assets/sfx/whoosh.mp3" data-start="0.02" data-duration="1" data-track-index="11" data-volume="0.6"></audio>
+      <audio id="sfx-c1" class="clip" src="assets/sfx/pop.mp3" data-start="2.50" data-duration="0.7" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-c2" class="clip" src="assets/sfx/pop.mp3" data-start="3.48" data-duration="0.7" data-track-index="13" data-volume="0.7"></audio>
+      <audio id="sfx-c3" class="clip" src="assets/sfx/pop.mp3" data-start="5.27" data-duration="0.7" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="sfx-comment" class="clip" src="assets/sfx/whoosh.mp3" data-start="6.52" data-duration="1" data-track-index="13" data-volume="0.5"></audio>
+      <audio id="sfx-tap" class="clip" src="assets/sfx/click.mp3" data-start="10.95" data-duration="0.3" data-track-index="11" data-volume="0.8"></audio>
+      <!--/CUES-->
+      <audio id="voice" class="clip" src="assets/voice/voice.mp3" data-start="0.3" data-duration="11.62" data-track-index="9" data-volume="1"></audio>
+    </div>
+    <script>
+      (function () {
+        /*TIMING*/ const DUR = 15.1; const LINES = {"l1":{"start":0.3,"end":2.384},"l2":{"start":2.519,"end":5.815},"l3":{"start":6.271,"end":9.277},"l4":{"start":9.816,"end":11.869}}; const M = {"turbo":2.519,"keil":3.503,"anderes":5.286,"kommentare":6.769,"stimmen":8.417,"folg":10.003}; const WORDS = [["Welches",0.3,0.694],["Teil",0.756,0.984],["soll",1.015,1.161],["ich",1.191,1.264],["als",1.316,1.42],["Nächstes",1.482,1.813],["erklären?",1.865,2.384],["Turbolader?",2.519,3.347],["Keilriemen?",3.503,4.249],["Oder",4.705,4.903],["ein",4.934,4.996],["ganz",5.037,5.224],["anderes?",5.286,5.815],["Schreib's",6.271,6.571],["in",6.603,6.644],["die",6.675,6.737],["Kommentare",6.769,7.359],["das",7.567,7.732],["mit",7.784,7.888],["den",7.909,8.012],["meisten",8.064,8.375],["Stimmen",8.417,8.686],["kommt",8.728,8.914],["dran!",8.935,9.277],["Und",9.816,9.951],["folg",10.003,10.2],["mir,",10.252,10.459],["damit",10.531,10.749],["du's",10.77,10.884],["nicht",10.925,11.06],["verpasst.",11.102,11.869]]; /*END TIMING*/
+        const tl = gsap.timeline({ paused: true });
+        const icons = ["radlager", "bremsscheibe", "federbein", "zuendkerze", "batterie", "kupplung", "lichtmaschine", "keilriemen", "turbolader"];
+        const reel = document.getElementById("reel");
+        const SLOT = 240, W = icons.length * SLOT;
+        const items = icons.map((n) => {
+          const d = document.createElement("div");
+          d.className = "ri";
+          d.innerHTML = `<img src="assets/icons/${n}.png" alt="" />`;
+          reel.appendChild(d);
+          return d;
+        });
+        // the reel scrolls fast, then slows as the options arrive
+        const st = { off: 0 };
+        const draw = () =>
+          items.forEach((el, i) => {
+            let x = i * SLOT - st.off;
+            x = ((((x + W / 2) % W) + W) % W) - W / 2;
+            el.style.transform = `translateX(${(540 + x).toFixed(1)}px)`;
+          });
+        draw();
+        tl.to(st, { off: W * 2.5, duration: M.turbo, ease: "power2.out", onUpdate: draw }, 0);
+        tl.to("#reel", { opacity: 0, duration: 0.2 }, M.turbo - 0.15);
+        tl.set("#reel", { visibility: "hidden" }, M.turbo + 0.1);
+        // title on screen from frame 0
+        tl.fromTo("#title .plate", { scale: 1.12 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 0);
+        // the three options pop on their words
+        [["#card-1", M.turbo], ["#card-2", M.keil], ["#card-3", M.anderes]].forEach(([id, t]) => {
+          tl.fromTo(id, { opacity: 0, y: 60, scale: 0.7 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2)" }, t - 0.05);
+        });
+        // comments prompt + arrow toward TikTok's comment button
+        tl.fromTo("#comment", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, M.kommentare - 0.1);
+        tl.fromTo("#arrow", { opacity: 0, x: -40, y: -40 }, { opacity: 1, x: 0, y: 0, duration: 0.3, ease: "power3.out" }, M.kommentare + 0.1);
+        tl.to("#arrow", { x: 18, y: 18, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 5 }, M.kommentare + 0.45);
+        // cards pulse once on "Stimmen"
+        tl.to(".card .disc", { scale: 1.08, duration: 0.15, yoyo: true, repeat: 1, stagger: 0.08 }, M.stimmen);
+        // follow: options leave, profile picture + tap on the plus
+        const tF = M.folg - 0.1;
+        tl.to([".card", "#comment", "#arrow", "#title"], { opacity: 0, duration: 0.2 }, tF - 0.2);
+        tl.set([".card", "#comment", "#arrow", "#title"], { visibility: "hidden" }, tF + 0.05);
+        tl.fromTo("#pic", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, tF);
+        tl.fromTo("#plus", { opacity: 0 }, { opacity: 1, duration: 0.2 }, tF + 0.15);
+        tl.fromTo("#follow", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, tF + 0.2);
+        tl.fromTo("#hand", { x: 160, y: 200, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, tF + 0.35);
+        tl.to("#hand", { scale: 0.86, transformOrigin: "40% 0%", duration: 0.1, ease: "power2.in" }, tF + 0.95);
+        tl.to("#hand", { scale: 1, duration: 0.15, ease: "power2.out" }, tF + 1.05);
+        tl.fromTo("#plus", { scale: 1, backgroundColor: "#ffd24a" }, { scale: 1.25, backgroundColor: "#2a9d8f", duration: 0.12 }, tF + 1.0);
+        tl.to("#plus", { scale: 1, duration: 0.2, ease: "back.out(2)" }, tF + 1.12);
+        tl.set("#plus", { textContent: "✓" }, tF + 1.05);
+        // captions: groups of up to 3 words, current word in yellow
+        const caps = document.getElementById("caps");
+        const groups = [];
+        let cur = [];
+        WORDS.forEach((w, k) => {
+          cur.push(w);
+          const next = WORDS[k + 1];
+          if (!next || cur.length >= 3 || /[.?!,:]$/.test(w[0]) || next[1] - w[2] > 0.2) {
+            groups.push(cur);
+            cur = [];
+          }
+        });
+        groups.forEach((g, i) => {
+          const el = document.createElement("div");
+          el.className = "cap";
+          el.innerHTML = `<span class="cap-inner">${g.map((w) => `<span class="w">${w[0]}</span>`).join(" ")}</span>`;
+          caps.appendChild(el);
+          const s = Math.max(0.05, g[0][1] - 0.08);
+          const next = groups[i + 1] ? groups[i + 1][0][1] - 0.08 : DUR;
+          const e = Math.min(next, g[g.length - 1][2] + 0.35);
+          tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.1 }, s);
+          tl.to(el, { opacity: 0, duration: 0.08 }, e - 0.08);
+          el.querySelectorAll(".w").forEach((sp, j) => {
+            tl.fromTo(sp, { color: "#ffffff" }, { color: "#ffd24a", duration: 0.05 }, g[j][1]);
+            tl.to(sp, { color: "#ffffff", duration: 0.1 }, g[j][1] + 0.3);
+          });
+        });
+        // the follow block sits where the captions are; hide captions under it
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

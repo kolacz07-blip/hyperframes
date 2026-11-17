@@ -1,0 +1,125 @@
+{
+  "title": "Lichtmaschine – was sie macht und woran du merkst, dass sie schwächelt",
+  "note": "Folge 7, TikTok 9:16, max. ~25 s, Action ab Bild 0, Leiste nur am Ende, Folg-Grund am Schluss (nächstes Mal: selbst prüfen).",
+  "duration": 25.4,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 3.2,
+      "text": "Batterie neu – und trotzdem leer? Schuld ist oft die Lichtmaschine."
+    },
+    {
+      "id": "l2",
+      "start": 3.4,
+      "end": 7.2,
+      "text": "Der Keilriemen treibt sie an, sie macht Strom und lädt die Batterie."
+    },
+    {
+      "id": "l3",
+      "start": 7.4,
+      "end": 9.6,
+      "text": "Mit der Zeit verschleißen Kohlebürsten und Lager."
+    },
+    {
+      "id": "l4",
+      "start": 9.8,
+      "end": 14,
+      "text": "Dann leuchtet die Batterielampe, das Licht flackert, und irgendwann bleibt das Auto stehen."
+    },
+    {
+      "id": "l5",
+      "start": 14.2,
+      "end": 18,
+      "text": "Ab in die Werkstatt! Welches Auto fährst du? Schreib's unten rein."
+    },
+    {
+      "id": "l6",
+      "start": 18.2,
+      "end": 21.4,
+      "text": "Folg mir – nächstes Mal zeig ich, wie du's selbst prüfst."
+    }
+  ],
+  "marks": [
+    {
+      "name": "leer",
+      "line": "l1",
+      "word": "leer"
+    },
+    {
+      "name": "lima",
+      "line": "l1",
+      "word": "Lichtmaschine"
+    },
+    {
+      "name": "keilriemen",
+      "line": "l2",
+      "word": "Keilriemen"
+    },
+    {
+      "name": "strom",
+      "line": "l2",
+      "word": "Strom"
+    },
+    {
+      "name": "laedt",
+      "line": "l2",
+      "word": "lädt"
+    },
+    {
+      "name": "buersten",
+      "line": "l3",
+      "word": "Kohlebürsten"
+    },
+    {
+      "name": "lager",
+      "line": "l3",
+      "word": "Lager"
+    },
+    {
+      "name": "lampe",
+      "line": "l4",
+      "word": "Batterielampe"
+    },
+    {
+      "name": "flackert",
+      "line": "l4",
+      "word": "flackert"
+    },
+    {
+      "name": "stehen",
+      "line": "l4",
+      "word": "stehen"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "auto",
+      "line": "l5",
+      "word": "Auto"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "rein"
+    },
+    {
+      "name": "folg",
+      "line": "l6",
+      "word": "Folg"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "nächstes"
+    },
+    {
+      "name": "ziel",
+      "line": "l6",
+      "word": "prüfst"
+    }
+  ]
+}
