@@ -1,0 +1,1193 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #cc6b50;
+    }
+    #world-canvas {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #world-iris {
+      position: absolute;
+      inset: 0;
+      background: #44444c;
+      opacity: 0;
+    }
+    /* ---------- labels anchored to 3D points */
+    .lbl {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+    .lbl .dot {
+      position: absolute;
+      left: -13px;
+      top: -13px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ffd24a;
+      border: 5px solid #1f1a24;
+      box-sizing: border-box;
+    }
+    .lbl .stem {
+      position: absolute;
+      left: -3px;
+      top: -110px;
+      width: 6px;
+      height: 98px;
+      background: #1f1a24;
+    }
+    .lbl .txt {
+      position: absolute;
+      top: -110px;
+      left: 0;
+      transform: translate(-50%, -100%);
+      background: #ffd24a;
+      color: #1f1a24;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 60px;
+      line-height: 1;
+      padding: 14px 24px 18px;
+      white-space: nowrap;
+      border: 6px solid #1f1a24;
+    }
+    .lbl.down .stem {
+      top: 12px;
+    }
+    .lbl.down .txt {
+      top: 110px;
+      transform: translate(-50%, 0);
+    }
+    /* ---------- big plates (hook, Werkstatt) */
+    .plate-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      opacity: 0;
+    }
+    .plate {
+      display: inline-block;
+      background: #1f1a24;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 104px;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      padding: 26px 44px 34px;
+    }
+    .plate .accent {
+      color: #ffd24a;
+    }
+    .plate-bar {
+      display: block;
+      height: 16px;
+      margin: 0 auto;
+      background: #ffd24a;
+      transform-origin: 0 50%;
+    }
+    /* ---------- voltmeter + follow hint */
+    #meter {
+      position: absolute;
+      left: 70px;
+      top: 640px;
+      width: 340px;
+      white-space: nowrap;
+      background: #1f1a24;
+      border: 6px solid #ffd24a;
+      padding: 14px 18px 18px;
+      font-family: "Montserrat", sans-serif;
+      text-align: center;
+      color: #ffffff;
+      opacity: 0;
+    }
+    #meter-head {
+      font-weight: 800;
+      font-size: 34px;
+      line-height: 1;
+    }
+    #meter-head2 {
+      margin-top: 14px;
+      font-weight: 800;
+      font-size: 34px;
+      line-height: 1;
+    }
+    .meter-val.small {
+      font-size: 64px;
+    }
+    .meter-val {
+      margin-top: 8px;
+      font-weight: 900;
+      font-size: 76px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    #meter-note {
+      margin-top: 8px;
+      font-weight: 800;
+      font-size: 38px;
+      line-height: 1;
+    }
+    #follow-hint {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 250px;
+      width: fit-content;
+      margin: 0 auto;
+      white-space: nowrap;
+      background: #1f1a24;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 46px;
+      line-height: 1;
+      padding: 16px 30px 20px 18px;
+      border-radius: 60px;
+      opacity: 0;
+    }
+    #follow-hint .accent {
+      color: #ffd24a;
+    }
+    #fh-plus {
+      display: inline-block;
+      width: 64px;
+      height: 64px;
+      margin-right: 16px;
+      border-radius: 50%;
+      background: #ffd24a;
+      color: #1f1a24;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 62px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    #fh-text {
+      vertical-align: middle;
+    }
+    #lamp {
+      position: absolute;
+      left: 70px;
+      top: 900px;
+      width: 340px;
+      padding: 20px 0 18px;
+      background: #1f1a24;
+      border: 6px solid #ff5a4a;
+      text-align: center;
+      opacity: 0;
+    }
+    #lamp-icon {
+      position: relative;
+      display: inline-block;
+      width: 130px;
+      height: 76px;
+      margin-top: 18px;
+      border: 10px solid #ff5a4a;
+      box-sizing: border-box;
+      color: #ff5a4a;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 34px;
+      line-height: 54px;
+    }
+    #lamp-icon i {
+      position: absolute;
+      top: -24px;
+      width: 22px;
+      height: 14px;
+      background: #ff5a4a;
+    }
+    #lamp-icon .t1 {
+      left: 12px;
+    }
+    #lamp-icon .t2 {
+      right: 12px;
+    }
+    #lamp-txt {
+      margin-top: 12px;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 38px;
+      line-height: 1;
+    }
+    #abslamp {
+      position: absolute;
+      left: 70px;
+      top: 520px;
+      width: 230px;
+      height: 150px;
+      background: #1f1a24;
+      border: 6px solid #ffb02e;
+      color: #ffb02e;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      text-align: center;
+      line-height: 138px;
+      opacity: 0;
+    }
+    #abslamp .par {
+      font-size: 96px;
+      vertical-align: middle;
+    }
+    #abslamp .ring {
+      display: inline-block;
+      width: 104px;
+      height: 104px;
+      margin: 0 4px;
+      border: 7px solid #ffb02e;
+      border-radius: 50%;
+      font-size: 36px;
+      line-height: 90px;
+      vertical-align: middle;
+    }
+    .tag {
+      position: absolute;
+      left: 320px;
+      top: 548px;
+      background: #1f1a24;
+      color: #ff7b6b;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 58px;
+      line-height: 1;
+      padding: 18px 26px 24px;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    #tag-mit {
+      left: 0;
+      right: 0;
+      top: 300px;
+      width: fit-content;
+      margin: 0 auto;
+      color: #ffffff;
+    }
+    #tag-mit .ok {
+      color: #6fe39a;
+    }
+    .slot-q {
+      position: absolute;
+      inset: 0;
+      color: #ffd24a;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 120px;
+      line-height: 160px;
+      text-align: center;
+    }
+    /* ---------- the parts selector strip */
+    #strip-wrap {
+      position: absolute;
+      left: 0;
+      top: 470px;
+      width: 1080px;
+      height: 480px;
+      opacity: 0;
+    }
+    #strip-head {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #strip-box {
+      display: inline-block;
+      background: #1f1a24;
+      padding: 18px 44px 26px;
+    }
+    #strip-kicker {
+      font-weight: 800;
+      font-size: 56px;
+      line-height: 1;
+      text-shadow: 0 4px 0 rgba(31, 26, 36, 0.55);
+    }
+    #strip-word {
+      margin-top: 10px;
+      font-weight: 900;
+      font-size: 92px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #ffd24a;
+      text-shadow: 0 6px 0 #1f1a24;
+    }
+    #strip-band {
+      position: absolute;
+      left: 0;
+      top: 275px;
+      width: 1080px;
+      height: 190px;
+      background: #1f1a24;
+      overflow: hidden;
+    }
+    .slot {
+      position: absolute;
+      left: 0;
+      top: 15px;
+      width: 160px;
+      height: 160px;
+      margin-left: -80px;
+      border-radius: 50%;
+      background: #3a3340;
+    }
+    .slot img {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      width: 144px;
+      height: 144px;
+    }
+    #strip-ring {
+      position: absolute;
+      left: 540px;
+      top: 279px;
+      width: 182px;
+      height: 182px;
+      margin-left: -91px;
+      border-radius: 50%;
+      border: 10px solid #ffd24a;
+      box-sizing: border-box;
+    }
+    #strip-pointer {
+      position: absolute;
+      left: 540px;
+      top: 461px;
+      margin-left: -24px;
+      width: 0;
+      height: 0;
+      border-left: 24px solid transparent;
+      border-right: 24px solid transparent;
+      border-top: 30px solid #ffd24a;
+    }
+    .shard {
+      position: absolute;
+      left: 540px;
+      top: 370px;
+      width: 26px;
+      height: 26px;
+      margin: -13px;
+      opacity: 0;
+    }
+    #strip-dim {
+      position: absolute;
+      inset: 0;
+      background: #1f1a24;
+      opacity: 0;
+    }
+    /* ---------- follow card */
+    #follow {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: #cc6b50;
+    }
+    #follow-pic {
+      position: absolute;
+      left: 540px;
+      top: 520px;
+      width: 460px;
+      height: 460px;
+      margin-left: -230px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 14px solid #ffffff;
+      box-sizing: border-box;
+      background: #cc6b50;
+    }
+    #follow-pic img {
+      width: 100%;
+      height: 100%;
+    }
+    #follow-plus {
+      position: absolute;
+      left: 540px;
+      top: 940px;
+      width: 104px;
+      height: 104px;
+      margin-left: -52px;
+      border-radius: 50%;
+      background: #ffd24a;
+      border: 8px solid #1f1a24;
+      box-sizing: border-box;
+      color: #1f1a24;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 84px;
+      line-height: 80px;
+      text-align: center;
+    }
+    #follow-text {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1250px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #follow-line1 {
+      font-weight: 900;
+      font-size: 92px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-shadow: 0 6px 0 #1f1a24;
+    }
+    #follow-line1 .accent {
+      color: #ffd24a;
+    }
+    #follow-line2 {
+      margin-top: 18px;
+      font-weight: 800;
+      font-size: 60px;
+      text-shadow: 0 4px 0 #1f1a24;
+    }
+    #follow-hand {
+      position: absolute;
+      left: 470px;
+      top: 985px;
+      width: 190px;
+      height: 230px;
+    }
+  </style>
+  <div id="root" data-composition-id="world" data-width="1080" data-height="1920" data-layout-allow-overlap>
+    <canvas id="world-canvas" width="1080" height="1920"></canvas>
+    <div id="world-iris"></div>
+
+    <div class="lbl" id="lbl-leer"><i class="dot"></i><i class="stem"></i><span class="txt">greift ins Leere</span></div>
+    <div class="lbl down" id="lbl-seilzug"><i class="dot"></i><i class="stem"></i><span class="txt">Seilzug</span></div>
+    <div class="lbl" id="lbl-schloss"><i class="dot"></i><i class="stem"></i><span class="txt">Türschloss</span></div>
+    <div class="lbl" id="lbl-frei"><i class="dot"></i><i class="stem"></i><span class="txt">Tür frei!</span></div>
+    <div class="lbl" id="lbl-halter"><i class="dot"></i><i class="stem"></i><span class="txt">Halter gebrochen</span></div>
+    <div class="lbl down" id="lbl-aus"><i class="dot"></i><i class="stem"></i><span class="txt">Seilzug hängt aus</span></div>
+    <div class="lbl" id="lbl-locker"><i class="dot"></i><i class="stem"></i><span class="txt">locker</span></div>
+    <div class="lbl" id="lbl-federt"><i class="dot"></i><i class="stem"></i><span class="txt">federt nicht zurück</span></div>
+    <div class="lbl" id="lbl-innen"><i class="dot"></i><i class="stem"></i><span class="txt">geht nur von innen auf</span></div>
+    <div id="follow-hint"><span id="fh-plus">+</span><span id="fh-text">Folg – <span class="accent">du bestimmst, was kommt</span></span></div>
+
+    <div class="plate-wrap" id="plate-hook" style="top: 230px">
+      <span class="plate">Tür geht<br /><span class="accent">nicht auf?</span></span>
+    </div>
+    <div class="plate-wrap" id="plate-werkstatt" style="top: 300px">
+      <span class="plate">Ab in die<br /><span class="accent">Werkstatt!</span></span>
+      <span class="plate-bar" id="plate-werkstatt-bar" style="width: 640px"></span>
+    </div>
+
+    <div id="strip-dim"></div>
+    <div id="strip-wrap">
+      <div id="strip-head">
+        <div id="strip-box">
+          <div id="strip-kicker">Was kommt als Nächstes?</div>
+          <div id="strip-word">Du entscheidest!</div>
+        </div>
+      </div>
+      <div id="strip-band">
+        <div class="slot" id="slot-0"><img src="assets/icons/radlager.png" alt="Radlager" /></div>
+        <div class="slot" id="slot-1"><img src="assets/icons/bremsscheibe.png" alt="Bremsscheibe" /></div>
+        <div class="slot" id="slot-2"><img src="assets/icons/federbein.png" alt="Stoßdämpfer" /></div>
+        <div class="slot" id="slot-3"><img src="assets/icons/zuendkerze.png" alt="Zündkerze" /></div>
+        <div class="slot" id="slot-4"><img src="assets/icons/batterie.png" alt="Batterie" /></div>
+        <div class="slot" id="slot-5"><img src="assets/icons/kupplung.png" alt="Kupplung" /></div>
+        <div class="slot" id="slot-6"><img src="assets/icons/keilriemen.png" alt="Keilriemen" /></div>
+        <div class="slot" id="slot-7"><img src="assets/icons/turbolader.png" alt="Turbolader" /></div>
+        <div class="slot" id="slot-8"><img src="assets/icons/lichtmaschine.png" alt="Lichtmaschine" /></div>
+        <div class="slot" id="slot-9"><span class="slot-q">?</span></div>
+      </div>
+      <div id="strip-ring"></div>
+      <div id="strip-pointer"></div>
+      <i class="shard" style="background: #ffd24a"></i><i class="shard" style="background: #2a9d8f"></i>
+      <i class="shard" style="background: #ffffff"></i><i class="shard" style="background: #d9483b"></i>
+      <i class="shard" style="background: #ffd24a"></i><i class="shard" style="background: #2a9d8f"></i>
+      <i class="shard" style="background: #ffffff"></i><i class="shard" style="background: #d9483b"></i>
+      <i class="shard" style="background: #ffd24a"></i><i class="shard" style="background: #ffffff"></i>
+      <i class="shard" style="background: #2a9d8f"></i><i class="shard" style="background: #ffd24a"></i>
+    </div>
+
+    <div id="follow">
+      <div id="follow-pic"><img src="assets/icons/profil.png" alt="Profilbild" /></div>
+      <div id="follow-plus">+</div>
+      <div id="follow-text">
+        <div id="follow-line1">Folg <span class="accent" data-var-text="username">@wasmachtdasteil</span></div>
+        <div id="follow-line2" style="font-size: 52px">Wunschteil in die Kommentare!</div>
+      </div>
+      <svg id="follow-hand" viewBox="0 0 190 230" aria-hidden="true">
+        <path d="M70 20 a18 18 0 0 1 36 0 v88 l14 -6 a17 17 0 0 1 22 9 l3 8 a17 17 0 0 1 21 10 l2 8 a16 16 0 0 1 20 12 v52 c0 28 -22 48 -50 48 h-30 c-24 0 -42 -14 -54 -36 l-30 -54 a16 16 0 0 1 26 -18 l20 26 z" fill="#ffffff" stroke="#1f1a24" stroke-width="8" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      /*TIMING*/ const LINES = {"l1":{"start":0.3,"end":3.167},"l2":{"start":3.611,"end":8.69},"l3":{"start":9.073,"end":12.677},"l4":{"start":13.203,"end":17.26},"l5":{"start":17.593,"end":18.643},"l6":{"start":19.027,"end":22.308}}; const M = {"leere":1.34,"tuer":2.097,"zieht":4.076,"seilzug":4.792,"schloss":6.428,"frei":8.205,"halter":10.194,"haengt":11.97,"locker":13.889,"federt":14.403,"innen":16.655,"werkstatt":18.037,"naechstes":19.723,"ziel":21.44}; /*END TIMING*/
+      const DUR = 25.6;
+      const T = THREE;
+      // ---------- helpers (deterministic)
+      const clamp01 = (x) => Math.max(0, Math.min(1, x));
+      const ramp = (a, b, t) => clamp01((t - a) / (b - a));
+      const lerp = (a, b, k) => a + (b - a) * k;
+      const E = {
+        lin: (x) => x,
+        io: (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2),
+        io2: (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2),
+        in3: (x) => x * x * x,
+        out3: (x) => 1 - Math.pow(1 - x, 3),
+        out2: (x) => 1 - (1 - x) * (1 - x),
+      };
+      function h2(x, y) {
+        let n = (Math.imul(x | 0, 374761393) + Math.imul(y | 0, 668265263)) | 0;
+        n = Math.imul(n ^ (n >>> 13), 1274126177);
+        n ^= n >>> 16;
+        return (n >>> 0) / 4294967296;
+      }
+      function vnoise(x, y) {
+        const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+        const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+        const a = h2(xi, yi), b = h2(xi + 1, yi), c = h2(xi, yi + 1), d = h2(xi + 1, yi + 1);
+        return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+      }
+      function rng(seed) {
+        return function () {
+          seed |= 0;
+          seed = (seed + 0x6d2b79f5) | 0;
+          let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const flat = (color, extra) => new T.MeshLambertMaterial(Object.assign({ color, flatShading: true }, extra || {}));
+      const col = (h) => new T.Color(h);
+
+      // ---------- timing derived from the voice
+      const tRoadIn = DUR + 1; // no road in this episode (kept for the shared road code)
+      const tCarStop = tRoadIn + 2.6;
+      const tOutroSpin = M.naechstes - 0.25; // the strip appears only at the end
+      const tOutroStop = M.ziel + 0.05;
+      const tFollow = Math.max(tOutroStop + 0.9, LINES.l6.end + 0.25);
+
+      // ---------- renderer (portrait)
+      const canvas = document.getElementById("world-canvas");
+      const renderer = new T.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1080, 1920, false);
+      const camera = new T.PerspectiveCamera(50, 1080 / 1920, 0.03, 1400);
+
+      // =========================================================
+      // ROAD WORLD
+      // =========================================================
+      const road = new T.Scene();
+      const FOG = "#f6b47a";
+      road.fog = new T.Fog(FOG, 45, 420);
+      road.add(new T.HemisphereLight("#ffe0b8", "#5a4636", 0.95));
+      const sunLight = new T.DirectionalLight("#ffc890", 1.25);
+      sunLight.position.set(60, 40, 120);
+      road.add(sunLight);
+
+      // sky dome, faceted
+      {
+        const g = new T.SphereGeometry(700, 18, 12).toNonIndexed();
+        const pos = g.attributes.position;
+        const colors = [];
+        const top = col("#d9685a"), mid = col("#f08f5e"), hor = col(FOG);
+        for (let i = 0; i < pos.count; i += 3) {
+          const y = (pos.getY(i) + pos.getY(i + 1) + pos.getY(i + 2)) / 3 / 700;
+          const c = y < 0.08 ? hor.clone() : y < 0.4 ? hor.clone().lerp(mid, (y - 0.08) / 0.32) : mid.clone().lerp(top, Math.min(1, (y - 0.4) / 0.5));
+          for (let k = 0; k < 3; k++) colors.push(c.r, c.g, c.b);
+        }
+        g.setAttribute("color", new T.Float32BufferAttribute(colors, 3));
+        road.add(new T.Mesh(g, new T.MeshBasicMaterial({ vertexColors: true, side: T.BackSide, fog: false })));
+        const sun = new T.Mesh(new T.CircleGeometry(34, 10), new T.MeshBasicMaterial({ color: "#ffe2a0", fog: false }));
+        sun.position.set(150, 70, 560);
+        sun.lookAt(0, 0, 0);
+        road.add(sun);
+      }
+
+      function groundH(x, z) {
+        const d = Math.abs(x);
+        if (d < 6) return -0.02;
+        const k = Math.min(1, (d - 6) / 14);
+        return (d - 6) * 0.09 + k * (vnoise(x * 0.045, z * 0.045) * 9 + vnoise(x * 0.16, z * 0.16) * 1.6) - 0.02;
+      }
+      // terrain
+      {
+        const g = new T.PlaneGeometry(280, 560, 70, 140);
+        g.rotateX(-Math.PI / 2);
+        g.translate(0, 0, -80);
+        const p = g.attributes.position;
+        for (let i = 0; i < p.count; i++) p.setY(i, groundH(p.getX(i), p.getZ(i)));
+        const ng = g.toNonIndexed();
+        ng.computeVertexNormals();
+        const q = ng.attributes.position;
+        const greens = ["#6f9a52", "#5f8a49", "#82a85c", "#73a058"].map(col);
+        const high = col("#b39a58"), peak = col("#c98552");
+        const colors = [];
+        for (let i = 0; i < q.count; i += 3) {
+          const cx = (q.getX(i) + q.getX(i + 1) + q.getX(i + 2)) / 3;
+          const cz = (q.getZ(i) + q.getZ(i + 1) + q.getZ(i + 2)) / 3;
+          const cy = (q.getY(i) + q.getY(i + 1) + q.getY(i + 2)) / 3;
+          let c = greens[Math.floor(h2(Math.round(cx * 3), Math.round(cz * 3)) * 4)].clone();
+          if (cy > 5) c.lerp(high, Math.min(1, (cy - 5) / 5));
+          if (cy > 10) c.lerp(peak, Math.min(1, (cy - 10) / 5));
+          if (Math.abs(cx) < 4.6) c = col("#8a7a5c");
+          for (let k = 0; k < 3; k++) colors.push(c.r, c.g, c.b);
+        }
+        ng.setAttribute("color", new T.Float32BufferAttribute(colors, 3));
+        road.add(new T.Mesh(ng, new T.MeshLambertMaterial({ vertexColors: true, flatShading: true })));
+      }
+      // asphalt + markings
+      {
+        const asphalt = new T.Mesh(new T.PlaneGeometry(7.8, 560), flat("#4b4853"));
+        asphalt.rotation.x = -Math.PI / 2;
+        asphalt.position.set(0, 0.01, -80);
+        road.add(asphalt);
+        const lineMat = flat("#f1ede2");
+        for (const x of [-3.6, 3.6]) {
+          const m = new T.Mesh(new T.PlaneGeometry(0.14, 560), lineMat);
+          m.rotation.x = -Math.PI / 2;
+          m.position.set(x, 0.02, -80);
+          road.add(m);
+        }
+        const dashMat = flat("#f1ede2");
+        const dashGeo = new T.PlaneGeometry(0.14, 3);
+        for (let z = 190; z > -350; z -= 8) {
+          const m = new T.Mesh(dashGeo, dashMat);
+          m.rotation.x = -Math.PI / 2;
+          m.position.set(0, 0.02, z);
+          road.add(m);
+        }
+      }
+      // trees
+      {
+        const r = rng(7);
+        const leafMats = ["#2f6b4f", "#3c7a52", "#4f8a4f"].map((c) => flat(c));
+        const trunkMat = flat("#6b4430");
+        const cone = new T.ConeGeometry(1, 1, 6);
+        const trunkGeo = new T.CylinderGeometry(0.18, 0.24, 1, 5);
+        for (let i = 0; i < 230; i++) {
+          const side = r() < 0.5 ? -1 : 1;
+          const x = side * (9 + Math.pow(r(), 1.4) * 80);
+          const z = 180 - r() * 520;
+          const s = 1.6 + r() * 2.4;
+          const y = groundH(x, z);
+          const tr = new T.Mesh(trunkGeo, trunkMat);
+          tr.scale.set(1, s * 0.7, 1);
+          tr.position.set(x, y + s * 0.35, z);
+          road.add(tr);
+          const lf = new T.Mesh(cone, leafMats[i % 3]);
+          lf.scale.set(s * 0.75, s * 2.0, s * 0.75);
+          lf.position.set(x, y + s * 0.7 + s, z);
+          lf.rotation.y = r() * 3;
+          road.add(lf);
+        }
+        // mountains on the horizon
+        const mMats = ["#b0614c", "#c4775a", "#9a554b"].map((c) => flat(c));
+        for (let i = 0; i < 26; i++) {
+          const a = (i / 26) * Math.PI * 2 + r() * 0.2;
+          const R = 330 + r() * 50;
+          const H = 45 + r() * 60;
+          const m = new T.Mesh(new T.ConeGeometry(55 + r() * 40, H, 6), mMats[i % 3]);
+          m.position.set(Math.cos(a) * R, H / 2 - 6, -80 + Math.sin(a) * R);
+          m.rotation.y = r() * 3;
+          road.add(m);
+        }
+      }
+
+      // car
+      const car = new T.Group();
+      road.add(car);
+      const carBodyMat = flat("#2a9d8f");
+      {
+        const body = new T.Mesh(new T.BoxGeometry(1.9, 0.62, 4.3), carBodyMat);
+        body.position.y = 0.66;
+        car.add(body);
+        const hood = new T.Mesh(new T.BoxGeometry(1.86, 0.12, 1.2), flat("#268f82"));
+        hood.position.set(0, 1.0, -1.45);
+        hood.rotation.x = -0.08;
+        car.add(hood);
+        // cabin: a side profile extruded across the car (shape x = -car z)
+        function profileGeo(pts, width) {
+          const s = new T.Shape();
+          s.moveTo(-pts[0][0], pts[0][1]);
+          for (let i = 1; i < pts.length; i++) s.lineTo(-pts[i][0], pts[i][1]);
+          const g = new T.ExtrudeGeometry(s, { depth: width, bevelEnabled: false });
+          g.translate(0, 0, -width / 2);
+          g.rotateY(Math.PI / 2);
+          return g;
+        }
+        const cabin = new T.Mesh(
+          profileGeo([[-0.95, 0.96], [-0.22, 1.62], [1.0, 1.62], [1.6, 0.96]], 1.62),
+          carBodyMat,
+        );
+        car.add(cabin);
+        const glass = flat("#2f3f52");
+        const sideGlass = new T.Mesh(
+          profileGeo([[-0.74, 1.04], [-0.2, 1.52], [0.95, 1.52], [1.42, 1.04]], 1.66),
+          glass,
+        );
+        car.add(sideGlass);
+        const pillar = new T.Mesh(new T.BoxGeometry(1.68, 0.56, 0.12), carBodyMat);
+        pillar.position.set(0, 1.28, 0.42);
+        car.add(pillar);
+        const ws = new T.Mesh(new T.BoxGeometry(1.42, 0.86, 0.04), glass);
+        ws.rotation.x = 0.84;
+        ws.position.set(0, 1.3, -0.62);
+        car.add(ws);
+        const lightMat = flat("#fff4d0");
+        const tailMat = flat("#c0392b");
+        for (const s of [-1, 1]) {
+          const hl = new T.Mesh(new T.BoxGeometry(0.42, 0.16, 0.06), lightMat);
+          hl.position.set(s * 0.62, 0.78, -2.16);
+          car.add(hl);
+          const tl = new T.Mesh(new T.BoxGeometry(0.42, 0.16, 0.06), tailMat);
+          tl.position.set(s * 0.62, 0.8, 2.16);
+          car.add(tl);
+        }
+      }
+      const hazardMat = flat("#ff9b2f");
+      const hazards = [];
+      for (const [x, z] of [[-0.96, -1.9], [0.96, -1.9], [-0.96, 1.9], [0.96, 1.9]]) {
+        const h = new T.Mesh(new T.BoxGeometry(0.08, 0.12, 0.3), hazardMat);
+        h.position.set(x, 0.86, z);
+        h.visible = false;
+        car.add(h);
+        hazards.push(h);
+      }
+      const wheels = [];
+      function makeWheel() {
+        const w = new T.Group();
+        const tire = new T.Mesh(new T.CylinderGeometry(0.37, 0.37, 0.27, 12), flat("#2a2a2e"));
+        tire.rotation.z = Math.PI / 2;
+        w.add(tire);
+        const rim = new T.Mesh(new T.CylinderGeometry(0.25, 0.25, 0.28, 10), flat("#cfd3da"));
+        rim.rotation.z = Math.PI / 2;
+        w.add(rim);
+        for (let k = 0; k < 5; k++) {
+          const sp = new T.Mesh(new T.BoxGeometry(0.02, 0.36, 0.07), flat("#8d939d"));
+          const g = new T.Group();
+          sp.position.y = 0.0;
+          g.add(sp);
+          g.rotation.x = (k / 5) * Math.PI;
+          g.position.x = -0.142;
+          w.add(g);
+        }
+        const cap = new T.Mesh(new T.CylinderGeometry(0.085, 0.085, 0.3, 8), flat("#44444c"));
+        cap.rotation.z = Math.PI / 2;
+        w.add(cap);
+        return w;
+      }
+      const FL = [-0.86, 0.37, -1.35];
+      for (const [x, z] of [[-0.86, -1.35], [0.86, -1.35], [-0.86, 1.4], [0.86, 1.4]]) {
+        const w = makeWheel();
+        w.position.set(x, 0.37, z);
+        if (x > 0) w.rotation.y = Math.PI;
+        car.add(w);
+        wheels.push(w);
+      }
+      // hum rings around the front wheel (road)
+      const ringMat = (o) => new T.MeshBasicMaterial({ color: "#ffd24a", transparent: true, opacity: o, fog: false, depthWrite: false });
+      const roadRings = [];
+      for (let k = 0; k < 3; k++) {
+        const m = new T.Mesh(new T.TorusGeometry(1, 0.025, 3, 36), ringMat(0));
+        m.rotation.y = Math.PI / 2;
+        m.position.set(FL[0] - 0.2, FL[1], FL[2]);
+        car.add(m);
+        roadRings.push(m);
+      }
+
+      const V = 13; // m/s
+      function carState(t) {
+        if (t < tRoadIn) return { x: 1.8, z: -V * t, dist: V * t };
+        const dt = t - tRoadIn;
+        const Tst = tCarStop - tRoadIn;
+        const z0 = -118;
+        const k = Math.min(dt, Tst);
+        const d = V * k - (V / (2 * Tst)) * k * k;
+        const shift = E.io2(ramp(tRoadIn + 0.6, tCarStop, t));
+        return { x: 1.8 + shift * 1.5, z: z0 - d, dist: 2000 + d, yaw: Math.sin(Math.PI * shift) * 0.06 };
+      }
+
+
+      // =========================================================
+      // DOOR WORLD (driver door from outside; the skin turns to x-ray to show handle, cable, lock)
+      // =========================================================
+      const brk = new T.Scene();
+      {
+        const g = new T.IcosahedronGeometry(70, 2);
+        const pos = g.attributes.position;
+        const colors = [];
+        const top = col("#ea9662"), mid = col("#cc6b50"), bot = col("#7a3a48");
+        for (let i = 0; i < pos.count; i += 3) {
+          const y = (pos.getY(i) + pos.getY(i + 1) + pos.getY(i + 2)) / 3 / 70;
+          const j = (h2(i, 3) - 0.5) * 0.06;
+          const c = y > 0 ? mid.clone().lerp(top, Math.min(1, y * 1.4 + j)) : mid.clone().lerp(bot, Math.min(1, -y * 1.3 + j));
+          for (let k = 0; k < 3; k++) colors.push(c.r, c.g, c.b);
+        }
+        g.setAttribute("color", new T.Float32BufferAttribute(colors, 3));
+        brk.add(new T.Mesh(g, new T.MeshBasicMaterial({ vertexColors: true, side: T.BackSide })));
+      }
+      brk.add(new T.HemisphereLight("#ffe6cc", "#6b3a3a", 0.9));
+      const bKey = new T.DirectionalLight("#fff1dd", 1.1);
+      bKey.position.set(6, 8, 10);
+      brk.add(bKey);
+      const bRim = new T.DirectionalLight("#b9d3ff", 0.5);
+      bRim.position.set(-9, 3, -8);
+      brk.add(bRim);
+
+      const addTo = (p, geo, mat, pos, rot) => {
+        const m = new T.Mesh(geo, mat);
+        if (pos) m.position.set(pos[0], pos[1], pos[2]);
+        if (rot) m.rotation.set(rot[0], rot[1], rot[2]);
+        p.add(m);
+        return m;
+      };
+      const matTeal = flat("#2a9d8f");
+      const matBlack = flat("#2c2a30");
+      const matSteel = flat("#c3c8d1");
+      const matSteelD = flat("#8d939d");
+
+      // B-pillar with the striker (fixed to the car body)
+      addTo(brk, new T.BoxGeometry(0.6, 6.4, 0.9), matTeal, [3.4, 0.7, -0.3]);
+      addTo(brk, new T.BoxGeometry(3.0, 0.5, 0.9), flat("#238a7d"), [4.9, -2.2, -0.3]);
+      const STRIKER = new T.Vector3(3.05, 0.15, -0.2);
+      addTo(brk, new T.CylinderGeometry(0.07, 0.07, 0.4, 8), matSteel, [STRIKER.x + 0.05, STRIKER.y, STRIKER.z], [0, 0, Math.PI / 2]);
+      // the door hangs on a hinge at its front edge (x = -3)
+      const hinge = new T.Group();
+      hinge.position.set(-3, 0, 0);
+      brk.add(hinge);
+      const door = new T.Group();
+      door.position.x = 3;
+      hinge.add(door);
+      // outer skin: one panel that fades to x-ray
+      const skinMat = flat("#2a9d8f", { transparent: true, opacity: 1 });
+      const skin = addTo(door, new T.BoxGeometry(6, 4.0, 0.08), skinMat, [0, -0.1, 0.12]);
+      addTo(door, new T.BoxGeometry(6, 4.0, 0.06), flat("#5f6370"), [0, -0.1, -0.55]); // inner panel
+      addTo(door, new T.BoxGeometry(6, 0.1, 0.7), matTeal, [0, -2.1, -0.2]);
+      addTo(door, new T.BoxGeometry(6, 0.1, 0.7), matTeal, [0, 1.9, -0.2]);
+      addTo(door, new T.BoxGeometry(0.1, 4.0, 0.7), matTeal, [-2.95, -0.1, -0.2]);
+      addTo(door, new T.BoxGeometry(0.1, 4.0, 0.7), matTeal, [2.95, -0.1, -0.2]);
+      // window frame + glass
+      addTo(door, new T.BoxGeometry(0.16, 1.9, 0.2), matTeal, [2.85, 2.85, -0.1]);
+      addTo(door, new T.BoxGeometry(5.0, 0.16, 0.2), matTeal, [0.4, 3.75, -0.1]);
+      addTo(door, new T.BoxGeometry(0.16, 2.2, 0.2), matTeal, [-2.2, 2.75, -0.1], [0, 0, -0.45]);
+      addTo(door, new T.BoxGeometry(4.9, 1.75, 0.04), flat("#2f3f52"), [0.45, 2.85, -0.1]);
+      // the outside handle: a flap hinged at its front end
+      const HANDLE = new T.Vector3(1.05, 1.25, 0.2);
+      const handle = new T.Group();
+      handle.position.copy(HANDLE);
+      door.add(handle);
+      addTo(handle, new T.BoxGeometry(1.3, 0.26, 0.22), matBlack, [0.65, 0, 0.08]);
+      addTo(handle, new T.BoxGeometry(0.16, 0.2, 0.3), matBlack, [0.06, 0, -0.08]);
+      const lever = addTo(handle, new T.BoxGeometry(0.12, 0.5, 0.12), matSteelD, [0.0, -0.25, -0.3]);
+      // the plastic holder (carrier) behind the skin, in two halves so it can break
+      const holderA = addTo(door, new T.BoxGeometry(0.8, 0.5, 0.2), matBlack, [1.25, 1.25, -0.12]);
+      const holderB = new T.Group();
+      holderB.position.set(2.05, 1.25, -0.12);
+      door.add(holderB);
+      addTo(holderB, new T.BoxGeometry(0.8, 0.5, 0.2), matBlack);
+      const r8 = rng(88);
+      const chips = Array.from({ length: 10 }, () => addTo(door, new T.TetrahedronGeometry(0.05 + r8() * 0.05, 0), matBlack, [1.65 + (r8() - 0.5) * 0.2, 1.1 - r8() * 0.6, -0.1], [r8() * 3, r8() * 3, 0]));
+      // the lock at the rear edge: case, release lever, rotary latch around the striker
+      const LOCK = new T.Vector3(2.62, 0.2, -0.2);
+      addTo(door, new T.BoxGeometry(0.55, 1.0, 0.5), flat("#2c2a30"), [LOCK.x, LOCK.y, LOCK.z]);
+      addTo(door, new T.BoxGeometry(0.4, 0.12, 0.52), flat("#d9483b"), [LOCK.x, LOCK.y - 0.35, LOCK.z]);
+      const relLever = new T.Group();
+      relLever.position.set(LOCK.x - 0.3, LOCK.y + 0.35, LOCK.z + 0.1);
+      door.add(relLever);
+      addTo(relLever, new T.BoxGeometry(0.5, 0.12, 0.12), flat("#ffd24a"), [-0.2, 0, 0]);
+      const latch = new T.Group();
+      latch.position.set(2.88, 0.15, -0.2);
+      door.add(latch);
+      addTo(latch, new T.CylinderGeometry(0.22, 0.22, 0.14, 10), flat("#b9bec8"), [0, 0, 0], [Math.PI / 2, 0, 0]);
+      addTo(latch, new T.BoxGeometry(0.2, 0.09, 0.16), flat("#2c2a30"), [0.14, 0.0, 0]);
+      // the cable: a chain of short segments between the handle lever and the lock lever
+      const SEG = 16;
+      const cableSegs = Array.from({ length: SEG }, () => addTo(door, new T.CylinderGeometry(0.035, 0.035, 1, 6), matSteel));
+      const pull = Array.from({ length: 6 }, () => addTo(door, new T.BoxGeometry(0.09, 0.09, 0.09), new T.MeshBasicMaterial({ color: "#ffd24a" })));
+      const up = new T.Vector3(0, 1, 0), tmpA = new T.Vector3(), tmpB = new T.Vector3(), tmpQ = new T.Quaternion();
+      function cablePoint(p0, p1, sag, u, out) {
+        out.lerpVectors(p0, p1, u);
+        out.y -= sag * 4 * u * (1 - u);
+        return out;
+      }
+
+      // ---- the story over time
+      const pulses = [0.15, 0.75, 1.35, 1.95];
+      function doorState(t) {
+        let pullK = 0, attached = true, broken = false, open = 0, xray = 1, wiggle = 0;
+        if (t < LINES.l1.end + 0.3) {
+          for (const p of pulses) {
+            const d = t - p;
+            if (d >= 0 && d < 0.5) pullK = Math.max(pullK, Math.sin((d / 0.5) * Math.PI) * 1.15);
+          }
+          attached = false;
+          xray = 1 - ramp(M.leere - 0.3, M.leere + 0.2, t) * 0.85;
+        } else if (t < LINES.l3.start) {
+          xray = 0.15;
+          pullK = ramp(M.zieht - 0.1, M.zieht + 0.25, t) * (1 - ramp(LINES.l2.end - 0.4, LINES.l2.end, t));
+          open = E.io2(ramp(M.frei - 0.05, M.frei + 0.5, t)) * (1 - E.io2(ramp(LINES.l2.end - 0.2, LINES.l3.start + 0.2, t)));
+        } else if (t < LINES.l4.start) {
+          xray = 0.15;
+          broken = t > M.halter + 0.15;
+          attached = t < M.haengt + 0.05;
+          pullK = broken && t < M.haengt - 0.3 ? 0.3 * Math.max(0, Math.sin((t - M.halter) * 9)) : 0;
+        } else {
+          xray = 0.15;
+          broken = true;
+          attached = false;
+          if (t < M.federt) wiggle = Math.sin(t * 22) * 0.25 * ramp(M.locker - 0.1, M.locker + 0.1, t);
+          else if (t < M.innen - 0.1) pullK = 0.55;
+          open = E.io2(ramp(M.innen, M.innen + 0.5, t)) * 0.7 * (1 - E.io2(ramp(LINES.l5.end, LINES.l5.end + 0.4, t)));
+        }
+        if (t > LINES.l5.start) xray = lerp(0.15, 1, ramp(LINES.l5.start, LINES.l5.start + 0.4, t));
+        return { pullK, attached, broken, open, xray, wiggle };
+      }
+
+      // =========================================================
+      // CAMERA PATHS
+      // =========================================================
+      const brkKeys = [
+        { t: 0, p: [5.4, 1.7, 9.2], l: [0.9, 0.7, 0] }, // frame 0: the door from outside, the handle snaps into nothing
+        { t: M.leere - 0.2, p: [5.0, 1.6, 8.6], l: [1.1, 0.8, 0], e: "lin" },
+        { t: M.leere + 0.5, p: [3.8, 1.5, 5.6], l: [1.7, 0.8, 0], e: "out3" },
+        { t: LINES.l2.start + 0.2, p: [3.4, 1.0, 6.6], l: [1.7, 0.6, 0], e: "io" },
+        { t: M.schloss - 0.1, p: [4.6, 0.4, 4.6], l: [2.4, -0.3, -0.2], e: "io" },
+        { t: M.frei + 0.1, p: [6.4, 2.2, 9.6], l: [1.2, 0.6, 0.6], e: "io" },
+        { t: LINES.l2.end + 0.3, p: [6.2, 2.0, 9.2], l: [1.2, 0.6, 0.4], e: "lin" },
+        { t: LINES.l3.start + 0.5, p: [3.0, 1.9, 4.8], l: [1.7, 1.0, 0], e: "io" },
+        { t: M.haengt - 0.1, p: [3.4, 1.4, 5.4], l: [1.9, 0.6, 0], e: "io" },
+        { t: LINES.l3.end + 0.2, p: [3.8, 0.8, 5.8], l: [2.1, 0.2, 0], e: "io" },
+        { t: LINES.l4.start + 0.4, p: [3.6, 1.8, 5.8], l: [1.6, 0.9, 0], e: "io" },
+        { t: M.innen - 0.1, p: [3.8, 1.8, 6.0], l: [1.6, 0.9, 0], e: "lin" },
+        { t: M.innen + 0.6, p: [6.6, 2.2, 9.8], l: [1.0, 0.6, 0.6], e: "io" },
+        { t: DUR, p: [6.8, 2.3, 10.2], l: [1.0, 0.6, 0.6], e: "lin" },
+      ];
+      const roadKeys = [
+        { t: tRoadIn, p: [-3.2, 1.0, -7.5], l: [0, 0.7, -0.5] },
+        { t: tCarStop, p: [-6.5, 2.4, -10.5], l: [0, 0.9, -0.3], e: "out3" },
+        { t: DUR, p: [-7.2, 2.8, -11.4], l: [0, 1.0, -0.3], e: "lin" },
+      ];
+      function sample(keys, t) {
+        if (t <= keys[0].t) return keys[0];
+        for (let i = 1; i < keys.length; i++) {
+          const b = keys[i];
+          if (t <= b.t) {
+            const a = keys[i - 1];
+            const k = E[b.e || "io"](clamp01((t - a.t) / Math.max(1e-3, b.t - a.t)));
+            return { p: a.p.map((v, j) => lerp(v, b.p[j], k)), l: a.l.map((v, j) => lerp(v, b.l[j], k)) };
+          }
+        }
+        return keys[keys.length - 1];
+      }
+
+      // =========================================================
+      // LABELS + STRIP (HTML)
+      // =========================================================
+      const v3 = new T.Vector3();
+      const labelWin = {};
+      let nowT = 0;
+      function place(id, world) {
+        const el = document.getElementById(id);
+        const w = labelWin[id];
+        const on = w && nowT >= w[0] - 0.02 && nowT <= w[1] + 0.02;
+        el.style.visibility = on ? "visible" : "hidden";
+        if (!on) return;
+        v3.copy(world).project(camera);
+        const x = Math.max(200, Math.min(880, (v3.x * 0.5 + 0.5) * 1080));
+        const y = (-v3.y * 0.5 + 0.5) * 1920;
+        el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      }
+
+      const SLOT = 200; // px between icon centres
+      const N = 10;
+      const slots = Array.from({ length: N }, (_, i) => document.getElementById("slot-" + i));
+      const shards = Array.from(document.querySelectorAll("#strip-wrap .shard"));
+      const shardDir = shards.map((_, i) => {
+        const a = (i / shards.length) * Math.PI * 2 + 0.3;
+        return [Math.cos(a), Math.sin(a) * 0.8 - 0.35, 0.7 + h2(i, 9) * 0.6];
+      });
+      // slot-machine ease: very fast at p=0, slight overshoot, settle
+      const reel = (p) => {
+        const c1 = 0.9, c3 = c1 + 1;
+        const q = p - 1;
+        return 1 + c3 * q * q * q + c1 * q * q;
+      };
+      function stripOffset(t, target, t0, t1, loops) {
+        const p = clamp01((t - t0) / (t1 - t0));
+        return target * SLOT - (1 - reel(p)) * loops * N * SLOT;
+      }
+      function drawStrip(off, burstT) {
+        const W = N * SLOT;
+        slots.forEach((el, i) => {
+          let x = i * SLOT - off;
+          x = ((((x + W / 2) % W) + W) % W) - W / 2;
+          el.style.transform = `translateX(${(540 + x).toFixed(1)}px)`;
+        });
+        shards.forEach((el, i) => {
+          const k = clamp01(burstT / 0.7);
+          const on = burstT > 0 && k < 1;
+          el.style.opacity = on ? (1 - k).toFixed(3) : "0";
+          if (!on) return;
+          const d = shardDir[i];
+          const dist = E.out3(k) * 330 * d[2];
+          el.style.transform = `translate(${(d[0] * dist).toFixed(1)}px, ${(d[1] * dist + k * k * 140).toFixed(1)}px) rotate(${(k * 540 + i * 40).toFixed(0)}deg)`;
+        });
+      }
+
+      // =========================================================
+      // RENDER
+      // =========================================================
+      const iris = document.getElementById("world-iris");
+      const kicker = document.getElementById("strip-kicker");
+      const word = document.getElementById("strip-word");
+
+      function render(t) {
+        nowT = t;
+        iris.style.opacity = "0";
+        drawStrip(stripOffset(t, 9, tOutroSpin, tOutroStop, 2), t - tOutroStop);
+        word.textContent = t >= tOutroStop - 0.02 ? "Du entscheidest!" : "…";
+
+        const s = doorState(t);
+        skinMat.opacity = s.xray;
+        skinMat.depthWrite = s.xray > 0.95;
+        // handle flap (pulled = swings out at its rear end)
+        const a = (s.pullK * 0.85 + s.wiggle * 0.3);
+        handle.rotation.y = -Math.max(-0.1, a);
+        // lever end inside the door, where the cable is hooked
+        const leverEnd = new T.Vector3(HANDLE.x + 0.05 + s.pullK * 0.22, HANDLE.y - 0.5, HANDLE.z - 0.3);
+        // the holder: the rear half drops and tilts once it breaks
+        holderB.position.set(2.05 + (s.broken ? 0.06 : 0), 1.25 - (s.broken ? 0.12 : 0), -0.12);
+        holderB.rotation.z = s.broken ? -0.28 : 0;
+        chips.forEach((c, i) => {
+          const k = clamp01((t - M.halter - 0.15) / 0.6);
+          c.visible = s.broken && t < LINES.l4.start;
+          c.position.y = 1.1 - (i % 5) * 0.12 - k * k * 1.2;
+        });
+        // release lever + rotary latch: they turn when the cable pulls (only if hooked in)
+        const release = s.attached ? s.pullK : 0;
+        const latchOpen = Math.max(release, s.open > 0.02 ? 1 : 0);
+        relLever.rotation.z = -0.5 * release;
+        latch.rotation.z = 1.2 * latchOpen;
+        hinge.rotation.y = -0.42 * s.open;
+        // the cable: hooked = taut line to the lock lever; unhooked = its end hangs and swings
+        const lockEnd = new T.Vector3(LOCK.x - 0.5 - 0.2 * release, LOCK.y + 0.35 - 0.1 * release, LOCK.z + 0.1);
+        let p1 = lockEnd, sag = 0.18 * (1 - s.pullK);
+        if (!s.attached) {
+          const sw = Math.sin(t * 3.2) * 0.12;
+          const drop = t < LINES.l1.end + 0.3 ? 1 : ramp(M.haengt + 0.05, M.haengt + 0.45, t);
+          p1 = lockEnd.clone().lerp(new T.Vector3(leverEnd.x + 0.5 + sw, leverEnd.y - 1.3, leverEnd.z), E.out2(drop));
+          sag = 0.25;
+        }
+        for (let i = 0; i < SEG; i++) {
+          cablePoint(leverEnd, p1, sag, i / SEG, tmpA);
+          cablePoint(leverEnd, p1, sag, (i + 1) / SEG, tmpB);
+          const m = cableSegs[i];
+          m.position.copy(tmpA).add(tmpB).multiplyScalar(0.5);
+          const d = tmpB.clone().sub(tmpA);
+          m.scale.set(1, Math.max(0.001, d.length()), 1);
+          m.quaternion.copy(tmpQ.setFromUnitVectors(up, d.normalize()));
+        }
+        pull.forEach((m, i) => {
+          const on = s.attached && s.pullK > 0.05 && t > LINES.l2.start;
+          m.visible = on;
+          if (!on) return;
+          const u = (((i / pull.length + t * 0.9) % 1) + 1) % 1;
+          cablePoint(leverEnd, p1, sag, u, m.position);
+        });
+        // a loose pull jerks the picture a little
+        const shake = t < LINES.l1.end && s.pullK > 0.5 ? 0.06 : 0;
+        const cam = sample(brkKeys, t);
+        const sx = Math.sin(t * 61) * shake, sy = Math.sin(t * 47) * shake;
+        camera.position.set(cam.p[0] + sx, cam.p[1] + sy, cam.p[2]);
+        camera.lookAt(cam.l[0], cam.l[1], cam.l[2]);
+        camera.updateMatrixWorld();
+        brk.updateMatrixWorld(true);
+        renderer.render(brk, camera);
+
+        const wp = (x, y, z) => door.localToWorld(new T.Vector3(x, y, z));
+        place("lbl-leer", wp(HANDLE.x + 0.8, HANDLE.y + 0.15, HANDLE.z + 0.2));
+        place("lbl-seilzug", wp((HANDLE.x + LOCK.x) / 2 - 0.2, 0.55, -0.1));
+        place("lbl-schloss", wp(LOCK.x - 0.1, LOCK.y + 0.5, LOCK.z + 0.25));
+        place("lbl-frei", wp(2.9, 0.15, 0));
+        place("lbl-halter", wp(1.75, 1.45, -0.05));
+        place("lbl-aus", wp(p1.x, p1.y - 0.05, p1.z));
+        place("lbl-locker", wp(HANDLE.x + 0.8, HANDLE.y + 0.15, HANDLE.z + 0.2));
+        place("lbl-federt", wp(HANDLE.x + 0.8, HANDLE.y + 0.15, HANDLE.z + 0.4));
+        place("lbl-innen", wp(1.4, 0.6, -0.3));
+      }
+
+      // =========================================================
+      // TIMELINE
+      // =========================================================
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      function showLabel(id, a, b) {
+        labelWin[id] = [a, b];
+        tl.fromTo("#" + id, { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.out" }, a);
+        tl.fromTo("#" + id + " .txt", { scale: 0.6 }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, a);
+        tl.to("#" + id, { opacity: 0, duration: 0.15, ease: "power2.in" }, b - 0.15);
+      }
+      showLabel("lbl-leer", M.leere, LINES.l1.end + 0.3);
+      showLabel("lbl-seilzug", M.seilzug, M.schloss - 0.05);
+      showLabel("lbl-schloss", M.schloss, M.frei - 0.05);
+      showLabel("lbl-frei", M.frei, LINES.l2.end + 0.2);
+      showLabel("lbl-halter", M.halter + 0.1, M.haengt - 0.05);
+      showLabel("lbl-aus", M.haengt + 0.3, LINES.l3.end + 0.3);
+      showLabel("lbl-locker", M.locker, M.federt - 0.05);
+      showLabel("lbl-federt", M.federt, M.innen - 0.05);
+      showLabel("lbl-innen", M.innen + 0.2, LINES.l5.start + 0.1);
+
+      // follow hint early in the film, so more than the 2-3 % who reach the end see it
+      const tHint = M.seilzug + 0.2;
+      tl.fromTo("#follow-hint", { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, tHint);
+      tl.to("#fh-plus", { scale: 1.25, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, tHint + 0.5);
+      tl.to("#follow-hint", { opacity: 0, y: -30, duration: 0.25, ease: "power2.in" }, tHint + 3.0);
+      tl.set("#follow-hint", { visibility: "hidden" }, tHint + 3.3);
+
+      // hook plate: on screen from frame 0
+      tl.fromTo("#plate-hook", { opacity: 1 }, { opacity: 1, duration: 0.01 }, 0);
+      tl.fromTo("#plate-hook .plate", { scale: 1.12 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 0);
+      tl.to("#plate-hook", { opacity: 0, y: -40, duration: 0.2, ease: "power2.in" }, LINES.l1.end + 0.2);
+
+      // closing strip over a dimmed road
+      tl.fromTo("#strip-dim", { opacity: 0 }, { opacity: 0.55, duration: 0.3 }, tOutroSpin - 0.15);
+      tl.fromTo("#strip-wrap", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out", immediateRender: false }, tOutroSpin - 0.15);
+      tl.fromTo("#strip-word", { scale: 0.7 }, { scale: 1, duration: 0.35, ease: "back.out(2.4)", immediateRender: false }, tOutroStop);
+      tl.to("#strip-ring", { scale: 1.18, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, tOutroStop);
+
+      // Werkstatt plate
+      tl.fromTo("#plate-werkstatt", { opacity: 0 }, { opacity: 1, duration: 0.1 }, M.werkstatt - 0.05);
+      tl.fromTo("#plate-werkstatt .plate", { y: 50, clipPath: "inset(0 0 100% 0)" }, { y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.4, ease: "power4.out" }, M.werkstatt - 0.05);
+      tl.fromTo("#plate-werkstatt-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.inOut" }, M.werkstatt + 0.15);
+      tl.to("#plate-werkstatt", { opacity: 0, duration: 0.2 }, tOutroSpin - 0.2);
+
+      // follow card
+      tl.fromTo("#follow", { opacity: 0 }, { opacity: 1, duration: 0.2 }, tFollow);
+      tl.set(["#strip-wrap", "#strip-dim"], { visibility: "hidden" }, tFollow + 0.21);
+      tl.fromTo("#follow-pic", { scale: 0.6 }, { scale: 1, duration: 0.45, ease: "back.out(1.8)" }, tFollow);
+      tl.fromTo("#follow-text", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, tFollow + 0.15);
+      tl.fromTo("#follow-hand", { x: 160, y: 200, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, tFollow + 0.3);
+      tl.to("#follow-hand", { scale: 0.86, transformOrigin: "40% 0%", duration: 0.1, ease: "power2.in" }, tFollow + 0.85);
+      tl.to("#follow-hand", { scale: 1, duration: 0.15, ease: "power2.out" }, tFollow + 0.95);
+      tl.fromTo("#follow-plus", { scale: 1, backgroundColor: "#ffd24a" }, { scale: 1.25, backgroundColor: "#2a9d8f", duration: 0.12, ease: "power2.out" }, tFollow + 0.9);
+      tl.to("#follow-plus", { scale: 1, duration: 0.2, ease: "back.out(2)" }, tFollow + 1.02);
+      tl.set("#follow-plus", { textContent: "✓" }, tFollow + 0.95);
+
+      render(0);
+      window.__timelines["world"] = tl;
+    })();
+  </script>
+</template>

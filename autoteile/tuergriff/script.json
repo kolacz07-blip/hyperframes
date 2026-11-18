@@ -1,0 +1,115 @@
+{
+  "title": "Türgriff – wie er die Tür öffnet und warum er plötzlich ins Leere greift",
+  "note": "Folge 8 (Wunsch aus den Kommentaren), TikTok 9:16, ~25 s, Action ab Bild 0 (Griff greift ins Leere), Schluss: Zuschauer bestimmen das nächste Teil.",
+  "duration": 25.6,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 3,
+      "text": "Türgriff greift ins Leere und die Tür geht nicht auf?"
+    },
+    {
+      "id": "l2",
+      "start": 3.2,
+      "end": 7.6,
+      "text": "Der Griff zieht über einen Seilzug oder eine Stange am Türschloss – das gibt die Tür frei."
+    },
+    {
+      "id": "l3",
+      "start": 7.8,
+      "end": 11,
+      "text": "Mit der Zeit bricht oft der Plastikhalter, oder der Seilzug hängt aus."
+    },
+    {
+      "id": "l4",
+      "start": 11.2,
+      "end": 15.6,
+      "text": "Dann ist der Griff locker, federt nicht zurück – oder die Tür geht nur noch von innen auf."
+    },
+    {
+      "id": "l5",
+      "start": 15.8,
+      "end": 17,
+      "text": "Ab in die Werkstatt!"
+    },
+    {
+      "id": "l6",
+      "start": 17.2,
+      "end": 20.4,
+      "text": "Und was soll als Nächstes drankommen? Schreib's in die Kommentare!"
+    }
+  ],
+  "marks": [
+    {
+      "name": "leere",
+      "line": "l1",
+      "word": "Leere"
+    },
+    {
+      "name": "tuer",
+      "line": "l1",
+      "word": "Tür"
+    },
+    {
+      "name": "zieht",
+      "line": "l2",
+      "word": "zieht"
+    },
+    {
+      "name": "seilzug",
+      "line": "l2",
+      "word": "Seilzug"
+    },
+    {
+      "name": "schloss",
+      "line": "l2",
+      "word": "Türschloss"
+    },
+    {
+      "name": "frei",
+      "line": "l2",
+      "word": "frei"
+    },
+    {
+      "name": "halter",
+      "line": "l3",
+      "word": "Plastikhalter"
+    },
+    {
+      "name": "haengt",
+      "line": "l3",
+      "word": "hängt"
+    },
+    {
+      "name": "locker",
+      "line": "l4",
+      "word": "locker"
+    },
+    {
+      "name": "federt",
+      "line": "l4",
+      "word": "federt"
+    },
+    {
+      "name": "innen",
+      "line": "l4",
+      "word": "innen"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "Nächstes"
+    },
+    {
+      "name": "ziel",
+      "line": "l6",
+      "word": "Kommentare"
+    }
+  ]
+}
