@@ -1,0 +1,115 @@
+{
+  "title": "Trommelbremse – wie sie bremst und woran du merkst, dass sie verschlissen ist",
+  "note": "Folge 9, TikTok 9:16, ~25 s, Action ab Bild 0 (verschlissene Backen schleifen, Funken), Schluss: Zuschauer bestimmen das nächste Teil.",
+  "duration": 27,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 3,
+      "text": "Schleift's hinten beim Bremsen? Dann schau dir die Trommelbremse an."
+    },
+    {
+      "id": "l2",
+      "start": 3.2,
+      "end": 8,
+      "text": "In der Trommel sitzen zwei Bremsbacken. Beim Bremsen drückt der Radbremszylinder sie nach außen gegen die Trommel."
+    },
+    {
+      "id": "l3",
+      "start": 8.2,
+      "end": 11.4,
+      "text": "Mit der Zeit wird der Belag dünner, und der Zylinder kann undicht werden."
+    },
+    {
+      "id": "l4",
+      "start": 11.6,
+      "end": 16,
+      "text": "Dann schleift oder quietscht es, die Handbremse greift schlechter – und das Auto bremst ungleichmäßig."
+    },
+    {
+      "id": "l5",
+      "start": 16.2,
+      "end": 17.4,
+      "text": "Ab in die Werkstatt!"
+    },
+    {
+      "id": "l6",
+      "start": 17.6,
+      "end": 20.8,
+      "text": "Und was soll als Nächstes drankommen? Schreib's in die Kommentare!"
+    }
+  ],
+  "marks": [
+    {
+      "name": "trommel",
+      "line": "l1",
+      "word": "Trommelbremse"
+    },
+    {
+      "name": "backen",
+      "line": "l2",
+      "word": "Bremsbacken"
+    },
+    {
+      "name": "zylinder",
+      "line": "l2",
+      "word": "Radbremszylinder"
+    },
+    {
+      "name": "aussen",
+      "line": "l2",
+      "word": "außen"
+    },
+    {
+      "name": "belag",
+      "line": "l3",
+      "word": "Belag"
+    },
+    {
+      "name": "duenner",
+      "line": "l3",
+      "word": "dünner"
+    },
+    {
+      "name": "undicht",
+      "line": "l3",
+      "word": "undicht"
+    },
+    {
+      "name": "schleift",
+      "line": "l4",
+      "word": "schleift"
+    },
+    {
+      "name": "quietscht",
+      "line": "l4",
+      "word": "quietscht"
+    },
+    {
+      "name": "handbremse",
+      "line": "l4",
+      "word": "Handbremse"
+    },
+    {
+      "name": "ungleich",
+      "line": "l4",
+      "word": "ungleichmäßig"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l5",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "naechstes",
+      "line": "l6",
+      "word": "Nächstes"
+    },
+    {
+      "name": "ziel",
+      "line": "l6",
+      "word": "Kommentare"
+    }
+  ]
+}
