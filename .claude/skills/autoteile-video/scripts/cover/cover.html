@@ -27,5 +27,13 @@
     <div class="badge"><span>TEIL __N__</span></div>
     <div class="head"><span>__L1__<br /><span class="accent">__L2__</span></span></div>
     <div class="part"><span class="name">__PART__</span><span class="sub">einfach erklärt</span></div>
+  <script>
+      // fit long part names (TROMMELBREMSE) inside the frame
+      document.fonts.ready.then(() => {
+        const n = document.querySelector(".part .name");
+        let f = 104;
+        while (n.offsetWidth > 960 && f > 56) n.style.fontSize = (f -= 4) + "px";
+      });
+    </script>
   </body>
 </html>
