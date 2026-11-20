@@ -1,0 +1,104 @@
+{
+  "title": "3 Geräusche, bei denen du sofort in die Werkstatt musst",
+  "note": "Neues Format nach dem Einbruch bei Teil 7–9: breites Thema, dunkler Look, echte Geräusche ab Bild 0, ~22 s, kein „Teil X“.",
+  "duration": 25.2,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 2.2,
+      "text": "Hörst du das? Dann sofort in die Werkstatt."
+    },
+    {
+      "id": "l2",
+      "start": 2.4,
+      "end": 6.6,
+      "text": "Nummer eins: Kreischen beim Bremsen. Dann sind die Beläge runter."
+    },
+    {
+      "id": "l3",
+      "start": 6.8,
+      "end": 11.2,
+      "text": "Nummer zwei: Klackern aus dem Motor. Oft fehlt Öl – prüf es sofort, sonst droht ein Motorschaden."
+    },
+    {
+      "id": "l4",
+      "start": 11.4,
+      "end": 15.4,
+      "text": "Nummer drei: ein Brummen, das mit dem Tempo lauter wird. Meist ist das Radlager kaputt."
+    },
+    {
+      "id": "l5",
+      "start": 15.6,
+      "end": 19.4,
+      "text": "Welches Geräusch kennst du? Schreib's in die Kommentare und folg mir für mehr!"
+    }
+  ],
+  "marks": [
+    {
+      "name": "das",
+      "line": "l1",
+      "word": "das"
+    },
+    {
+      "name": "werkstatt",
+      "line": "l1",
+      "word": "Werkstatt"
+    },
+    {
+      "name": "eins",
+      "line": "l2",
+      "word": "eins"
+    },
+    {
+      "name": "belaege",
+      "line": "l2",
+      "word": "Beläge"
+    },
+    {
+      "name": "zwei",
+      "line": "l3",
+      "word": "zwei"
+    },
+    {
+      "name": "oel",
+      "line": "l3",
+      "word": "Öl"
+    },
+    {
+      "name": "motorschaden",
+      "line": "l3",
+      "word": "Motorschaden"
+    },
+    {
+      "name": "drei",
+      "line": "l4",
+      "word": "drei"
+    },
+    {
+      "name": "tempo",
+      "line": "l4",
+      "word": "Tempo"
+    },
+    {
+      "name": "radlager",
+      "line": "l4",
+      "word": "Radlager"
+    },
+    {
+      "name": "geraeusch",
+      "line": "l5",
+      "word": "Geräusch"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "Kommentare"
+    },
+    {
+      "name": "folg",
+      "line": "l5",
+      "word": "folg"
+    }
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "offset": 0.3,
+  "tempo": 1.18,
+  "words": [
+    {
+      "text": "Hörst",
+      "start": 0.3,
+      "end": 0.565
+    },
+    {
+      "text": "du",
+      "start": 0.586,
+      "end": 0.635
+    },
+    {
+      "text": "das?",
+      "start": 0.684,
+      "end": 1.019
+    },
+    {
+      "text": "Dann",
+      "start": 1.254,
+      "end": 1.431
+    },
+    {
+      "text": "sofort",
+      "start": 1.471,
+      "end": 1.747
+    },
+    {
+      "text": "in",
+      "start": 1.786,
+      "end": 1.825
+    },
+    {
+      "text": "die",
+      "start": 1.854,
+      "end": 1.914
+    },
+    {
+      "text": "Werkstatt.",
+      "start": 1.943,
+      "end": 2.553
+    },
+    {
+      "text": "Nummer",
+      "start": 2.878,
+      "end": 3.114
+    },
+    {
+      "text": "eins:",
+      "start": 3.173,
+      "end": 3.616
+    },
+    {
+      "text": "Kreischen",
+      "start": 3.764,
+      "end": 4.118
+    },
+    {
+      "text": "beim",
+      "start": 4.157,
+      "end": 4.275
+    },
+    {
+      "text": "Bremsen.",
+      "start": 4.314,
+      "end": 4.875
+    },
+    {
+      "text": "Dann",
+      "start": 5.308,
+      "end": 5.505
+    },
+    {
+      "text": "sind",
+      "start": 5.544,
+      "end": 5.672
+    },
+    {
+      "text": "die",
+      "start": 5.692,
+      "end": 5.761
+    },
+    {
+      "text": "Beläge",
+      "start": 5.79,
+      "end": 6.086
+    },
+    {
+      "text": "runter.",
+      "start": 6.125,
+      "end": 6.626
+    },
+    {
+      "text": "Nummer",
+      "start": 6.951,
+      "end": 7.148
+    },
+    {
+      "text": "zwei:",
+      "start": 7.197,
+      "end": 7.669
+    },
+    {
+      "text": "Klackern",
+      "start": 7.847,
+      "end": 8.161
+    },
+    {
+      "text": "aus",
+      "start": 8.201,
+      "end": 8.289
+    },
+    {
+      "text": "dem",
+      "start": 8.329,
+      "end": 8.417
+    },
+    {
+      "text": "Motor.",
+      "start": 8.436,
+      "end": 8.978
+    },
+    {
+      "text": "Oft",
+      "start": 9.49,
+      "end": 9.725
+    },
+    {
+      "text": "fehlt",
+      "start": 9.775,
+      "end": 10.011
+    },
+    {
+      "text": "Öl",
+      "start": 10.08,
+      "end": 10.336
+    },
+    {
+      "text": "prüf",
+      "start": 10.651,
+      "end": 10.897
+    },
+    {
+      "text": "es",
+      "start": 10.946,
+      "end": 10.995
+    },
+    {
+      "text": "sofort,",
+      "start": 11.014,
+      "end": 11.467
+    },
+    {
+      "text": "sonst",
+      "start": 11.546,
+      "end": 11.782
+    },
+    {
+      "text": "droht",
+      "start": 11.802,
+      "end": 12.018
+    },
+    {
+      "text": "ein",
+      "start": 12.068,
+      "end": 12.136
+    },
+    {
+      "text": "Motorschaden.",
+      "start": 12.186,
+      "end": 12.933
+    },
+    {
+      "text": "Nummer",
+      "start": 13.307,
+      "end": 13.543
+    },
+    {
+      "text": "drei:",
+      "start": 13.573,
+      "end": 14.036
+    },
+    {
+      "text": "ein",
+      "start": 14.163,
+      "end": 14.301
+    },
+    {
+      "text": "Brummen,",
+      "start": 14.35,
+      "end": 14.694
+    },
+    {
+      "text": "das",
+      "start": 14.714,
+      "end": 14.822
+    },
+    {
+      "text": "mit",
+      "start": 14.871,
+      "end": 14.96
+    },
+    {
+      "text": "dem",
+      "start": 14.98,
+      "end": 15.078
+    },
+    {
+      "text": "Tempo",
+      "start": 15.137,
+      "end": 15.393
+    },
+    {
+      "text": "lauter",
+      "start": 15.452,
+      "end": 15.688
+    },
+    {
+      "text": "wird.",
+      "start": 15.727,
+      "end": 16.042
+    },
+    {
+      "text": "Meist",
+      "start": 16.416,
+      "end": 16.692
+    },
+    {
+      "text": "ist",
+      "start": 16.741,
+      "end": 16.849
+    },
+    {
+      "text": "das",
+      "start": 16.869,
+      "end": 16.958
+    },
+    {
+      "text": "Radlager",
+      "start": 17.026,
+      "end": 17.459
+    },
+    {
+      "text": "kaputt.",
+      "start": 17.498,
+      "end": 17.991
+    },
+    {
+      "text": "Welches",
+      "start": 18.364,
+      "end": 18.659
+    },
+    {
+      "text": "Geräusch",
+      "start": 18.698,
+      "end": 19.003
+    },
+    {
+      "text": "kennst",
+      "start": 19.053,
+      "end": 19.279
+    },
+    {
+      "text": "du?",
+      "start": 19.299,
+      "end": 19.555
+    },
+    {
+      "text": "Schreib's",
+      "start": 19.761,
+      "end": 20.047
+    },
+    {
+      "text": "in",
+      "start": 20.076,
+      "end": 20.125
+    },
+    {
+      "text": "die",
+      "start": 20.155,
+      "end": 20.214
+    },
+    {
+      "text": "Kommentare",
+      "start": 20.243,
+      "end": 20.755
+    },
+    {
+      "text": "und",
+      "start": 20.804,
+      "end": 20.883
+    },
+    {
+      "text": "folg",
+      "start": 20.942,
+      "end": 21.119
+    },
+    {
+      "text": "mir",
+      "start": 21.158,
+      "end": 21.237
+    },
+    {
+      "text": "für",
+      "start": 21.257,
+      "end": 21.375
+    },
+    {
+      "text": "mehr!",
+      "start": 21.404,
+      "end": 21.946
+    }
+  ]
+}

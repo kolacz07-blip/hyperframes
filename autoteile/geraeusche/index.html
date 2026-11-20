@@ -1,0 +1,767 @@
+<!doctype html>
+<html
+  lang="de"
+  data-composition-variables='[{"id":"username","type":"string","label":"TikTok-Name","default":"@wasmachtdasteil"}]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #16121b;
+      }
+      #main {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        font-family: "Montserrat", sans-serif;
+        background:
+          repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.025) 0 22px,
+            transparent 22px 44px
+          ),
+          radial-gradient(circle at 50% 40%, #3a2a3a 0%, #1d1722 55%, #120f16 100%);
+      }
+      #flash {
+        position: absolute;
+        inset: 0;
+        background: #d9483b;
+        opacity: 0;
+      }
+      .plate-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+      .plate {
+        display: inline-block;
+        background: #1f1a24;
+        color: #ffffff;
+        font-weight: 900;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        padding: 22px 40px 30px;
+        border: 6px solid #ffd24a;
+      }
+      .accent {
+        color: #ffd24a;
+      }
+      #progress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 220px;
+        text-align: center;
+        opacity: 0;
+      }
+      .dot {
+        display: inline-block;
+        width: 96px;
+        height: 96px;
+        margin: 0 14px;
+        border-radius: 50%;
+        background: #2c2531;
+        border: 6px solid #4a4050;
+        color: #8a7f90;
+        font-weight: 900;
+        font-size: 56px;
+        line-height: 84px;
+        text-align: center;
+      }
+      #bars {
+        position: absolute;
+        left: 540px;
+        top: 860px;
+        width: 0;
+        height: 0;
+      }
+      .bar {
+        position: absolute;
+        left: -9px;
+        top: 0;
+        width: 18px;
+        height: 100px;
+        border-radius: 9px;
+        background: #ffd24a;
+        transform-origin: 9px 0;
+      }
+      #disc {
+        position: absolute;
+        left: 540px;
+        top: 860px;
+        width: 420px;
+        height: 420px;
+        margin: -210px 0 0 -210px;
+        border-radius: 50%;
+        background: #1f1a24;
+        border: 12px solid #ffd24a;
+        overflow: hidden;
+      }
+      .face {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+      }
+      .face img {
+        position: absolute;
+        left: 45px;
+        top: 45px;
+        width: 306px;
+        height: 306px;
+      }
+      .face svg {
+        position: absolute;
+        left: 70px;
+        top: 70px;
+        width: 256px;
+        height: 256px;
+      }
+      .face .q {
+        position: absolute;
+        inset: 0;
+        color: #ffd24a;
+        font-weight: 900;
+        font-size: 260px;
+        line-height: 390px;
+        text-align: center;
+      }
+      #num {
+        position: absolute;
+        left: 300px;
+        top: 620px;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: #ffd24a;
+        border: 10px solid #1f1a24;
+        color: #1f1a24;
+        font-weight: 900;
+        font-size: 112px;
+        line-height: 138px;
+        text-align: center;
+        opacity: 0;
+      }
+      .txt {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 0;
+      }
+      .title {
+        display: inline-block;
+        background: #1f1a24;
+        color: #ffffff;
+        font-weight: 900;
+        font-size: 64px;
+        line-height: 1.05;
+        padding: 14px 30px 20px;
+      }
+      .cause {
+        display: inline-block;
+        background: #ffd24a;
+        color: #1f1a24;
+        font-weight: 900;
+        font-size: 60px;
+        line-height: 1;
+        padding: 14px 30px 20px;
+        border: 6px solid #1f1a24;
+      }
+      #arrow {
+        position: absolute;
+        left: 905px;
+        top: 1000px;
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+      }
+      #pic {
+        position: absolute;
+        left: 540px;
+        top: 860px;
+        width: 440px;
+        height: 440px;
+        margin: -220px 0 0 -220px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 14px solid #ffffff;
+        opacity: 0;
+      }
+      #pic img {
+        width: 100%;
+        height: 100%;
+      }
+      #plus {
+        position: absolute;
+        left: 540px;
+        top: 1030px;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        border-radius: 50%;
+        background: #ffd24a;
+        border: 8px solid #1f1a24;
+        color: #1f1a24;
+        font-weight: 900;
+        font-size: 80px;
+        line-height: 78px;
+        text-align: center;
+        opacity: 0;
+      }
+      #hand {
+        position: absolute;
+        left: 470px;
+        top: 1075px;
+        width: 190px;
+        height: 230px;
+        opacity: 0;
+      }
+      .cap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 560px;
+        padding: 0 60px;
+        text-align: center;
+        opacity: 0;
+      }
+      .cap-inner {
+        display: inline-block;
+        padding: 12px 30px 18px;
+        background: rgba(20, 16, 24, 0.78);
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 84px;
+        line-height: 1.15;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="main"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="25.2"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="flash"></div>
+      <div id="bars"></div>
+      <div id="disc">
+        <div class="face" id="face-0">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M12 38 H30 L52 18 V82 L30 62 H12 Z" fill="#ffd24a" />
+            <path
+              d="M64 34 Q74 50 64 66 M74 24 Q90 50 74 76"
+              fill="none"
+              stroke="#ffd24a"
+              stroke-width="7"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <div class="face" id="face-1">
+          <img src="assets/icons/bremsscheibe.png" alt="Bremsscheibe" />
+        </div>
+        <div class="face" id="face-2">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M18 44 H62 L80 30 L88 34 L70 52 V78 H18 Z" fill="#ffd24a" />
+            <rect x="30" y="34" width="14" height="10" fill="#ffd24a" />
+            <path d="M86 42 Q92 54 86 60 Q80 54 86 42 Z" fill="#ffd24a" />
+          </svg>
+        </div>
+        <div class="face" id="face-3"><img src="assets/icons/radlager.png" alt="Radlager" /></div>
+        <div class="face" id="face-4"><span class="q">?</span></div>
+      </div>
+      <div id="num">1</div>
+
+      <div class="plate-wrap" id="hook" style="top: 230px">
+        <span class="plate" style="font-size: 132px"
+          >Hörst du<br /><span class="accent">DAS?</span></span
+        >
+      </div>
+      <div id="progress">
+        <span class="dot" id="dot-1">1</span><span class="dot" id="dot-2">2</span
+        ><span class="dot" id="dot-3">3</span>
+      </div>
+
+      <div class="txt" id="t-1" style="top: 350px">
+        <span class="title">Kreischen beim Bremsen</span>
+      </div>
+      <div class="txt" id="c-1" style="top: 460px"><span class="cause">Beläge runter!</span></div>
+      <div class="txt" id="t-2" style="top: 350px">
+        <span class="title">Klackern aus dem Motor</span>
+      </div>
+      <div class="txt" id="c-2" style="top: 460px"><span class="cause">Ölstand prüfen!</span></div>
+      <div class="txt" id="t-3" style="top: 350px">
+        <span class="title">Brummen – lauter mit Tempo</span>
+      </div>
+      <div class="txt" id="c-3" style="top: 460px"><span class="cause">Radlager kaputt?</span></div>
+      <div class="txt" id="t-4" style="top: 350px">
+        <span class="title">Welches kennst du?</span>
+      </div>
+      <div class="txt" id="c-4" style="top: 460px">
+        <span class="cause">Ab in die Kommentare!</span>
+      </div>
+      <svg id="arrow" viewBox="0 0 150 150" aria-hidden="true">
+        <path
+          d="M20 20 L100 100 M100 40 L100 100 L40 100"
+          fill="none"
+          stroke="#1f1a24"
+          stroke-width="34"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M20 20 L100 100 M100 40 L100 100 L40 100"
+          fill="none"
+          stroke="#ffd24a"
+          stroke-width="18"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
+      <div id="pic"><img src="assets/icons/profil.png" alt="Profilbild" /></div>
+      <div id="plus">+</div>
+      <div class="txt" id="follow" style="top: 470px">
+        <span class="title"
+          >Folg <span class="accent" data-var-text="username">@wasmachtdasteil</span></span
+        >
+      </div>
+      <svg id="hand" viewBox="0 0 190 230" aria-hidden="true">
+        <path
+          d="M70 20 a18 18 0 0 1 36 0 v88 l14 -6 a17 17 0 0 1 22 9 l3 8 a17 17 0 0 1 21 10 l2 8 a16 16 0 0 1 20 12 v52 c0 28 -22 48 -50 48 h-30 c-24 0 -42 -14 -54 -36 l-30 -54 a16 16 0 0 1 26 -18 l20 26 z"
+          fill="#ffffff"
+          stroke="#1f1a24"
+          stroke-width="8"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <div id="caps"></div>
+
+      <!-- AUDIO (cue times written by tools/build.mjs) -->
+      <!--CUES-->
+      <audio
+        id="snd-hook"
+        class="clip"
+        src="assets/sounds/kreischen.mp3"
+        data-start="0.00"
+        data-duration="2.2"
+        data-track-index="11"
+        data-volume="0.85"
+      ></audio>
+      <audio
+        id="snd-1"
+        class="clip"
+        src="assets/sounds/kreischen.mp3"
+        data-start="3.07"
+        data-duration="2.6"
+        data-track-index="12"
+        data-volume="0.32"
+      ></audio>
+      <audio
+        id="snd-2"
+        class="clip"
+        src="assets/sounds/klackern.mp3"
+        data-start="7.10"
+        data-duration="2.8"
+        data-track-index="13"
+        data-volume="0.4"
+      ></audio>
+      <audio
+        id="snd-3"
+        class="clip"
+        src="assets/sounds/brummen.mp3"
+        data-start="13.47"
+        data-duration="3.4"
+        data-track-index="12"
+        data-volume="0.45"
+      ></audio>
+      <audio
+        id="sfx-n1"
+        class="clip"
+        src="assets/sfx/pop.mp3"
+        data-start="2.92"
+        data-duration="0.7"
+        data-track-index="14"
+        data-volume="0.6"
+      ></audio>
+      <audio
+        id="sfx-n2"
+        class="clip"
+        src="assets/sfx/pop.mp3"
+        data-start="6.95"
+        data-duration="0.7"
+        data-track-index="15"
+        data-volume="0.6"
+      ></audio>
+      <audio
+        id="sfx-n3"
+        class="clip"
+        src="assets/sfx/pop.mp3"
+        data-start="13.32"
+        data-duration="0.7"
+        data-track-index="14"
+        data-volume="0.6"
+      ></audio>
+      <audio
+        id="sfx-comment"
+        class="clip"
+        src="assets/sfx/whoosh.mp3"
+        data-start="19.99"
+        data-duration="0.57"
+        data-track-index="15"
+        data-volume="0.5"
+      ></audio>
+      <audio
+        id="sfx-tap"
+        class="clip"
+        src="assets/sfx/click.mp3"
+        data-start="21.89"
+        data-duration="0.3"
+        data-track-index="11"
+        data-volume="0.8"
+      ></audio>
+      <!--/CUES-->
+      <audio
+        id="voice"
+        class="clip"
+        src="assets/voice/voice.mp3"
+        data-start="0.3"
+        data-duration="21.68"
+        data-track-index="9"
+        data-volume="1"
+      ></audio>
+    </div>
+    <script>
+      (function () {
+        /*TIMING*/ const DUR = 25.2;
+        const LINES = {
+          l1: { start: 0.3, end: 2.553 },
+          l2: { start: 2.878, end: 6.626 },
+          l3: { start: 6.951, end: 12.933 },
+          l4: { start: 13.307, end: 17.991 },
+          l5: { start: 18.364, end: 21.946 },
+        };
+        const M = {
+          das: 0.684,
+          werkstatt: 1.943,
+          eins: 3.173,
+          belaege: 5.79,
+          zwei: 7.197,
+          oel: 10.08,
+          motorschaden: 12.186,
+          drei: 13.573,
+          tempo: 15.137,
+          radlager: 17.026,
+          geraeusch: 18.698,
+          kommentare: 20.243,
+          folg: 20.942,
+        };
+        const WORDS = [
+          ["Hörst", 0.3, 0.565],
+          ["du", 0.586, 0.635],
+          ["das?", 0.684, 1.019],
+          ["Dann", 1.254, 1.431],
+          ["sofort", 1.471, 1.747],
+          ["in", 1.786, 1.825],
+          ["die", 1.854, 1.914],
+          ["Werkstatt.", 1.943, 2.553],
+          ["Nummer", 2.878, 3.114],
+          ["eins:", 3.173, 3.616],
+          ["Kreischen", 3.764, 4.118],
+          ["beim", 4.157, 4.275],
+          ["Bremsen.", 4.314, 4.875],
+          ["Dann", 5.308, 5.505],
+          ["sind", 5.544, 5.672],
+          ["die", 5.692, 5.761],
+          ["Beläge", 5.79, 6.086],
+          ["runter.", 6.125, 6.626],
+          ["Nummer", 6.951, 7.148],
+          ["zwei:", 7.197, 7.669],
+          ["Klackern", 7.847, 8.161],
+          ["aus", 8.201, 8.289],
+          ["dem", 8.329, 8.417],
+          ["Motor.", 8.436, 8.978],
+          ["Oft", 9.49, 9.725],
+          ["fehlt", 9.775, 10.011],
+          ["Öl", 10.08, 10.336],
+          ["prüf", 10.651, 10.897],
+          ["es", 10.946, 10.995],
+          ["sofort,", 11.014, 11.467],
+          ["sonst", 11.546, 11.782],
+          ["droht", 11.802, 12.018],
+          ["ein", 12.068, 12.136],
+          ["Motorschaden.", 12.186, 12.933],
+          ["Nummer", 13.307, 13.543],
+          ["drei:", 13.573, 14.036],
+          ["ein", 14.163, 14.301],
+          ["Brummen,", 14.35, 14.694],
+          ["das", 14.714, 14.822],
+          ["mit", 14.871, 14.96],
+          ["dem", 14.98, 15.078],
+          ["Tempo", 15.137, 15.393],
+          ["lauter", 15.452, 15.688],
+          ["wird.", 15.727, 16.042],
+          ["Meist", 16.416, 16.692],
+          ["ist", 16.741, 16.849],
+          ["das", 16.869, 16.958],
+          ["Radlager", 17.026, 17.459],
+          ["kaputt.", 17.498, 17.991],
+          ["Welches", 18.364, 18.659],
+          ["Geräusch", 18.698, 19.003],
+          ["kennst", 19.053, 19.279],
+          ["du?", 19.299, 19.555],
+          ["Schreib's", 19.761, 20.047],
+          ["in", 20.076, 20.125],
+          ["die", 20.155, 20.214],
+          ["Kommentare", 20.243, 20.755],
+          ["und", 20.804, 20.883],
+          ["folg", 20.942, 21.119],
+          ["mir", 21.158, 21.237],
+          ["für", 21.257, 21.375],
+          ["mehr!", 21.404, 21.946],
+        ]; /*END TIMING*/
+        const tl = gsap.timeline({ paused: true });
+        const clamp01 = (x) => Math.max(0, Math.min(1, x));
+        const ramp = (a, b, t) => clamp01((t - a) / (b - a));
+        function h2(x, y) {
+          let n = (Math.imul(x | 0, 374761393) + Math.imul(y | 0, 668265263)) | 0;
+          n = Math.imul(n ^ (n >>> 13), 1274126177);
+          n ^= n >>> 16;
+          return (n >>> 0) / 4294967296;
+        }
+        // which noise is playing (mirrors the cues in tools/build.mjs)
+        const SND = [
+          ["kreischen", -0.2, 2.2, 1.0],
+          ["kreischen", M.eins - 0.1, M.eins + 2.5, 0.6],
+          ["klackern", M.zwei - 0.1, M.zwei + 2.7, 0.7],
+          ["brummen", M.drei - 0.1, M.drei + 3.3, 0.75],
+        ];
+        // radial sound bars around the disc
+        const bars = document.getElementById("bars");
+        const NB = 44;
+        const barEls = Array.from({ length: NB }, (_, i) => {
+          const b = document.createElement("div");
+          b.className = "bar";
+          bars.appendChild(b);
+          return b;
+        });
+        function drawBars(t) {
+          let kind = null,
+            gain = 0,
+            u = 0;
+          for (const [k, a, b, g] of SND)
+            if (t >= a && t < b) {
+              kind = k;
+              gain = g * Math.min(1, (t - a) / 0.08, (b - t) / 0.3);
+              u = t - a;
+            }
+          barEls.forEach((el, i) => {
+            const ang = (i / NB) * 360;
+            let amp = 0.08 + 0.04 * Math.sin(t * 2 + i);
+            if (kind === "kreischen") amp = 0.35 + 0.65 * h2(i, Math.floor(t * 30));
+            if (kind === "klackern")
+              amp =
+                0.15 +
+                0.85 * Math.exp(-((u % 0.11) * 30)) * (0.6 + 0.4 * h2(i, Math.floor(u / 0.11)));
+            if (kind === "brummen")
+              amp =
+                (0.25 + 0.75 * Math.min(1, 0.3 + u / 2.5)) *
+                (0.55 + 0.45 * Math.sin(u * 14 + i * 0.6));
+            const len = 30 + 150 * amp * (kind ? gain : 1);
+            el.style.transform = `rotate(${ang.toFixed(1)}deg) translateY(232px) scaleY(${(len / 100).toFixed(3)})`;
+            el.style.background = kind === "kreischen" && amp > 0.8 ? "#ff7b6b" : "#ffd24a";
+          });
+          // the disc shakes with the noise
+          const sh = kind ? gain * (kind === "brummen" ? 4 : 7) : 0;
+          document.getElementById("disc").style.transform =
+            `translate(${(Math.sin(t * 71) * sh).toFixed(1)}px, ${(Math.sin(t * 53) * sh).toFixed(1)}px)`;
+          document.getElementById("flash").style.opacity = (
+            t < 2.2 ? 0.22 * h2(1, Math.floor(t * 12)) * (1 - t / 2.2) : 0
+          ).toFixed(3);
+        }
+        const st = { t: 0 };
+        tl.to(st, { t: DUR, duration: DUR, ease: "none", onUpdate: () => drawBars(st.t) }, 0);
+        drawBars(0);
+
+        // hook: on screen from frame 0
+        tl.fromTo("#face-0", { opacity: 1 }, { opacity: 1, duration: 0.01 }, 0);
+        tl.fromTo(
+          "#hook .plate",
+          { scale: 1.15 },
+          { scale: 1, duration: 0.3, ease: "back.out(2.5)" },
+          0,
+        );
+        tl.to("#hook", { opacity: 0, y: -40, duration: 0.2, ease: "power2.in" }, M.eins - 0.35);
+        tl.set("#hook", { visibility: "hidden" }, M.eins - 0.1);
+        tl.to("#face-0", { opacity: 0, duration: 0.15 }, M.eins - 0.3);
+        tl.fromTo(
+          "#progress",
+          { opacity: 0, y: -30 },
+          { opacity: 1, y: 0, duration: 0.25 },
+          M.eins - 0.2,
+        );
+
+        // the three noises
+        const items = [
+          [1, M.eins, M.belaege],
+          [2, M.zwei, M.oel],
+          [3, M.drei, M.radlager],
+        ];
+        items.forEach(([n, t0, tc], k) => {
+          const t1 = k < 2 ? items[k + 1][1] - 0.3 : M.geraeusch - 0.3;
+          tl.fromTo(
+            "#face-" + n,
+            { opacity: 0, scale: 0.6 },
+            { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" },
+            t0 - 0.25,
+          );
+          tl.to("#face-" + n, { opacity: 0, duration: 0.15 }, t1);
+          tl.set("#num", { textContent: String(n) }, t0 - 0.3);
+          tl.fromTo(
+            "#num",
+            { opacity: 0, scale: 0.3, rotation: -30 },
+            { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.4)" },
+            t0 - 0.3,
+          );
+          tl.to("#num", { opacity: 0, duration: 0.12 }, t1);
+          tl.fromTo(
+            "#t-" + n,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" },
+            t0,
+          );
+          tl.to("#t-" + n, { opacity: 0, duration: 0.12 }, t1);
+          tl.fromTo(
+            "#c-" + n,
+            { opacity: 0, scale: 0.6 },
+            { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.2)" },
+            tc - 0.05,
+          );
+          tl.to("#c-" + n, { opacity: 0, duration: 0.12 }, t1);
+          tl.fromTo(
+            "#dot-" + n,
+            { backgroundColor: "#2c2531", color: "#8a7f90", borderColor: "#4a4050", scale: 1 },
+            {
+              backgroundColor: "#ffd24a",
+              color: "#1f1a24",
+              borderColor: "#1f1a24",
+              scale: 1.15,
+              duration: 0.25,
+              ease: "back.out(2)",
+            },
+            t0 - 0.3,
+          );
+          tl.to("#dot-" + n, { scale: 1, duration: 0.2 }, t0 + 0.2);
+        });
+        // ending: which one do you know -> comments -> follow
+        const tE = M.geraeusch - 0.15;
+        tl.to("#progress", { opacity: 0, duration: 0.2 }, tE);
+        tl.fromTo(
+          "#face-4",
+          { opacity: 0, scale: 0.6 },
+          { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" },
+          tE,
+        );
+        tl.fromTo("#t-4", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25 }, tE + 0.05);
+        tl.fromTo(
+          "#c-4",
+          { opacity: 0, scale: 0.6 },
+          { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.2)" },
+          M.kommentare - 0.1,
+        );
+        tl.fromTo(
+          "#arrow",
+          { opacity: 0, x: -40, y: -40 },
+          { opacity: 1, x: 0, y: 0, duration: 0.3 },
+          M.kommentare + 0.05,
+        );
+        tl.to(
+          "#arrow",
+          { x: 18, y: 18, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3 },
+          M.kommentare + 0.4,
+        );
+        const tF = M.folg - 0.1;
+        tl.to(
+          ["#face-4", "#t-4", "#c-4", "#arrow", "#disc", "#bars"],
+          { opacity: 0, duration: 0.2 },
+          tF - 0.2,
+        );
+        tl.set(["#t-4", "#c-4", "#arrow"], { visibility: "hidden" }, tF + 0.05);
+        tl.fromTo(
+          "#pic",
+          { opacity: 0, scale: 0.6 },
+          { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" },
+          tF,
+        );
+        tl.fromTo("#plus", { opacity: 0 }, { opacity: 1, duration: 0.2 }, tF + 0.15);
+        tl.fromTo("#follow", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3 }, tF + 0.2);
+        tl.fromTo(
+          "#hand",
+          { x: 160, y: 200, opacity: 0 },
+          { x: 0, y: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+          tF + 0.35,
+        );
+        tl.to(
+          "#hand",
+          { scale: 0.86, transformOrigin: "40% 0%", duration: 0.1, ease: "power2.in" },
+          tF + 0.95,
+        );
+        tl.to("#hand", { scale: 1, duration: 0.15, ease: "power2.out" }, tF + 1.05);
+        tl.fromTo(
+          "#plus",
+          { scale: 1, backgroundColor: "#ffd24a" },
+          { scale: 1.25, backgroundColor: "#2a9d8f", duration: 0.12 },
+          tF + 1.0,
+        );
+        tl.to("#plus", { scale: 1, duration: 0.2, ease: "back.out(2)" }, tF + 1.12);
+        tl.set("#plus", { textContent: "✓" }, tF + 1.05);
+
+        // captions: up to 3 words, current word in yellow
+        const caps = document.getElementById("caps");
+        const groups = [];
+        let cur = [];
+        WORDS.forEach((w, k) => {
+          cur.push(w);
+          const next = WORDS[k + 1];
+          if (!next || cur.length >= 3 || /[.?!,:]$/.test(w[0]) || next[1] - w[2] > 0.2) {
+            groups.push(cur);
+            cur = [];
+          }
+        });
+        groups.forEach((g, i) => {
+          const el = document.createElement("div");
+          el.className = "cap";
+          el.innerHTML = `<span class="cap-inner">${g.map((w) => `<span class="w">${w[0]}</span>`).join(" ")}</span>`;
+          caps.appendChild(el);
+          const s = Math.max(0.05, g[0][1] - 0.08);
+          const next = groups[i + 1] ? groups[i + 1][0][1] - 0.08 : DUR;
+          const e = Math.min(next, g[g.length - 1][2] + 0.35);
+          tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.1 }, s);
+          tl.to(el, { opacity: 0, duration: 0.08 }, e - 0.08);
+          el.querySelectorAll(".w").forEach((sp, j) => {
+            tl.fromTo(sp, { color: "#ffffff" }, { color: "#ffd24a", duration: 0.05 }, g[j][1]);
+            tl.to(sp, { color: "#ffffff", duration: 0.1 }, g[j][1] + 0.3);
+          });
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>
