@@ -31,6 +31,9 @@
       // fit long part names (TROMMELBREMSE) inside the frame
       document.fonts.ready.then(() => {
         const n = document.querySelector(".part .name");
+        // N = "-" means a stand-alone video: no "TEIL" badge
+        const badge = document.querySelector(".badge");
+        if (badge.textContent.trim() === "TEIL -") badge.style.display = "none";
         let f = 104;
         while (n.offsetWidth > 960 && f > 56) n.style.fontSize = (f -= 4) + "px";
       });

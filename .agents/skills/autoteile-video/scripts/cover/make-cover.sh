@@ -4,6 +4,7 @@
 # All text stays inside y 260-1660, the area TikTok's profile grid keeps when it crops to ~3:4.
 #   bash .claude/skills/autoteile-video/scripts/cover/make-cover.sh <project-dir> <seconds> <N> "<line 1>" "<line 2>" "<PART>" <out.png>
 # e.g. make-cover.sh autoteile/stossdaempfer 3.4 3 "Wippt dein Auto" "nach?" "STOSSDÄMPFER" cover-teil3.png
+# Pass N = - for a stand-alone video without the "TEIL N" badge.
 # Labels, plates and the strip are hidden for the still, so pick the most dramatic moment of the picture.
 set -euo pipefail
 proj="$(realpath "$1")"; at="$2"; n="$3"; l1="$4"; l2="$5"; part="$6"; out="$(realpath -m "$7")"
