@@ -1,0 +1,322 @@
+{
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "offset": 0.3,
+  "tempo": 1.15,
+  "words": [
+    {
+      "text": "Motorkontrollleuchte",
+      "start": 0.3,
+      "end": 1.33
+    },
+    {
+      "text": "an?",
+      "start": 1.39,
+      "end": 1.734
+    },
+    {
+      "text": "Keine",
+      "start": 2.177,
+      "end": 2.44
+    },
+    {
+      "text": "Panik",
+      "start": 2.49,
+      "end": 2.854
+    },
+    {
+      "text": "aber",
+      "start": 3.117,
+      "end": 3.309
+    },
+    {
+      "text": "ignorier",
+      "start": 3.349,
+      "end": 3.712
+    },
+    {
+      "text": "sie",
+      "start": 3.743,
+      "end": 3.823
+    },
+    {
+      "text": "nicht.",
+      "start": 3.863,
+      "end": 4.257
+    },
+    {
+      "text": "Das",
+      "start": 4.641,
+      "end": 4.803
+    },
+    {
+      "text": "Steuergerät",
+      "start": 4.843,
+      "end": 5.418
+    },
+    {
+      "text": "hat",
+      "start": 5.459,
+      "end": 5.55
+    },
+    {
+      "text": "einen",
+      "start": 5.59,
+      "end": 5.762
+    },
+    {
+      "text": "Fehler",
+      "start": 5.823,
+      "end": 6.095
+    },
+    {
+      "text": "im",
+      "start": 6.136,
+      "end": 6.196
+    },
+    {
+      "text": "Motor",
+      "start": 6.237,
+      "end": 6.681
+    },
+    {
+      "text": "oder",
+      "start": 6.832,
+      "end": 7.043
+    },
+    {
+      "text": "im",
+      "start": 7.074,
+      "end": 7.135
+    },
+    {
+      "text": "Abgassystem",
+      "start": 7.196,
+      "end": 7.882
+    },
+    {
+      "text": "gefunden.",
+      "start": 7.923,
+      "end": 8.518
+    },
+    {
+      "text": "Oft",
+      "start": 8.902,
+      "end": 9.154
+    },
+    {
+      "text": "ist",
+      "start": 9.204,
+      "end": 9.325
+    },
+    {
+      "text": "es",
+      "start": 9.366,
+      "end": 9.426
+    },
+    {
+      "text": "eine",
+      "start": 9.477,
+      "end": 9.608
+    },
+    {
+      "text": "Lambdasonde,",
+      "start": 9.658,
+      "end": 10.466
+    },
+    {
+      "text": "eine",
+      "start": 10.537,
+      "end": 10.709
+    },
+    {
+      "text": "Zündspule",
+      "start": 10.759,
+      "end": 11.314
+    },
+    {
+      "text": "oder",
+      "start": 11.375,
+      "end": 11.547
+    },
+    {
+      "text": "eine",
+      "start": 11.577,
+      "end": 11.708
+    },
+    {
+      "text": "Zündkerze.",
+      "start": 11.758,
+      "end": 12.536
+    },
+    {
+      "text": "Leuchtet",
+      "start": 12.919,
+      "end": 13.263
+    },
+    {
+      "text": "sie",
+      "start": 13.293,
+      "end": 13.374
+    },
+    {
+      "text": "dauerhaft:",
+      "start": 13.414,
+      "end": 14.02
+    },
+    {
+      "text": "bald",
+      "start": 14.121,
+      "end": 14.333
+    },
+    {
+      "text": "in",
+      "start": 14.373,
+      "end": 14.423
+    },
+    {
+      "text": "die",
+      "start": 14.454,
+      "end": 14.525
+    },
+    {
+      "text": "Werkstatt.",
+      "start": 14.555,
+      "end": 15.171
+    },
+    {
+      "text": "Blinkt",
+      "start": 15.696,
+      "end": 15.999
+    },
+    {
+      "text": "sie:",
+      "start": 16.039,
+      "end": 16.383
+    },
+    {
+      "text": "Gas",
+      "start": 16.766,
+      "end": 17.009
+    },
+    {
+      "text": "weg",
+      "start": 17.069,
+      "end": 17.281
+    },
+    {
+      "text": "sonst",
+      "start": 17.483,
+      "end": 17.736
+    },
+    {
+      "text": "kann",
+      "start": 17.786,
+      "end": 17.897
+    },
+    {
+      "text": "der",
+      "start": 17.927,
+      "end": 17.997
+    },
+    {
+      "text": "Kat",
+      "start": 18.048,
+      "end": 18.24
+    },
+    {
+      "text": "Schaden",
+      "start": 18.27,
+      "end": 18.573
+    },
+    {
+      "text": "nehmen.",
+      "start": 18.614,
+      "end": 19.028
+    },
+    {
+      "text": "Die",
+      "start": 19.31,
+      "end": 19.421
+    },
+    {
+      "text": "Werkstatt",
+      "start": 19.462,
+      "end": 19.865
+    },
+    {
+      "text": "liest",
+      "start": 19.916,
+      "end": 20.088
+    },
+    {
+      "text": "den",
+      "start": 20.108,
+      "end": 20.198
+    },
+    {
+      "text": "Fehlerspeicher",
+      "start": 20.249,
+      "end": 20.824
+    },
+    {
+      "text": "aus.",
+      "start": 20.865,
+      "end": 21.269
+    },
+    {
+      "text": "Was",
+      "start": 21.794,
+      "end": 21.956
+    },
+    {
+      "text": "leuchtet",
+      "start": 22.026,
+      "end": 22.318
+    },
+    {
+      "text": "bei",
+      "start": 22.359,
+      "end": 22.46
+    },
+    {
+      "text": "dir?",
+      "start": 22.5,
+      "end": 22.874
+    },
+    {
+      "text": "Schreib's",
+      "start": 23.086,
+      "end": 23.379
+    },
+    {
+      "text": "in",
+      "start": 23.399,
+      "end": 23.45
+    },
+    {
+      "text": "die",
+      "start": 23.48,
+      "end": 23.54
+    },
+    {
+      "text": "Kommentare",
+      "start": 23.57,
+      "end": 24.116
+    },
+    {
+      "text": "und",
+      "start": 24.166,
+      "end": 24.247
+    },
+    {
+      "text": "folg",
+      "start": 24.297,
+      "end": 24.499
+    },
+    {
+      "text": "mir!",
+      "start": 24.53,
+      "end": 25.377
+    }
+  ]
+}

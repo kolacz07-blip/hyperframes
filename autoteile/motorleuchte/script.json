@@ -1,0 +1,119 @@
+{
+  "title": "Motorkontrollleuchte an? Was sie bedeutet und was du tun musst",
+  "note": "Zurück zur orangen 3D-Welt, breites Thema, ~23 s, kein „Teil X“. Ende: Kommentarfrage + folgen.",
+  "duration": 28.6,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 3,
+      "text": "Motorkontrollleuchte an? Keine Panik – aber ignorier sie nicht."
+    },
+    {
+      "id": "l2",
+      "start": 3.2,
+      "end": 6.4,
+      "text": "Das Steuergerät hat einen Fehler im Motor oder im Abgassystem gefunden."
+    },
+    {
+      "id": "l3",
+      "start": 6.6,
+      "end": 9.8,
+      "text": "Oft ist es eine Lambdasonde, eine Zündspule oder eine Zündkerze."
+    },
+    {
+      "id": "l4",
+      "start": 10,
+      "end": 15.4,
+      "text": "Leuchtet sie dauerhaft: bald in die Werkstatt. Blinkt sie: Gas weg – sonst kann der Kat Schaden nehmen."
+    },
+    {
+      "id": "l5",
+      "start": 15.6,
+      "end": 20.6,
+      "text": "Die Werkstatt liest den Fehlerspeicher aus. Was leuchtet bei dir? Schreib's in die Kommentare und folg mir!"
+    }
+  ],
+  "marks": [
+    {
+      "name": "panik",
+      "line": "l1",
+      "word": "Panik"
+    },
+    {
+      "name": "ignorier",
+      "line": "l1",
+      "word": "ignorier"
+    },
+    {
+      "name": "steuergeraet",
+      "line": "l2",
+      "word": "Steuergerät"
+    },
+    {
+      "name": "motor",
+      "line": "l2",
+      "word": "Motor"
+    },
+    {
+      "name": "abgas",
+      "line": "l2",
+      "word": "Abgassystem"
+    },
+    {
+      "name": "lambda",
+      "line": "l3",
+      "word": "Lambdasonde"
+    },
+    {
+      "name": "spule",
+      "line": "l3",
+      "word": "Zündspule"
+    },
+    {
+      "name": "kerze",
+      "line": "l3",
+      "word": "Zündkerze"
+    },
+    {
+      "name": "dauerhaft",
+      "line": "l4",
+      "word": "dauerhaft"
+    },
+    {
+      "name": "blinkt",
+      "line": "l4",
+      "word": "Blinkt"
+    },
+    {
+      "name": "gas",
+      "line": "l4",
+      "word": "Gas"
+    },
+    {
+      "name": "kat",
+      "line": "l4",
+      "word": "Kat"
+    },
+    {
+      "name": "fehlerspeicher",
+      "line": "l5",
+      "word": "Fehlerspeicher"
+    },
+    {
+      "name": "leuchtet2",
+      "line": "l5",
+      "word": "leuchtet"
+    },
+    {
+      "name": "kommentare",
+      "line": "l5",
+      "word": "Kommentare"
+    },
+    {
+      "name": "folg",
+      "line": "l5",
+      "word": "folg"
+    }
+  ]
+}

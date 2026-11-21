@@ -1,0 +1,5 @@
+GOAL: Der Zuschauer weiß, was die Motorkontrollleuchte bedeutet (Steuergerät hat einen Fehler in Motor oder Abgassystem gefunden), häufige Ursachen (Lambdasonde, Zündspule, Zündkerze) und was zu tun ist (dauerhaft: bald Werkstatt; blinkt: Gas weg, sonst Kat-Schaden; Werkstatt liest den Fehlerspeicher aus).
+OUTPUT: HyperFrames, 1080 x 1920 (TikTok 9:16), 30 fps · TIME: ~28.6 s (atempo 1.15) · kein „Teil X“
+LOOK: zurück zur orangen Low-Poly-Straßenwelt (Teil 4/5 hielten die Zuschauer am längsten); darüber ein Armaturenbrett (Drehzahlmesser + gelbe Motorleuchte als SVG), Tafeln oben.
+SHOTS: Auto fährt auf die Kamera zu, Lampe leuchtet ab Bild 0, Tafel „Diese Lampe leuchtet?“ · Seitenansicht + „Fehler im Motor oder Abgas“ · Draufsicht + Chips 1 Lambdasonde 2 Zündspule 3 Zündkerze ·
+Front: „leuchtet → bald Werkstatt“, dann Lampe blinkt + „blinkt → Gas weg!“, Auto wird langsamer · von hinten: „Fehlerspeicher auslesen“, „Was leuchtet bei dir?“ + Pfeil zum Kommentar-Knopf · Folg-Karte „für mehr Auto-Tipps“.
