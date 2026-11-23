@@ -1,0 +1,110 @@
+{
+  "title": "Auto springt im Winter nicht an? 3 Tipps",
+  "note": "Saisonthema (Ende November), orange 3D-Straßenwelt im Schnee, kein „Teil X“. Ende: Bitte ums Teilen + folgen.",
+  "duration": 28.7,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 3,
+      "text": "Dein Auto springt im Winter nicht an? Schuld ist meistens die Batterie."
+    },
+    {
+      "id": "l2",
+      "start": 3.2,
+      "end": 7,
+      "text": "Bei Kälte liefert sie weniger Strom – und der kalte Motor braucht beim Starten mehr."
+    },
+    {
+      "id": "l3",
+      "start": 7.2,
+      "end": 10,
+      "text": "Tipp eins: Licht, Heizung und Radio aus, bevor du startest."
+    },
+    {
+      "id": "l4",
+      "start": 10.2,
+      "end": 13.4,
+      "text": "Tipp zwei: Nicht nur Kurzstrecke fahren – sonst wird die Batterie nie richtig voll."
+    },
+    {
+      "id": "l5",
+      "start": 13.6,
+      "end": 16.6,
+      "text": "Tipp drei: Ist sie älter als fünf Jahre, lass sie vor dem Winter testen."
+    },
+    {
+      "id": "l6",
+      "start": 16.8,
+      "end": 20,
+      "text": "Schick das jemandem, dessen Auto jeden Winter Ärger macht – und folg mir!"
+    }
+  ],
+  "marks": [
+    {
+      "name": "winter",
+      "line": "l1",
+      "word": "Winter"
+    },
+    {
+      "name": "batterie",
+      "line": "l1",
+      "word": "Batterie"
+    },
+    {
+      "name": "kaelte",
+      "line": "l2",
+      "word": "Kälte"
+    },
+    {
+      "name": "motor",
+      "line": "l2",
+      "word": "Motor"
+    },
+    {
+      "name": "tipp1",
+      "line": "l3",
+      "word": "Tipp"
+    },
+    {
+      "name": "aus",
+      "line": "l3",
+      "word": "aus"
+    },
+    {
+      "name": "tipp2",
+      "line": "l4",
+      "word": "Tipp"
+    },
+    {
+      "name": "voll",
+      "line": "l4",
+      "word": "voll"
+    },
+    {
+      "name": "tipp3",
+      "line": "l5",
+      "word": "Tipp"
+    },
+    {
+      "name": "fuenf",
+      "line": "l5",
+      "word": "fünf"
+    },
+    {
+      "name": "testen",
+      "line": "l5",
+      "word": "testen"
+    },
+    {
+      "name": "schick",
+      "line": "l6",
+      "word": "Schick"
+    },
+    {
+      "name": "folg",
+      "line": "l6",
+      "word": "folg"
+    }
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "offset": 0.3,
+  "tempo": 1.15,
+  "words": [
+    {
+      "text": "Dein",
+      "start": 0.3,
+      "end": 0.502
+    },
+    {
+      "text": "Auto",
+      "start": 0.563,
+      "end": 0.775
+    },
+    {
+      "text": "springt",
+      "start": 0.825,
+      "end": 1.097
+    },
+    {
+      "text": "im",
+      "start": 1.138,
+      "end": 1.189
+    },
+    {
+      "text": "Winter",
+      "start": 1.249,
+      "end": 1.502
+    },
+    {
+      "text": "nicht",
+      "start": 1.542,
+      "end": 1.683
+    },
+    {
+      "text": "an?",
+      "start": 1.743,
+      "end": 2.097
+    },
+    {
+      "text": "Schuld",
+      "start": 2.481,
+      "end": 2.753
+    },
+    {
+      "text": "ist",
+      "start": 2.803,
+      "end": 2.904
+    },
+    {
+      "text": "meistens",
+      "start": 2.965,
+      "end": 3.298
+    },
+    {
+      "text": "die",
+      "start": 3.329,
+      "end": 3.39
+    },
+    {
+      "text": "Batterie.",
+      "start": 3.43,
+      "end": 4.036
+    },
+    {
+      "text": "Bei",
+      "start": 4.48,
+      "end": 4.61
+    },
+    {
+      "text": "Kälte",
+      "start": 4.662,
+      "end": 4.954
+    },
+    {
+      "text": "liefert",
+      "start": 5.004,
+      "end": 5.227
+    },
+    {
+      "text": "sie",
+      "start": 5.257,
+      "end": 5.328
+    },
+    {
+      "text": "weniger",
+      "start": 5.368,
+      "end": 5.681
+    },
+    {
+      "text": "Strom",
+      "start": 5.722,
+      "end": 6.085
+    },
+    {
+      "text": "und",
+      "start": 6.277,
+      "end": 6.408
+    },
+    {
+      "text": "der",
+      "start": 6.428,
+      "end": 6.499
+    },
+    {
+      "text": "kalte",
+      "start": 6.539,
+      "end": 6.791
+    },
+    {
+      "text": "Motor",
+      "start": 6.842,
+      "end": 7.155
+    },
+    {
+      "text": "braucht",
+      "start": 7.205,
+      "end": 7.457
+    },
+    {
+      "text": "beim",
+      "start": 7.488,
+      "end": 7.599
+    },
+    {
+      "text": "Starten",
+      "start": 7.65,
+      "end": 7.963
+    },
+    {
+      "text": "mehr.",
+      "start": 8.003,
+      "end": 8.437
+    },
+    {
+      "text": "Tipp",
+      "start": 9.143,
+      "end": 9.366
+    },
+    {
+      "text": "eins:",
+      "start": 9.437,
+      "end": 9.85
+    },
+    {
+      "text": "Licht,",
+      "start": 10.002,
+      "end": 10.446
+    },
+    {
+      "text": "Heizung",
+      "start": 10.517,
+      "end": 10.9
+    },
+    {
+      "text": "und",
+      "start": 10.951,
+      "end": 11.042
+    },
+    {
+      "text": "Radio",
+      "start": 11.103,
+      "end": 11.416
+    },
+    {
+      "text": "aus,",
+      "start": 11.456,
+      "end": 11.738
+    },
+    {
+      "text": "bevor",
+      "start": 11.789,
+      "end": 12.001
+    },
+    {
+      "text": "du",
+      "start": 12.031,
+      "end": 12.091
+    },
+    {
+      "text": "startest.",
+      "start": 12.132,
+      "end": 12.768
+    },
+    {
+      "text": "Tipp",
+      "start": 13.101,
+      "end": 13.303
+    },
+    {
+      "text": "zwei:",
+      "start": 13.354,
+      "end": 13.808
+    },
+    {
+      "text": "Nicht",
+      "start": 13.939,
+      "end": 14.161
+    },
+    {
+      "text": "nur",
+      "start": 14.202,
+      "end": 14.303
+    },
+    {
+      "text": "Kurzstrecke",
+      "start": 14.333,
+      "end": 14.817
+    },
+    {
+      "text": "fahren",
+      "start": 14.857,
+      "end": 15.181
+    },
+    {
+      "text": "sonst",
+      "start": 15.403,
+      "end": 15.706
+    },
+    {
+      "text": "wird",
+      "start": 15.746,
+      "end": 15.847
+    },
+    {
+      "text": "die",
+      "start": 15.867,
+      "end": 15.928
+    },
+    {
+      "text": "Batterie",
+      "start": 15.958,
+      "end": 16.291
+    },
+    {
+      "text": "nie",
+      "start": 16.342,
+      "end": 16.443
+    },
+    {
+      "text": "richtig",
+      "start": 16.493,
+      "end": 16.756
+    },
+    {
+      "text": "voll.",
+      "start": 16.786,
+      "end": 17.18
+    },
+    {
+      "text": "Tipp",
+      "start": 17.704,
+      "end": 17.917
+    },
+    {
+      "text": "drei:",
+      "start": 17.967,
+      "end": 18.391
+    },
+    {
+      "text": "Ist",
+      "start": 18.492,
+      "end": 18.684
+    },
+    {
+      "text": "sie",
+      "start": 18.704,
+      "end": 18.805
+    },
+    {
+      "text": "älter",
+      "start": 18.856,
+      "end": 19.108
+    },
+    {
+      "text": "als",
+      "start": 19.149,
+      "end": 19.259
+    },
+    {
+      "text": "fünf",
+      "start": 19.32,
+      "end": 19.522
+    },
+    {
+      "text": "Jahre,",
+      "start": 19.583,
+      "end": 20.037
+    },
+    {
+      "text": "lass",
+      "start": 20.137,
+      "end": 20.31
+    },
+    {
+      "text": "sie",
+      "start": 20.33,
+      "end": 20.41
+    },
+    {
+      "text": "vor",
+      "start": 20.461,
+      "end": 20.602
+    },
+    {
+      "text": "dem",
+      "start": 20.623,
+      "end": 20.713
+    },
+    {
+      "text": "Winter",
+      "start": 20.754,
+      "end": 20.986
+    },
+    {
+      "text": "testen.",
+      "start": 21.016,
+      "end": 21.521
+    },
+    {
+      "text": "Schick",
+      "start": 21.803,
+      "end": 22.005
+    },
+    {
+      "text": "das",
+      "start": 22.056,
+      "end": 22.167
+    },
+    {
+      "text": "jemandem,",
+      "start": 22.228,
+      "end": 22.591
+    },
+    {
+      "text": "dessen",
+      "start": 22.621,
+      "end": 22.833
+    },
+    {
+      "text": "Auto",
+      "start": 22.883,
+      "end": 23.096
+    },
+    {
+      "text": "jeden",
+      "start": 23.157,
+      "end": 23.348
+    },
+    {
+      "text": "Winter",
+      "start": 23.389,
+      "end": 23.621
+    },
+    {
+      "text": "Ärger",
+      "start": 23.671,
+      "end": 23.893
+    },
+    {
+      "text": "macht",
+      "start": 23.923,
+      "end": 24.197
+    },
+    {
+      "text": "und",
+      "start": 24.357,
+      "end": 24.469
+    },
+    {
+      "text": "folg",
+      "start": 24.519,
+      "end": 24.711
+    },
+    {
+      "text": "mir!",
+      "start": 24.762,
+      "end": 25.417
+    }
+  ]
+}
