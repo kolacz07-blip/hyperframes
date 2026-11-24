@@ -1,0 +1,1343 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #cc6b50;
+    }
+    #world-canvas {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #world-iris {
+      position: absolute;
+      inset: 0;
+      background: #44444c;
+      opacity: 0;
+    }
+    /* ---------- labels anchored to 3D points */
+    .lbl {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+    .lbl .dot {
+      position: absolute;
+      left: -13px;
+      top: -13px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ffd24a;
+      border: 5px solid #1f1a24;
+      box-sizing: border-box;
+    }
+    .lbl .stem {
+      position: absolute;
+      left: -3px;
+      top: -110px;
+      width: 6px;
+      height: 98px;
+      background: #1f1a24;
+    }
+    .lbl .txt {
+      position: absolute;
+      top: -110px;
+      left: 0;
+      transform: translate(-50%, -100%);
+      background: #ffd24a;
+      color: #1f1a24;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 60px;
+      line-height: 1;
+      padding: 14px 24px 18px;
+      white-space: nowrap;
+      border: 6px solid #1f1a24;
+    }
+    .lbl.down .stem {
+      top: 12px;
+    }
+    .lbl.down .txt {
+      top: 110px;
+      transform: translate(-50%, 0);
+    }
+    /* ---------- big plates (hook, Werkstatt) */
+    .plate-wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      opacity: 0;
+    }
+    .plate {
+      display: inline-block;
+      background: #1f1a24;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 104px;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      padding: 26px 44px 34px;
+    }
+    .plate .accent {
+      color: #ffd24a;
+    }
+    .plate-bar {
+      display: block;
+      height: 16px;
+      margin: 0 auto;
+      background: #ffd24a;
+      transform-origin: 0 50%;
+    }
+    /* ---------- voltmeter + follow hint */
+    #meter {
+      position: absolute;
+      left: 70px;
+      top: 640px;
+      width: 340px;
+      white-space: nowrap;
+      background: #1f1a24;
+      border: 6px solid #ffd24a;
+      padding: 14px 18px 18px;
+      font-family: "Montserrat", sans-serif;
+      text-align: center;
+      color: #ffffff;
+      opacity: 0;
+    }
+    #meter-head {
+      font-weight: 800;
+      font-size: 34px;
+      line-height: 1;
+    }
+    #meter-head2 {
+      margin-top: 14px;
+      font-weight: 800;
+      font-size: 34px;
+      line-height: 1;
+    }
+    .meter-val.small {
+      font-size: 64px;
+    }
+    .meter-val {
+      margin-top: 8px;
+      font-weight: 900;
+      font-size: 76px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+    #meter-note {
+      margin-top: 8px;
+      font-weight: 800;
+      font-size: 38px;
+      line-height: 1;
+    }
+    #follow-hint {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 250px;
+      width: fit-content;
+      margin: 0 auto;
+      white-space: nowrap;
+      background: #1f1a24;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 46px;
+      line-height: 1;
+      padding: 16px 30px 20px 18px;
+      border-radius: 60px;
+      opacity: 0;
+    }
+    #follow-hint .accent {
+      color: #ffd24a;
+    }
+    #fh-plus {
+      display: inline-block;
+      width: 64px;
+      height: 64px;
+      margin-right: 16px;
+      border-radius: 50%;
+      background: #ffd24a;
+      color: #1f1a24;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 62px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    #fh-text {
+      vertical-align: middle;
+    }
+    #lamp {
+      position: absolute;
+      left: 70px;
+      top: 900px;
+      width: 340px;
+      padding: 20px 0 18px;
+      background: #1f1a24;
+      border: 6px solid #ff5a4a;
+      text-align: center;
+      opacity: 0;
+    }
+    #lamp-icon {
+      position: relative;
+      display: inline-block;
+      width: 130px;
+      height: 76px;
+      margin-top: 18px;
+      border: 10px solid #ff5a4a;
+      box-sizing: border-box;
+      color: #ff5a4a;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 34px;
+      line-height: 54px;
+    }
+    #lamp-icon i {
+      position: absolute;
+      top: -24px;
+      width: 22px;
+      height: 14px;
+      background: #ff5a4a;
+    }
+    #lamp-icon .t1 {
+      left: 12px;
+    }
+    #lamp-icon .t2 {
+      right: 12px;
+    }
+    #lamp-txt {
+      margin-top: 12px;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 38px;
+      line-height: 1;
+    }
+    #abslamp {
+      position: absolute;
+      left: 70px;
+      top: 520px;
+      width: 230px;
+      height: 150px;
+      background: #1f1a24;
+      border: 6px solid #ffb02e;
+      color: #ffb02e;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      text-align: center;
+      line-height: 138px;
+      opacity: 0;
+    }
+    #abslamp .par {
+      font-size: 96px;
+      vertical-align: middle;
+    }
+    #abslamp .ring {
+      display: inline-block;
+      width: 104px;
+      height: 104px;
+      margin: 0 4px;
+      border: 7px solid #ffb02e;
+      border-radius: 50%;
+      font-size: 36px;
+      line-height: 90px;
+      vertical-align: middle;
+    }
+    .tag {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 250px;
+      width: fit-content;
+      margin: 0 auto;
+      background: #1f1a24;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 58px;
+      line-height: 1;
+      padding: 18px 26px 24px;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    #tag-mit {
+      left: 0;
+      right: 0;
+      top: 300px;
+      width: fit-content;
+      margin: 0 auto;
+      color: #ffffff;
+    }
+    #tag-mit .ok {
+      color: #6fe39a;
+    }
+    .slot-q {
+      position: absolute;
+      inset: 0;
+      color: #ffd24a;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 120px;
+      line-height: 160px;
+      text-align: center;
+    }
+    #dash {
+      position: absolute;
+      left: 140px;
+      top: 540px;
+      width: 800px;
+      height: 300px;
+      background: #1f1a24;
+      border: 8px solid #3d3a43;
+      border-radius: 60px;
+    }
+    #tacho {
+      position: absolute;
+      left: 50px;
+      top: 22px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 10px solid #5f6370;
+      box-sizing: border-box;
+    }
+    #tacho-needle {
+      position: absolute;
+      left: 107px;
+      top: 18px;
+      width: 6px;
+      height: 92px;
+      background: #ff7b6b;
+      transform-origin: 3px 92px;
+    }
+    #tacho-hub {
+      position: absolute;
+      left: 96px;
+      top: 96px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #d0d4dc;
+    }
+    #tacho-lbl {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 150px;
+      text-align: center;
+      color: #8d939d;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+    }
+    #eng-lamp {
+      position: absolute;
+      left: 380px;
+      top: 40px;
+      width: 360px;
+      height: 220px;
+    }
+    .tag .am {
+      color: #ffb02e;
+    }
+    .tag .rd {
+      color: #ff7b6b;
+    }
+    #chips {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 250px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+    }
+    .chip {
+      display: inline-block;
+      margin: 0 8px 14px;
+      background: #1f1a24;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 1;
+      padding: 14px 22px 18px 14px;
+      border: 5px solid #ffd24a;
+      opacity: 0;
+    }
+    .chip b {
+      display: inline-block;
+      width: 52px;
+      height: 52px;
+      margin-right: 12px;
+      border-radius: 50%;
+      background: #ffd24a;
+      color: #1f1a24;
+      font-size: 38px;
+      line-height: 52px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    #arrow {
+      position: absolute;
+      left: 900px;
+      top: 1380px;
+      width: 150px;
+      height: 150px;
+      opacity: 0;
+    }
+    #thermo {
+      position: absolute;
+      right: 170px;
+      top: 640px;
+      background: #1f1a24;
+      border: 6px solid #9fc4ff;
+      color: #9fc4ff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 64px;
+      line-height: 1;
+      padding: 18px 26px 22px;
+      opacity: 0;
+    }
+    .tag .ic {
+      color: #9fc4ff;
+    }
+    .tip {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 250px;
+      width: fit-content;
+      margin: 0 auto;
+      background: #1f1a24;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1.08;
+      text-align: center;
+      padding: 26px 40px 32px;
+      border: 6px solid #ffd24a;
+      opacity: 0;
+    }
+    .tip b {
+      position: absolute;
+      left: -40px;
+      top: -40px;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #ffd24a;
+      border: 6px solid #1f1a24;
+      color: #1f1a24;
+      font-size: 64px;
+      line-height: 84px;
+      text-align: center;
+    }
+    .tip .am {
+      color: #ffd24a;
+    }
+    #signs {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 560px;
+      text-align: center;
+    }
+    .sign {
+      position: relative;
+      display: inline-block;
+      width: 300px;
+      height: 260px;
+      margin: 0 20px;
+      background: #1f1a24;
+      border: 8px solid #3d3a43;
+      border-radius: 30px;
+      vertical-align: top;
+      opacity: 0;
+    }
+    .sign svg {
+      position: absolute;
+      left: 40px;
+      top: 40px;
+      width: 220px;
+      height: 176px;
+    }
+    .sign .ms {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 70px;
+      text-align: center;
+      color: #ffffff;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 96px;
+    }
+    .sign .mark {
+      position: absolute;
+      right: -26px;
+      top: -26px;
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 56px;
+      line-height: 84px;
+      text-align: center;
+      color: #ffffff;
+    }
+    .sign.ok .mark {
+      background: #2a9d8f;
+    }
+    .sign.no .mark {
+      background: #d9483b;
+    }
+    #cointest {
+      position: absolute;
+      left: 110px;
+      top: 440px;
+      width: 860px;
+      height: 602px;
+      opacity: 0;
+    }
+    #mm {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 250px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+    }
+    #mm .chip {
+      display: inline-block;
+      margin: 0 10px;
+      background: #1f1a24;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 60px;
+      padding: 16px 26px 20px;
+      border: 6px solid #ff7b6b;
+      opacity: 0;
+    }
+    #mm .chip.good {
+      border-color: #6fe39a;
+    }
+    #mm .chip b {
+      display: block;
+      width: auto;
+      height: auto;
+      margin: 0;
+      border-radius: 0;
+      background: none;
+      line-height: 1.2;
+      text-align: center;
+      font-size: 32px;
+      color: #c9c2cf;
+    }
+    /* ---------- the parts selector strip */
+    #strip-wrap {
+      position: absolute;
+      left: 0;
+      top: 470px;
+      width: 1080px;
+      height: 480px;
+      opacity: 0;
+    }
+    #strip-head {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #strip-box {
+      display: inline-block;
+      background: #1f1a24;
+      padding: 18px 44px 26px;
+    }
+    #strip-kicker {
+      font-weight: 800;
+      font-size: 56px;
+      line-height: 1;
+      text-shadow: 0 4px 0 rgba(31, 26, 36, 0.55);
+    }
+    #strip-word {
+      margin-top: 10px;
+      font-weight: 900;
+      font-size: 92px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #ffd24a;
+      text-shadow: 0 6px 0 #1f1a24;
+    }
+    #strip-band {
+      position: absolute;
+      left: 0;
+      top: 275px;
+      width: 1080px;
+      height: 190px;
+      background: #1f1a24;
+      overflow: hidden;
+    }
+    .slot {
+      position: absolute;
+      left: 0;
+      top: 15px;
+      width: 160px;
+      height: 160px;
+      margin-left: -80px;
+      border-radius: 50%;
+      background: #3a3340;
+    }
+    .slot img {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      width: 144px;
+      height: 144px;
+    }
+    #strip-ring {
+      position: absolute;
+      left: 540px;
+      top: 279px;
+      width: 182px;
+      height: 182px;
+      margin-left: -91px;
+      border-radius: 50%;
+      border: 10px solid #ffd24a;
+      box-sizing: border-box;
+    }
+    #strip-pointer {
+      position: absolute;
+      left: 540px;
+      top: 461px;
+      margin-left: -24px;
+      width: 0;
+      height: 0;
+      border-left: 24px solid transparent;
+      border-right: 24px solid transparent;
+      border-top: 30px solid #ffd24a;
+    }
+    .shard {
+      position: absolute;
+      left: 540px;
+      top: 370px;
+      width: 26px;
+      height: 26px;
+      margin: -13px;
+      opacity: 0;
+    }
+    #strip-dim {
+      position: absolute;
+      inset: 0;
+      background: #1f1a24;
+      opacity: 0;
+    }
+    /* ---------- follow card */
+    #follow {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: #cc6b50;
+    }
+    #follow-pic {
+      position: absolute;
+      left: 540px;
+      top: 520px;
+      width: 460px;
+      height: 460px;
+      margin-left: -230px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 14px solid #ffffff;
+      box-sizing: border-box;
+      background: #cc6b50;
+    }
+    #follow-pic img {
+      width: 100%;
+      height: 100%;
+    }
+    #follow-plus {
+      position: absolute;
+      left: 540px;
+      top: 940px;
+      width: 104px;
+      height: 104px;
+      margin-left: -52px;
+      border-radius: 50%;
+      background: #ffd24a;
+      border: 8px solid #1f1a24;
+      box-sizing: border-box;
+      color: #1f1a24;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: 84px;
+      line-height: 80px;
+      text-align: center;
+    }
+    #follow-text {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1250px;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #follow-line1 {
+      font-weight: 900;
+      font-size: 92px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-shadow: 0 6px 0 #1f1a24;
+    }
+    #follow-line1 .accent {
+      color: #ffd24a;
+    }
+    #follow-line2 {
+      margin-top: 18px;
+      font-weight: 800;
+      font-size: 60px;
+      text-shadow: 0 4px 0 #1f1a24;
+    }
+    #follow-hand {
+      position: absolute;
+      left: 470px;
+      top: 985px;
+      width: 190px;
+      height: 230px;
+    }
+  </style>
+  <div id="root" data-composition-id="world" data-width="1080" data-height="1920" data-layout-allow-overlap>
+    <canvas id="world-canvas" width="1080" height="1920"></canvas>
+    <div id="world-iris"></div>
+
+    <div class="tag" id="tag-fine" style="top: 540px; font-size: 76px"><span class="rd">60 €</span> + <span class="rd">1 Punkt</span></div>
+    <div id="signs">
+      <div class="sign ok">
+        <svg viewBox="0 0 100 80" aria-hidden="true"><path d="M6 72 L34 18 L46 38 L58 22 L94 72 Z" fill="none" stroke="#ffffff" stroke-width="6" stroke-linejoin="round" /><g stroke="#9fc4ff" stroke-width="4" stroke-linecap="round"><path d="M50 44 V68 M40 50 L60 62 M40 62 L60 50" /></g></svg>
+        <span class="mark">✓</span>
+      </div>
+      <div class="sign no"><span class="ms">M+S</span><span class="mark">✗</span></div>
+    </div>
+    <svg id="cointest" viewBox="0 0 600 420" aria-hidden="true">
+      <rect x="0" y="0" width="600" height="420" rx="40" fill="#1f1a24" />
+      <g id="coin">
+        <circle cx="300" cy="110" r="170" fill="#c9cdd4" stroke="#8d939d" stroke-width="6" />
+        <circle cx="300" cy="110" r="105" fill="#d9b44a" stroke="#a8862c" stroke-width="5" />
+        <text x="300" y="140" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="900" font-size="96" fill="#7a5f1c">2</text>
+      </g>
+      <path d="M0 250 H40 L60 230 H170 L190 250 H250 V300 H350 V250 H410 L430 230 H540 L560 250 H600 V420 H0 Z" fill="#2c2a30" stroke="#4a4652" stroke-width="4" />
+      <g id="rim-mark" opacity="0">
+        <path d="M240 300 H222 V236 H240 M360 300 H378 V236 H360" fill="none" stroke="#ffd24a" stroke-width="10" /><text x="300" y="395" text-anchor="middle" font-family="Montserrat, sans-serif" font-weight="900" font-size="44" fill="#ffd24a">Rand sichtbar?</text>
+      </g>
+    </svg>
+    <div class="tag" id="tag-rand" style="font-size: 50px">silberner Rand zu sehen = <span class="rd">unter 4 mm</span></div>
+    <div class="tag" id="tag-neu">→ <span class="am">neue Winterreifen</span></div>
+    <div id="mm"><span class="chip"><b>erlaubt</b> 1,6 mm</span><span class="chip good"><b>besser</b> 4 mm</span></div>
+    <div class="tag" id="tag-share">Schick das <span class="am">weiter!</span></div>
+    <svg id="arrow" viewBox="0 0 150 150" aria-hidden="true">
+      <path d="M20 20 L100 100 M100 40 L100 100 L40 100" fill="none" stroke="#1f1a24" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M20 20 L100 100 M100 40 L100 100 L40 100" fill="none" stroke="#ffd24a" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <div id="follow-hint"><span id="fh-plus">+</span><span id="fh-text">Folg – <span class="accent">du bestimmst, was kommt</span></span></div>
+
+    <div class="plate-wrap" id="plate-hook" style="top: 230px">
+      <span class="plate">Fährst du<br /><span class="accent">DAMIT?</span></span>
+    </div>
+    <div class="plate-wrap" id="plate-werkstatt" style="top: 300px">
+      <span class="plate">Ab in die<br /><span class="accent">Werkstatt!</span></span>
+      <span class="plate-bar" id="plate-werkstatt-bar" style="width: 640px"></span>
+    </div>
+
+    <div id="strip-dim"></div>
+    <div id="strip-wrap">
+      <div id="strip-head">
+        <div id="strip-box">
+          <div id="strip-kicker">Was kommt als Nächstes?</div>
+          <div id="strip-word">Du entscheidest!</div>
+        </div>
+      </div>
+      <div id="strip-band">
+        <div class="slot" id="slot-0"><img src="assets/icons/radlager.png" alt="Radlager" /></div>
+        <div class="slot" id="slot-1"><img src="assets/icons/bremsscheibe.png" alt="Bremsscheibe" /></div>
+        <div class="slot" id="slot-2"><img src="assets/icons/federbein.png" alt="Stoßdämpfer" /></div>
+        <div class="slot" id="slot-3"><img src="assets/icons/zuendkerze.png" alt="Zündkerze" /></div>
+        <div class="slot" id="slot-4"><img src="assets/icons/batterie.png" alt="Batterie" /></div>
+        <div class="slot" id="slot-5"><img src="assets/icons/kupplung.png" alt="Kupplung" /></div>
+        <div class="slot" id="slot-6"><img src="assets/icons/keilriemen.png" alt="Keilriemen" /></div>
+        <div class="slot" id="slot-7"><img src="assets/icons/turbolader.png" alt="Turbolader" /></div>
+        <div class="slot" id="slot-8"><img src="assets/icons/lichtmaschine.png" alt="Lichtmaschine" /></div>
+        <div class="slot" id="slot-9"><span class="slot-q">?</span></div>
+      </div>
+      <div id="strip-ring"></div>
+      <div id="strip-pointer"></div>
+      <i class="shard" style="background: #ffd24a"></i><i class="shard" style="background: #2a9d8f"></i>
+      <i class="shard" style="background: #ffffff"></i><i class="shard" style="background: #d9483b"></i>
+      <i class="shard" style="background: #ffd24a"></i><i class="shard" style="background: #2a9d8f"></i>
+      <i class="shard" style="background: #ffffff"></i><i class="shard" style="background: #d9483b"></i>
+      <i class="shard" style="background: #ffd24a"></i><i class="shard" style="background: #ffffff"></i>
+      <i class="shard" style="background: #2a9d8f"></i><i class="shard" style="background: #ffd24a"></i>
+    </div>
+
+    <div id="follow">
+      <div id="follow-pic"><img src="assets/icons/profil.png" alt="Profilbild" /></div>
+      <div id="follow-plus">+</div>
+      <div id="follow-text">
+        <div id="follow-line1">Folg <span class="accent" data-var-text="username">@wasmachtdasteil</span></div>
+        <div id="follow-line2">für mehr Auto-Tipps</div>
+      </div>
+      <svg id="follow-hand" viewBox="0 0 190 230" aria-hidden="true">
+        <path d="M70 20 a18 18 0 0 1 36 0 v88 l14 -6 a17 17 0 0 1 22 9 l3 8 a17 17 0 0 1 21 10 l2 8 a16 16 0 0 1 20 12 v52 c0 28 -22 48 -50 48 h-30 c-24 0 -42 -14 -54 -36 l-30 -54 a16 16 0 0 1 26 -18 l20 26 z" fill="#ffffff" stroke="#1f1a24" stroke-width="8" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      /*TIMING*/ const LINES = {"l1":{"start":0.3,"end":4.855},"l2":{"start":5.23,"end":10.316},"l3":{"start":10.641,"end":13.632},"l4":{"start":14.064,"end":18.256},"l5":{"start":18.768,"end":22.831},"l6":{"start":23.205,"end":26.353}}; const M = {"reifen":1.186,"euro":3.586,"berg":7.256,"ms":8.604,"profil":11.241,"muenze":12.431,"rand":15.108,"vier":16.111,"neue":17.547,"erlaubt":18.768,"schnee":21.139,"schick":23.205,"folg":25.596}; /*END TIMING*/
+      const DUR = 29.6;
+      const T = THREE;
+      // ---------- helpers (deterministic)
+      const clamp01 = (x) => Math.max(0, Math.min(1, x));
+      const ramp = (a, b, t) => clamp01((t - a) / (b - a));
+      const lerp = (a, b, k) => a + (b - a) * k;
+      const E = {
+        lin: (x) => x,
+        io: (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2),
+        io2: (x) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2),
+        in3: (x) => x * x * x,
+        out3: (x) => 1 - Math.pow(1 - x, 3),
+        out2: (x) => 1 - (1 - x) * (1 - x),
+      };
+      function h2(x, y) {
+        let n = (Math.imul(x | 0, 374761393) + Math.imul(y | 0, 668265263)) | 0;
+        n = Math.imul(n ^ (n >>> 13), 1274126177);
+        n ^= n >>> 16;
+        return (n >>> 0) / 4294967296;
+      }
+      function vnoise(x, y) {
+        const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+        const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+        const a = h2(xi, yi), b = h2(xi + 1, yi), c = h2(xi, yi + 1), d = h2(xi + 1, yi + 1);
+        return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+      }
+      function rng(seed) {
+        return function () {
+          seed |= 0;
+          seed = (seed + 0x6d2b79f5) | 0;
+          let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const flat = (color, extra) => new T.MeshLambertMaterial(Object.assign({ color, flatShading: true }, extra || {}));
+      const col = (h) => new T.Color(h);
+
+      // ---------- timing derived from the voice
+      const tRoadIn = DUR + 1; // the whole film is on the road (kept for the shared road code)
+      const tCarStop = tRoadIn + 2.6;
+      const tOutroSpin = DUR + 1; // no parts strip in this video
+      const tOutroStop = DUR + 2;
+      const tFollow = M.folg - 0.05;
+
+      // ---------- renderer (portrait)
+      const canvas = document.getElementById("world-canvas");
+      const renderer = new T.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1080, 1920, false);
+      const camera = new T.PerspectiveCamera(50, 1080 / 1920, 0.03, 1400);
+
+      // =========================================================
+      // ROAD WORLD
+      // =========================================================
+      const road = new T.Scene();
+      const FOG = "#f7d6c2"; // winter dawn
+      road.fog = new T.Fog(FOG, 45, 420);
+      road.add(new T.HemisphereLight("#ffe0b8", "#5a4636", 0.95));
+      const sunLight = new T.DirectionalLight("#ffc890", 1.25);
+      sunLight.position.set(60, 40, 120);
+      road.add(sunLight);
+
+      // sky dome, faceted
+      {
+        const g = new T.SphereGeometry(700, 18, 12).toNonIndexed();
+        const pos = g.attributes.position;
+        const colors = [];
+        const top = col("#b9718a"), mid = col("#f0a27a"), hor = col(FOG);
+        for (let i = 0; i < pos.count; i += 3) {
+          const y = (pos.getY(i) + pos.getY(i + 1) + pos.getY(i + 2)) / 3 / 700;
+          const c = y < 0.08 ? hor.clone() : y < 0.4 ? hor.clone().lerp(mid, (y - 0.08) / 0.32) : mid.clone().lerp(top, Math.min(1, (y - 0.4) / 0.5));
+          for (let k = 0; k < 3; k++) colors.push(c.r, c.g, c.b);
+        }
+        g.setAttribute("color", new T.Float32BufferAttribute(colors, 3));
+        road.add(new T.Mesh(g, new T.MeshBasicMaterial({ vertexColors: true, side: T.BackSide, fog: false })));
+        const sun = new T.Mesh(new T.CircleGeometry(34, 10), new T.MeshBasicMaterial({ color: "#ffe2a0", fog: false }));
+        sun.position.set(150, 70, 560);
+        sun.lookAt(0, 0, 0);
+        road.add(sun);
+      }
+
+      function groundH(x, z) {
+        const d = Math.abs(x);
+        if (d < 6) return -0.02;
+        const k = Math.min(1, (d - 6) / 14);
+        return (d - 6) * 0.09 + k * (vnoise(x * 0.045, z * 0.045) * 9 + vnoise(x * 0.16, z * 0.16) * 1.6) - 0.02;
+      }
+      // terrain
+      {
+        const g = new T.PlaneGeometry(280, 560, 70, 140);
+        g.rotateX(-Math.PI / 2);
+        g.translate(0, 0, -80);
+        const p = g.attributes.position;
+        for (let i = 0; i < p.count; i++) p.setY(i, groundH(p.getX(i), p.getZ(i)));
+        const ng = g.toNonIndexed();
+        ng.computeVertexNormals();
+        const q = ng.attributes.position;
+        const greens = ["#eef1f6", "#e2e8f0", "#f6f7fa", "#d9e1ec"].map(col); // snow
+        const high = col("#b39a58"), peak = col("#c98552");
+        const colors = [];
+        for (let i = 0; i < q.count; i += 3) {
+          const cx = (q.getX(i) + q.getX(i + 1) + q.getX(i + 2)) / 3;
+          const cz = (q.getZ(i) + q.getZ(i + 1) + q.getZ(i + 2)) / 3;
+          const cy = (q.getY(i) + q.getY(i + 1) + q.getY(i + 2)) / 3;
+          let c = greens[Math.floor(h2(Math.round(cx * 3), Math.round(cz * 3)) * 4)].clone();
+          if (cy > 5) c.lerp(high, Math.min(1, (cy - 5) / 5));
+          if (cy > 10) c.lerp(peak, Math.min(1, (cy - 10) / 5));
+          if (Math.abs(cx) < 4.6) c = col("#c8ccd4");
+          for (let k = 0; k < 3; k++) colors.push(c.r, c.g, c.b);
+        }
+        ng.setAttribute("color", new T.Float32BufferAttribute(colors, 3));
+        road.add(new T.Mesh(ng, new T.MeshLambertMaterial({ vertexColors: true, flatShading: true })));
+      }
+      // asphalt + markings
+      {
+        const asphalt = new T.Mesh(new T.PlaneGeometry(7.8, 560), flat("#4b4853"));
+        asphalt.rotation.x = -Math.PI / 2;
+        asphalt.position.set(0, 0.01, -80);
+        road.add(asphalt);
+        const lineMat = flat("#f1ede2");
+        for (const x of [-3.6, 3.6]) {
+          const m = new T.Mesh(new T.PlaneGeometry(0.14, 560), lineMat);
+          m.rotation.x = -Math.PI / 2;
+          m.position.set(x, 0.02, -80);
+          road.add(m);
+        }
+        const dashMat = flat("#f1ede2");
+        const dashGeo = new T.PlaneGeometry(0.14, 3);
+        for (let z = 190; z > -350; z -= 8) {
+          const m = new T.Mesh(dashGeo, dashMat);
+          m.rotation.x = -Math.PI / 2;
+          m.position.set(0, 0.02, z);
+          road.add(m);
+        }
+      }
+      // trees
+      {
+        const r = rng(7);
+        const leafMats = ["#2a5a46", "#335f4a", "#3d6b4c"].map((c) => flat(c));
+        const snowCap = flat("#f6f8fb");
+        const trunkMat = flat("#6b4430");
+        const cone = new T.ConeGeometry(1, 1, 6);
+        const trunkGeo = new T.CylinderGeometry(0.18, 0.24, 1, 5);
+        for (let i = 0; i < 230; i++) {
+          const side = r() < 0.5 ? -1 : 1;
+          const x = side * (9 + Math.pow(r(), 1.4) * 80);
+          const z = 180 - r() * 520;
+          const s = 1.6 + r() * 2.4;
+          const y = groundH(x, z);
+          const tr = new T.Mesh(trunkGeo, trunkMat);
+          tr.scale.set(1, s * 0.7, 1);
+          tr.position.set(x, y + s * 0.35, z);
+          road.add(tr);
+          const lf = new T.Mesh(cone, leafMats[i % 3]);
+          lf.scale.set(s * 0.75, s * 2.0, s * 0.75);
+          lf.position.set(x, y + s * 0.7 + s, z);
+          lf.rotation.y = r() * 3;
+          road.add(lf);
+          const cap = new T.Mesh(cone, snowCap);
+          cap.scale.set(s * 0.42, s * 0.9, s * 0.42);
+          cap.position.set(x, y + s * 0.7 + s * 1.55, z);
+          cap.rotation.y = lf.rotation.y;
+          road.add(cap);
+        }
+        // mountains on the horizon
+        const mMats = ["#b0614c", "#c4775a", "#9a554b"].map((c) => flat(c));
+        for (let i = 0; i < 26; i++) {
+          const a = (i / 26) * Math.PI * 2 + r() * 0.2;
+          const R = 330 + r() * 50;
+          const H = 45 + r() * 60;
+          const m = new T.Mesh(new T.ConeGeometry(55 + r() * 40, H, 6), mMats[i % 3]);
+          m.position.set(Math.cos(a) * R, H / 2 - 6, -80 + Math.sin(a) * R);
+          m.rotation.y = r() * 3;
+          road.add(m);
+        }
+      }
+
+      // car
+      const carLights = flat("#fff4d0");
+      const car = new T.Group();
+      road.add(car);
+      const carBodyMat = flat("#2a9d8f");
+      {
+        const body = new T.Mesh(new T.BoxGeometry(1.9, 0.62, 4.3), carBodyMat);
+        body.position.y = 0.66;
+        car.add(body);
+        const hood = new T.Mesh(new T.BoxGeometry(1.86, 0.12, 1.2), flat("#268f82"));
+        hood.position.set(0, 1.0, -1.45);
+        hood.rotation.x = -0.08;
+        car.add(hood);
+        // cabin: a side profile extruded across the car (shape x = -car z)
+        function profileGeo(pts, width) {
+          const s = new T.Shape();
+          s.moveTo(-pts[0][0], pts[0][1]);
+          for (let i = 1; i < pts.length; i++) s.lineTo(-pts[i][0], pts[i][1]);
+          const g = new T.ExtrudeGeometry(s, { depth: width, bevelEnabled: false });
+          g.translate(0, 0, -width / 2);
+          g.rotateY(Math.PI / 2);
+          return g;
+        }
+        const cabin = new T.Mesh(
+          profileGeo([[-0.95, 0.96], [-0.22, 1.62], [1.0, 1.62], [1.6, 0.96]], 1.62),
+          carBodyMat,
+        );
+        car.add(cabin);
+        const glass = flat("#cfe0ea"); // frosted
+        const sideGlass = new T.Mesh(
+          profileGeo([[-0.74, 1.04], [-0.2, 1.52], [0.95, 1.52], [1.42, 1.04]], 1.66),
+          glass,
+        );
+        car.add(sideGlass);
+        const pillar = new T.Mesh(new T.BoxGeometry(1.68, 0.56, 0.12), carBodyMat);
+        pillar.position.set(0, 1.28, 0.42);
+        car.add(pillar);
+        const ws = new T.Mesh(new T.BoxGeometry(1.42, 0.86, 0.04), glass);
+        ws.rotation.x = 0.84;
+        ws.position.set(0, 1.3, -0.62);
+        car.add(ws);
+        const lightMat = carLights;
+        const tailMat = flat("#c0392b");
+        for (const s of [-1, 1]) {
+          const hl = new T.Mesh(new T.BoxGeometry(0.42, 0.16, 0.06), lightMat);
+          hl.position.set(s * 0.62, 0.78, -2.16);
+          car.add(hl);
+          const tl = new T.Mesh(new T.BoxGeometry(0.42, 0.16, 0.06), tailMat);
+          tl.position.set(s * 0.62, 0.8, 2.16);
+          car.add(tl);
+        }
+      }
+      {
+        const roof = new T.Mesh(new T.BoxGeometry(1.5, 0.12, 1.1), flat("#f6f8fb"));
+        roof.position.set(0, 1.68, 0.4);
+        car.add(roof);
+        const hood = new T.Mesh(new T.BoxGeometry(1.7, 0.08, 1.0), flat("#f6f8fb"));
+        hood.position.set(0, 1.1, -1.5);
+        hood.rotation.x = -0.08;
+        car.add(hood);
+      }
+      const hazardMat = flat("#ff9b2f");
+      const hazards = [];
+      for (const [x, z] of [[-0.96, -1.9], [0.96, -1.9], [-0.96, 1.9], [0.96, 1.9]]) {
+        const h = new T.Mesh(new T.BoxGeometry(0.08, 0.12, 0.3), hazardMat);
+        h.position.set(x, 0.86, z);
+        h.visible = false;
+        car.add(h);
+        hazards.push(h);
+      }
+      const wheels = [];
+      function makeWheel() {
+        const w = new T.Group();
+        const tire = new T.Mesh(new T.CylinderGeometry(0.37, 0.37, 0.27, 12), flat("#2a2a2e"));
+        tire.rotation.z = Math.PI / 2;
+        w.add(tire);
+        const rim = new T.Mesh(new T.CylinderGeometry(0.25, 0.25, 0.28, 10), flat("#cfd3da"));
+        rim.rotation.z = Math.PI / 2;
+        w.add(rim);
+        for (let k = 0; k < 5; k++) {
+          const sp = new T.Mesh(new T.BoxGeometry(0.02, 0.36, 0.07), flat("#8d939d"));
+          const g = new T.Group();
+          sp.position.y = 0.0;
+          g.add(sp);
+          g.rotation.x = (k / 5) * Math.PI;
+          g.position.x = -0.142;
+          w.add(g);
+        }
+        const cap = new T.Mesh(new T.CylinderGeometry(0.085, 0.085, 0.3, 8), flat("#44444c"));
+        cap.rotation.z = Math.PI / 2;
+        w.add(cap);
+        return w;
+      }
+      const FL = [-0.86, 0.37, -1.35];
+      for (const [x, z] of [[-0.86, -1.35], [0.86, -1.35], [-0.86, 1.4], [0.86, 1.4]]) {
+        const w = makeWheel();
+        w.position.set(x, 0.37, z);
+        if (x > 0) w.rotation.y = Math.PI;
+        car.add(w);
+        wheels.push(w);
+      }
+      // hum rings around the front wheel (road)
+      const ringMat = (o) => new T.MeshBasicMaterial({ color: "#ffd24a", transparent: true, opacity: o, fog: false, depthWrite: false });
+      const roadRings = [];
+      for (let k = 0; k < 3; k++) {
+        const m = new T.Mesh(new T.TorusGeometry(1, 0.025, 3, 36), ringMat(0));
+        m.rotation.y = Math.PI / 2;
+        m.position.set(FL[0] - 0.2, FL[1], FL[2]);
+        car.add(m);
+        roadRings.push(m);
+      }
+
+      const V = 13; // m/s
+      function carState(t) {
+        if (t < tRoadIn) return { x: 1.8, z: -V * t, dist: V * t };
+        const dt = t - tRoadIn;
+        const Tst = tCarStop - tRoadIn;
+        const z0 = -118;
+        const k = Math.min(dt, Tst);
+        const d = V * k - (V / (2 * Tst)) * k * k;
+        const shift = E.io2(ramp(tRoadIn + 0.6, tCarStop, t));
+        return { x: 1.8 + shift * 1.5, z: z0 - d, dist: 2000 + d, yaw: Math.sin(Math.PI * shift) * 0.06 };
+      }
+
+
+      // ---- road extras: skid marks and tyre smoke for the locked-wheel stop
+      wheels.forEach((w) => (w.rotation.order = "YXZ"));
+      const skidMat = new T.MeshBasicMaterial({ color: "#26232a", transparent: true, opacity: 0.85, depthWrite: false });
+      const skids = wheels.map(() => {
+        const m = new T.Mesh(new T.BoxGeometry(0.24, 0.01, 1), skidMat);
+        road.add(m);
+        return m;
+      });
+      const puffMats = Array.from({ length: 18 }, () => new T.MeshBasicMaterial({ color: "#e9e4dc", transparent: true, opacity: 0, depthWrite: false }));
+      const puffs = puffMats.map((m, i) => ({ m: new T.Mesh(new T.IcosahedronGeometry(0.45, 0), m), d: h2(i, 21), w: i % 2 ? 3 : 2 }));
+      puffs.forEach((p) => road.add(p.m));
+
+      // =========================================================
+      // CAMERA PATHS
+      // =========================================================
+      const roadKeys = [
+        { t: tRoadIn, p: [-3.2, 1.0, -7.5], l: [0, 0.7, -0.5] },
+        { t: tCarStop, p: [-6.5, 2.4, -10.5], l: [0, 0.9, -0.3], e: "out3" },
+        { t: DUR, p: [-7.2, 2.8, -11.4], l: [0, 1.0, -0.3], e: "lin" },
+      ];
+      function sample(keys, t) {
+        if (t <= keys[0].t) return keys[0];
+        for (let i = 1; i < keys.length; i++) {
+          const b = keys[i];
+          if (t <= b.t) {
+            const a = keys[i - 1];
+            const k = E[b.e || "io"](clamp01((t - a.t) / Math.max(1e-3, b.t - a.t)));
+            return { p: a.p.map((v, j) => lerp(v, b.p[j], k)), l: a.l.map((v, j) => lerp(v, b.l[j], k)) };
+          }
+        }
+        return keys[keys.length - 1];
+      }
+
+      // =========================================================
+      // LABELS + STRIP (HTML)
+      // =========================================================
+      const v3 = new T.Vector3();
+      const labelWin = {};
+      let nowT = 0;
+      function place(id, world) {
+        const el = document.getElementById(id);
+        const w = labelWin[id];
+        const on = w && nowT >= w[0] - 0.02 && nowT <= w[1] + 0.02;
+        el.style.visibility = on ? "visible" : "hidden";
+        if (!on) return;
+        v3.copy(world).project(camera);
+        const x = Math.max(200, Math.min(880, (v3.x * 0.5 + 0.5) * 1080));
+        const y = (-v3.y * 0.5 + 0.5) * 1920;
+        el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      }
+
+      const SLOT = 200; // px between icon centres
+      const N = 10;
+      const slots = Array.from({ length: N }, (_, i) => document.getElementById("slot-" + i));
+      const shards = Array.from(document.querySelectorAll("#strip-wrap .shard"));
+      const shardDir = shards.map((_, i) => {
+        const a = (i / shards.length) * Math.PI * 2 + 0.3;
+        return [Math.cos(a), Math.sin(a) * 0.8 - 0.35, 0.7 + h2(i, 9) * 0.6];
+      });
+      // slot-machine ease: very fast at p=0, slight overshoot, settle
+      const reel = (p) => {
+        const c1 = 0.9, c3 = c1 + 1;
+        const q = p - 1;
+        return 1 + c3 * q * q * q + c1 * q * q;
+      };
+      function stripOffset(t, target, t0, t1, loops) {
+        const p = clamp01((t - t0) / (t1 - t0));
+        return target * SLOT - (1 - reel(p)) * loops * N * SLOT;
+      }
+      function drawStrip(off, burstT) {
+        const W = N * SLOT;
+        slots.forEach((el, i) => {
+          let x = i * SLOT - off;
+          x = ((((x + W / 2) % W) + W) % W) - W / 2;
+          el.style.transform = `translateX(${(540 + x).toFixed(1)}px)`;
+        });
+        shards.forEach((el, i) => {
+          const k = clamp01(burstT / 0.7);
+          const on = burstT > 0 && k < 1;
+          el.style.opacity = on ? (1 - k).toFixed(3) : "0";
+          if (!on) return;
+          const d = shardDir[i];
+          const dist = E.out3(k) * 330 * d[2];
+          el.style.transform = `translate(${(d[0] * dist).toFixed(1)}px, ${(d[1] * dist + k * k * 140).toFixed(1)}px) rotate(${(k * 540 + i * 40).toFixed(0)}deg)`;
+        });
+      }
+
+      // =========================================================
+      // RENDER
+      // =========================================================
+      const iris = document.getElementById("world-iris");
+      const kicker = document.getElementById("strip-kicker");
+      const word = document.getElementById("strip-word");
+
+      // camera offsets from the car (world space), one per beat
+      const camKeys = [
+        { t: 0, p: [-3.2, 0.9, -5.0], l: [-0.8, 0.5, -1.2] }, // frame 0: low at the front wheel, the car slides
+        { t: LINES.l1.end, p: [-3.6, 1.1, -5.4], l: [-0.8, 0.5, -1.2], e: "lin" },
+        { t: LINES.l2.start + 0.6, p: [-6.5, 2.2, 1.0], l: [0, 0.6, -0.5], e: "io" },
+        { t: LINES.l3.start + 0.5, p: [-2.6, 0.7, -3.4], l: [-0.86, 0.4, -1.35], e: "io" },
+        { t: LINES.l5.start + 0.5, p: [-5.0, 3.0, -9.0], l: [0, 0.6, -1.0], e: "io" },
+        { t: LINES.l6.start + 0.6, p: [-4.5, 7.5, 6.5], l: [0, 0.4, -2.0], e: "io" },
+        { t: DUR, p: [-5.0, 8.5, 7.5], l: [0, 0.4, -2.0], e: "lin" },
+      ];
+      // the car: slides on snow in the hook, cruises, brakes long on snow in l5
+      const VC = 11;
+      function carAt(t) {
+        let d = VC * t, yaw = 0, x = 1.8;
+        if (t < LINES.l1.end + 0.3) {
+          const k = Math.sin(t * 2.4);
+          yaw = 0.16 * k;
+          x = 1.8 + 0.5 * Math.sin(t * 1.2);
+        }
+        const b0 = M.schnee - 0.2;
+        if (t > b0) {
+          const u = Math.min(t - b0, 2.4);
+          d = VC * b0 + VC * u - (VC / 4.8) * u * u;
+          yaw = 0.08 * Math.sin((t - b0) * 3) * Math.max(0, 1 - (t - b0) / 2.4);
+        }
+        return { x, z: 140 - d, dist: d, yaw };
+      }
+      // snowfall around the camera
+      const flakes = [];
+      {
+        const r = rng(123);
+        const g = new T.BoxGeometry(0.05, 0.05, 0.05);
+        const m = new T.MeshBasicMaterial({ color: "#ffffff", fog: false });
+        for (let i = 0; i < 260; i++) {
+          const f = new T.Mesh(g, m);
+          road.add(f);
+          const ang = r() * Math.PI * 2, rad = 3 + r() * 8; // keep flakes off the lens
+          flakes.push({ f, x: Math.cos(ang) * rad, y: r() * 9, z: Math.sin(ang) * rad, v: 0.6 + r() * 0.8, w: r() * 6 });
+        }
+      }
+      const coin = document.getElementById("coin");
+      function render(t) {
+        nowT = t;
+        iris.style.opacity = "0";
+        document.querySelectorAll("#root .lbl").forEach((el) => (el.style.visibility = "hidden"));
+        roadRings.forEach((m) => (m.visible = false));
+        const s = carAt(t);
+        car.position.set(s.x, Math.sin(s.dist * 1.7) * 0.012, s.z);
+        car.rotation.set(0, s.yaw, 0);
+        const roll = -s.dist / 0.37;
+        wheels.forEach((w) => {
+          w.rotation.y = w.position.x > 0 ? Math.PI : 0;
+          w.rotation.x = w.position.x > 0 ? -roll : roll;
+        });
+        hazards.forEach((h) => (h.visible = false));
+        skids.forEach((m) => (m.visible = false));
+        puffs.forEach((p) => (p.m.visible = false));
+        carLights.color.set("#fff4d0");
+        const c = sample(camKeys, t);
+        camera.position.set(s.x + c.p[0], c.p[1], s.z + c.p[2]);
+        camera.lookAt(s.x + c.l[0], c.l[1], s.z + c.l[2]);
+        camera.updateMatrixWorld();
+        flakes.forEach((fl) => {
+          const y = (((fl.y - t * fl.v) % 9) + 9) % 9;
+          fl.f.position.set(camera.position.x + fl.x + Math.sin(t + fl.w) * 0.4, y - 1, camera.position.z + fl.z);
+        });
+        renderer.render(road, camera);
+        // the 2-euro coin slides into the tread groove
+        const k = E.out3(ramp(M.muenze, M.muenze + 0.6, t));
+        coin.setAttribute("transform", `translate(0 ${(-330 + k * 330).toFixed(1)})`);
+      }
+      // =========================================================
+      // TIMELINE
+      // =========================================================
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      function showLabel(id, a, b) {
+        labelWin[id] = [a, b];
+        tl.fromTo("#" + id, { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.out" }, a);
+        tl.fromTo("#" + id + " .txt", { scale: 0.6 }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, a);
+        tl.to("#" + id, { opacity: 0, duration: 0.15, ease: "power2.in" }, b - 0.15);
+      }
+      function tag(id, a, b) {
+        tl.fromTo(id, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, a);
+        tl.to(id, { opacity: 0, duration: 0.15 }, b - 0.15);
+        tl.set(id, { visibility: "hidden" }, b);
+      }
+      tag("#tag-fine", M.euro - 0.1, LINES.l2.start - 0.1);
+      [".sign.ok", ".sign.no"].forEach((id, k) => {
+        tl.fromTo(id, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, [M.berg, M.ms][k] - 0.1);
+        tl.to(id, { opacity: 0, duration: 0.15 }, LINES.l3.start - 0.2);
+      });
+      tl.fromTo(".sign.no", { x: 0 }, { x: 14, duration: 0.06, yoyo: true, repeat: 5 }, M.ms + 0.25);
+      tl.set("#signs", { visibility: "hidden" }, LINES.l3.start);
+      tl.fromTo("#cointest", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, M.profil - 0.1);
+      tl.fromTo("#rim-mark", { opacity: 0 }, { opacity: 1, duration: 0.15, repeat: 3, yoyo: true }, M.rand - 0.05);
+      tl.set("#rim-mark", { opacity: 1 }, M.rand + 0.6);
+      tl.to("#cointest", { opacity: 0, duration: 0.2 }, LINES.l5.start - 0.2);
+      tl.set("#cointest", { visibility: "hidden" }, LINES.l5.start);
+      tag("#tag-rand", M.rand - 0.05, M.neue - 0.05);
+      tag("#tag-neu", M.neue - 0.05, LINES.l5.start - 0.1);
+      ["#mm .chip:nth-child(1)", "#mm .chip:nth-child(2)"].forEach((id, k) => {
+        tl.fromTo(id, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, M.erlaubt - 0.05 + k * 0.6);
+      });
+      tl.to("#mm", { opacity: 0, duration: 0.15 }, LINES.l6.start - 0.15);
+      tl.set("#mm", { visibility: "hidden" }, LINES.l6.start);
+      tag("#tag-share", M.schick - 0.1, tFollow);
+      tl.fromTo("#arrow", { opacity: 0, x: -40, y: -40 }, { opacity: 1, x: 0, y: 0, duration: 0.3 }, M.schick + 0.1);
+      tl.to("#arrow", { x: 18, y: 18, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3 }, M.schick + 0.45);
+      tl.to("#arrow", { opacity: 0, duration: 0.15 }, tFollow);
+
+      // hook plate: on screen from frame 0
+      tl.fromTo("#plate-hook", { opacity: 1 }, { opacity: 1, duration: 0.01 }, 0);
+      tl.fromTo("#plate-hook .plate", { scale: 1.12 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 0);
+      tl.to("#plate-hook", { opacity: 0, y: -40, duration: 0.2, ease: "power2.in" }, LINES.l1.end + 0.1);
+      tl.set("#plate-hook", { visibility: "hidden" }, LINES.l1.end + 0.3);
+
+      // follow card
+      tl.fromTo("#follow", { opacity: 0 }, { opacity: 1, duration: 0.2 }, tFollow);
+      tl.set(["#strip-wrap", "#strip-dim"], { visibility: "hidden" }, 0);
+      tl.fromTo("#follow-pic", { scale: 0.6 }, { scale: 1, duration: 0.45, ease: "back.out(1.8)" }, tFollow);
+      tl.fromTo("#follow-text", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power3.out" }, tFollow + 0.15);
+      tl.fromTo("#follow-hand", { x: 160, y: 200, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, tFollow + 0.3);
+      tl.to("#follow-hand", { scale: 0.86, transformOrigin: "40% 0%", duration: 0.1, ease: "power2.in" }, tFollow + 0.85);
+      tl.to("#follow-hand", { scale: 1, duration: 0.15, ease: "power2.out" }, tFollow + 0.95);
+      tl.fromTo("#follow-plus", { scale: 1, backgroundColor: "#ffd24a" }, { scale: 1.25, backgroundColor: "#2a9d8f", duration: 0.12, ease: "power2.out" }, tFollow + 0.9);
+      tl.to("#follow-plus", { scale: 1, duration: 0.2, ease: "back.out(2)" }, tFollow + 1.02);
+      tl.set("#follow-plus", { textContent: "✓" }, tFollow + 0.95);
+
+      render(0);
+      window.__timelines["world"] = tl;
+    })();
+  </script>
+</template>

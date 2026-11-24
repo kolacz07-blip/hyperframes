@@ -1,0 +1,110 @@
+{
+  "title": "Winterreifen: Darfst du so überhaupt fahren?",
+  "note": "Saisonthema, orange 3D-Winterstraße wie Winterstart (bestes Video seit Teil 5), kein „Teil X“, Ende: Bitte ums Teilen. Fakten geprüft: 60 € + 1 Punkt; seit 1.10.2024 nur Alpine-Symbol; gesetzlich 1,6 mm, empfohlen 4 mm; silberner Rand der 2-€-Münze ≈ 4 mm.",
+  "duration": 29.6,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 3.4,
+      "text": "Fährst du noch auf diesen Reifen? Bei Schnee kostet das 60 Euro und einen Punkt."
+    },
+    {
+      "id": "l2",
+      "start": 3.6,
+      "end": 7.6,
+      "text": "Seit 2024 zählt nur noch der Berg mit Schneeflocke – M plus S reicht nicht mehr."
+    },
+    {
+      "id": "l3",
+      "start": 7.8,
+      "end": 9.8,
+      "text": "Dann check das Profil: Steck eine 2-Euro-Münze rein."
+    },
+    {
+      "id": "l4",
+      "start": 10,
+      "end": 13.4,
+      "text": "Siehst du noch den silbernen Rand, sind es unter vier Millimeter – Zeit für neue Reifen."
+    },
+    {
+      "id": "l5",
+      "start": 13.6,
+      "end": 16.6,
+      "text": "Erlaubt sind 1,6 Millimeter – aber auf Schnee bremst du damit viel schlechter."
+    },
+    {
+      "id": "l6",
+      "start": 16.8,
+      "end": 20,
+      "text": "Schick das jemandem, der noch auf Sommerreifen fährt – und folg mir!"
+    }
+  ],
+  "marks": [
+    {
+      "name": "reifen",
+      "line": "l1",
+      "word": "Reifen"
+    },
+    {
+      "name": "euro",
+      "line": "l1",
+      "word": "Euro"
+    },
+    {
+      "name": "berg",
+      "line": "l2",
+      "word": "Berg"
+    },
+    {
+      "name": "ms",
+      "line": "l2",
+      "word": "M"
+    },
+    {
+      "name": "profil",
+      "line": "l3",
+      "word": "Profil"
+    },
+    {
+      "name": "muenze",
+      "line": "l3",
+      "word": "2-Euro-Münze"
+    },
+    {
+      "name": "rand",
+      "line": "l4",
+      "word": "Rand"
+    },
+    {
+      "name": "vier",
+      "line": "l4",
+      "word": "vier"
+    },
+    {
+      "name": "neue",
+      "line": "l4",
+      "word": "neue"
+    },
+    {
+      "name": "erlaubt",
+      "line": "l5",
+      "word": "Erlaubt"
+    },
+    {
+      "name": "schnee",
+      "line": "l5",
+      "word": "Schnee"
+    },
+    {
+      "name": "schick",
+      "line": "l6",
+      "word": "Schick"
+    },
+    {
+      "name": "folg",
+      "line": "l6",
+      "word": "folg"
+    }
+  ]
+}
