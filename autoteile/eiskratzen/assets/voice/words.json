@@ -1,0 +1,357 @@
+{
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "offset": 0.3,
+  "tempo": 1.18,
+  "words": [
+    {
+      "text": "Scheibe",
+      "start": 0.3,
+      "end": 0.644
+    },
+    {
+      "text": "vereist?",
+      "start": 0.684,
+      "end": 1.205
+    },
+    {
+      "text": "Diese",
+      "start": 1.333,
+      "end": 1.559
+    },
+    {
+      "text": "drei",
+      "start": 1.599,
+      "end": 1.747
+    },
+    {
+      "text": "Fehler",
+      "start": 1.805,
+      "end": 2.022
+    },
+    {
+      "text": "machen",
+      "start": 2.061,
+      "end": 2.248
+    },
+    {
+      "text": "fast",
+      "start": 2.287,
+      "end": 2.484
+    },
+    {
+      "text": "alle.",
+      "start": 2.533,
+      "end": 2.878
+    },
+    {
+      "text": "Fehler",
+      "start": 3.252,
+      "end": 3.508
+    },
+    {
+      "text": "eins:",
+      "start": 3.567,
+      "end": 3.97
+    },
+    {
+      "text": "heißes",
+      "start": 4.069,
+      "end": 4.344
+    },
+    {
+      "text": "Wasser",
+      "start": 4.393,
+      "end": 4.609
+    },
+    {
+      "text": "drüber.",
+      "start": 4.639,
+      "end": 5.102
+    },
+    {
+      "text": "Der",
+      "start": 5.377,
+      "end": 5.485
+    },
+    {
+      "text": "Temperaturschock",
+      "start": 5.525,
+      "end": 6.242
+    },
+    {
+      "text": "kann",
+      "start": 6.312,
+      "end": 6.44
+    },
+    {
+      "text": "die",
+      "start": 6.459,
+      "end": 6.528
+    },
+    {
+      "text": "Scheibe",
+      "start": 6.558,
+      "end": 6.814
+    },
+    {
+      "text": "springen",
+      "start": 6.833,
+      "end": 7.138
+    },
+    {
+      "text": "lassen.",
+      "start": 7.187,
+      "end": 7.601
+    },
+    {
+      "text": "Fehler",
+      "start": 7.925,
+      "end": 8.181
+    },
+    {
+      "text": "zwei:",
+      "start": 8.24,
+      "end": 8.683
+    },
+    {
+      "text": "Motor",
+      "start": 8.811,
+      "end": 9.136
+    },
+    {
+      "text": "laufen",
+      "start": 9.175,
+      "end": 9.42
+    },
+    {
+      "text": "lassen,",
+      "start": 9.46,
+      "end": 9.697
+    },
+    {
+      "text": "bis",
+      "start": 9.716,
+      "end": 9.824
+    },
+    {
+      "text": "sie",
+      "start": 9.844,
+      "end": 9.923
+    },
+    {
+      "text": "frei",
+      "start": 9.962,
+      "end": 10.158
+    },
+    {
+      "text": "ist.",
+      "start": 10.198,
+      "end": 10.523
+    },
+    {
+      "text": "Das",
+      "start": 10.758,
+      "end": 10.897
+    },
+    {
+      "text": "ist",
+      "start": 10.946,
+      "end": 11.034
+    },
+    {
+      "text": "verboten",
+      "start": 11.074,
+      "end": 11.477
+    },
+    {
+      "text": "und",
+      "start": 11.536,
+      "end": 11.605
+    },
+    {
+      "text": "kostet",
+      "start": 11.644,
+      "end": 11.93
+    },
+    {
+      "text": "80",
+      "start": 11.998,
+      "end": 12.244
+    },
+    {
+      "text": "Euro.",
+      "start": 12.342,
+      "end": 12.775
+    },
+    {
+      "text": "Fehler",
+      "start": 13.208,
+      "end": 13.464
+    },
+    {
+      "text": "drei:",
+      "start": 13.494,
+      "end": 13.917
+    },
+    {
+      "text": "nur",
+      "start": 14.064,
+      "end": 14.202
+    },
+    {
+      "text": "ein",
+      "start": 14.222,
+      "end": 14.291
+    },
+    {
+      "text": "Guckloch",
+      "start": 14.34,
+      "end": 14.645
+    },
+    {
+      "text": "kratzen.",
+      "start": 14.675,
+      "end": 15.147
+    },
+    {
+      "text": "Du",
+      "start": 15.52,
+      "end": 15.619
+    },
+    {
+      "text": "brauchst",
+      "start": 15.658,
+      "end": 15.924
+    },
+    {
+      "text": "freie",
+      "start": 15.973,
+      "end": 16.18
+    },
+    {
+      "text": "Sicht",
+      "start": 16.229,
+      "end": 16.397
+    },
+    {
+      "text": "rundum",
+      "start": 16.436,
+      "end": 16.8
+    },
+    {
+      "text": "sonst",
+      "start": 16.967,
+      "end": 17.223
+    },
+    {
+      "text": "gibt's",
+      "start": 17.262,
+      "end": 17.449
+    },
+    {
+      "text": "Bußgeld.",
+      "start": 17.488,
+      "end": 18.069
+    },
+    {
+      "text": "Besser:",
+      "start": 18.502,
+      "end": 18.797
+    },
+    {
+      "text": "Eiskratzer,",
+      "start": 18.836,
+      "end": 19.456
+    },
+    {
+      "text": "Enteiserspray,",
+      "start": 19.486,
+      "end": 20.371
+    },
+    {
+      "text": "und",
+      "start": 20.499,
+      "end": 20.617
+    },
+    {
+      "text": "abends",
+      "start": 20.686,
+      "end": 20.932
+    },
+    {
+      "text": "eine",
+      "start": 20.971,
+      "end": 21.08
+    },
+    {
+      "text": "Abdeckung",
+      "start": 21.119,
+      "end": 21.492
+    },
+    {
+      "text": "auf",
+      "start": 21.522,
+      "end": 21.592
+    },
+    {
+      "text": "die",
+      "start": 21.631,
+      "end": 21.699
+    },
+    {
+      "text": "Scheibe.",
+      "start": 21.729,
+      "end": 22.192
+    },
+    {
+      "text": "Schick",
+      "start": 22.565,
+      "end": 22.742
+    },
+    {
+      "text": "das",
+      "start": 22.792,
+      "end": 22.89
+    },
+    {
+      "text": "jemandem,",
+      "start": 22.949,
+      "end": 23.274
+    },
+    {
+      "text": "der",
+      "start": 23.293,
+      "end": 23.372
+    },
+    {
+      "text": "jeden",
+      "start": 23.421,
+      "end": 23.598
+    },
+    {
+      "text": "Morgen",
+      "start": 23.628,
+      "end": 23.844
+    },
+    {
+      "text": "kratzt",
+      "start": 23.874,
+      "end": 24.159
+    },
+    {
+      "text": "und",
+      "start": 24.218,
+      "end": 24.317
+    },
+    {
+      "text": "folg",
+      "start": 24.356,
+      "end": 24.543
+    },
+    {
+      "text": "mir!",
+      "start": 24.582,
+      "end": 25.291
+    }
+  ]
+}

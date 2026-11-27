@@ -1,0 +1,125 @@
+{
+  "title": "Scheibe vereist? Diese 3 Fehler machen fast alle",
+  "note": "Saisonthema, orange 3D-Winterwelt, Problem statt Regel, Ende: Bitte ums Teilen. Fakten geprüft (ADAC u. a.): Warmlaufenlassen verboten, 80 €; nur Guckloch 10 €; heißes Wasser kann die Scheibe springen lassen.",
+  "duration": 28.5,
+  "lines": [
+    {
+      "id": "l1",
+      "start": 0.05,
+      "end": 2.6,
+      "text": "Scheibe vereist? Diese drei Fehler machen fast alle."
+    },
+    {
+      "id": "l2",
+      "start": 2.8,
+      "end": 6.4,
+      "text": "Fehler eins: heißes Wasser drüber. Der Temperaturschock kann die Scheibe springen lassen."
+    },
+    {
+      "id": "l3",
+      "start": 6.6,
+      "end": 10.2,
+      "text": "Fehler zwei: Motor laufen lassen, bis sie frei ist. Das ist verboten und kostet 80 Euro."
+    },
+    {
+      "id": "l4",
+      "start": 10.4,
+      "end": 14,
+      "text": "Fehler drei: nur ein Guckloch kratzen. Du brauchst freie Sicht rundum – sonst gibt's Bußgeld."
+    },
+    {
+      "id": "l5",
+      "start": 14.2,
+      "end": 17.4,
+      "text": "Besser: Eiskratzer, Enteiserspray, und abends eine Abdeckung auf die Scheibe."
+    },
+    {
+      "id": "l6",
+      "start": 17.6,
+      "end": 20.4,
+      "text": "Schick das jemandem, der jeden Morgen kratzt – und folg mir!"
+    }
+  ],
+  "marks": [
+    {
+      "name": "fehler",
+      "line": "l1",
+      "word": "Fehler"
+    },
+    {
+      "name": "eins",
+      "line": "l2",
+      "word": "eins"
+    },
+    {
+      "name": "wasser",
+      "line": "l2",
+      "word": "Wasser"
+    },
+    {
+      "name": "springen",
+      "line": "l2",
+      "word": "springen"
+    },
+    {
+      "name": "zwei",
+      "line": "l3",
+      "word": "zwei"
+    },
+    {
+      "name": "motor",
+      "line": "l3",
+      "word": "Motor"
+    },
+    {
+      "name": "euro",
+      "line": "l3",
+      "word": "Euro"
+    },
+    {
+      "name": "drei",
+      "line": "l4",
+      "word": "drei"
+    },
+    {
+      "name": "guckloch",
+      "line": "l4",
+      "word": "Guckloch"
+    },
+    {
+      "name": "rundum",
+      "line": "l4",
+      "word": "rundum"
+    },
+    {
+      "name": "besser",
+      "line": "l5",
+      "word": "Besser"
+    },
+    {
+      "name": "kratzer",
+      "line": "l5",
+      "word": "Eiskratzer"
+    },
+    {
+      "name": "spray",
+      "line": "l5",
+      "word": "Enteiserspray"
+    },
+    {
+      "name": "abdeckung",
+      "line": "l5",
+      "word": "Abdeckung"
+    },
+    {
+      "name": "schick",
+      "line": "l6",
+      "word": "Schick"
+    },
+    {
+      "name": "folg",
+      "line": "l6",
+      "word": "folg"
+    }
+  ]
+}
